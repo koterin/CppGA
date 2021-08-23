@@ -16,9 +16,8 @@ C:\Users\Katerina\source\repos\CppGA\symbolic\integrate.h(146,32): warning C4101
 C:\Users\Katerina\source\repos\CppGA\symbolic\integrate.h(156,32): warning C4101: 'se': unreferenced local variable
 C:\Users\Katerina\source\repos\CppGA\symbolic\integrate.h(166,32): warning C4101: 'se': unreferenced local variable
 C:\Users\Katerina\source\repos\CppGA\symbolic\solve.h(74,33): warning C4101: 'se': unreferenced local variable
-C:\Users\Katerina\source\repos\CppGA\Source.cpp(570,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Katerina\source\repos\CppGA\Source.cpp(684,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Katerina\source\repos\CppGA\Source.cpp(622,15): warning C4101: 'start': unreferenced local variable
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(410,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(634,15): warning C4101: 'start': unreferenced local variable
 C:\Users\Katerina\source\repos\CppGA\matrix.h(121,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\Katerina\source\repos\CppGA\matrix.h(120): message : while compiling class template member function 'Matrix<Symbolic>::Matrix(const Vector<T> &)'
           with

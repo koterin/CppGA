@@ -43,172 +43,12 @@ public:
 		{
 			buf = *iter;
 			res = ind[t == buf.t];
-			//std::cout << "\ncurrent ind is " << ind << " = " << res << " and the data v is " << buf.v << std::endl;
 			dev = pow((res - buf.v),2);
 			devf += dev;
 			++iter;
 		}
 
-		fit = sqrt(devf);
-		std::cout << "\nFit " << fit << std::endl;
-		
-		return;
-	}
-
-	//Function for GA coefficient optimization
-	void numGAopt()
-	{
-		Gene outputGene;
-		Individ outputInd;
-		vector<Individ> numPop; //Population for numeric GA
-		int npsize = 4; //number of inds in GA
-		double resCoef = 0.0;
-		int bol = 0;
-		int dec = 0; //decision - is there any genes to optimize?
-
-		numPop.clear();
-		numPop.resize(npsize);
-		std::cout << " Ind " << ind << std::endl;
-
-		outputInd.ind = ind;
-		outputInd.genes = genes;
-		outputInd.numCoef = numCoef;
-		outputInd.pop = pop;
-
-		for (int i = 0; i < npsize; i++)
-		{
-			numPop.at(i) = outputInd;
-		}
-
-		for (int i = 0; i < genes.size(); i++)
-		{
-			outputGene = genes.at(i);
-			std::cout << "Gene " << outputGene.elem << std::endl;
-			//iter = numPop.begin();
-
-			if (outputGene.type == 1)
-			{
-				dec += 1;
-				//creating new individual
-				for (int j = 0; j < npsize; j++)
-				{
-					resCoef = numPop.at(j).genes.at(i).elem;
-					bol = rand() % 2; //boolean imitation
-
-					if (bol == 0) {
-						resCoef = resCoef / double(rand() % 100);
-					}
-					else if (bol == 1) {
-						resCoef = resCoef / double(- (rand() % 100));
-					};
-
-					numPop.at(j).genes.at(i).elem = resCoef;
-
-					std::cout << "new gene is " << numPop.at(j).genes.at(i).elem << std::endl;
-				}
-			}
-		}
-
-		if (dec > 0)
-		{
-			//MAIN GA LOOP
-
-			int limit = 4; //manual limit for GA loops
-			int mind, maxd;
-
-			for (int f = 0; f < limit; f++) {
-
-				mind = 0;
-				maxd = 0;
-
-				//Displaying current population
-				std::cout << "\nGA Population " << f << std::endl;
-				for (int g = 0; g < npsize; g++) {
-					std::cout << numPop.at(g).ind << std::endl;
-
-					//Founding minimum
-					if (numPop.at(g).fit < numPop.at(mind).fit)
-					{
-						mind = g;
-					}
-
-					//Founding maximum
-					if (numPop.at(g).fit > numPop.at(maxd).fit)
-					{
-						maxd = g;
-					}
-				}
-
-				std::cout << "\nThe minimum fit in Population " << f << " is " << numPop.at(mind).fit << std::endl;
-				std::cout << "The maximum fit in Population " << f << " is " << numPop.at(mind).fit << std::endl;
-
-				////Writing the Min file
-				//minim.open("Min.txt", std::ios::app);
-				//minim << x1[mind] << " " << y1[mind] << std::endl;
-				//minim.close();
-
-				////Checking if the current minimum answers our preffered accuracy
-				//if ((abs(x1[mind]) < 0.01) && (abs(y1[mind]) < 0.01)) {
-				//	std::cout << "\nThe global minimum found after " << f << " loops, it's X = "
-				//		<< x1[mind] << " Y = " << y1[mind] << std::endl;
-				//	break;
-				//}
-
-				////Setting Mom and Dad as 2 random elements of the population
-
-				////stupid error - MathCad can't read numbers with . instead of ,
-
-				////MOM
-				//mom.open("Mom.txt", std::ios::app);
-				//int num = rand() % (n1 - 1);
-				////std::cout << "num is " << num;
-				//double* MOM = new double;
-				//MOM = &x1[num];
-				//double* Ym = new double;
-				//Ym = &y1[num];
-				//std::cout << "Mom X = " << *MOM << " Y = " << *Ym << std::endl;
-
-				//mom << *MOM << " " << *Ym << std::endl;
-				//mom.close();
-
-				////DAD
-				//dad.open("Dad.txt", std::ios::app);
-				//int nud = rand() % (n1 - 1);
-				////std::cout << "nud is " << nud;
-				//double* DAD = new double;
-				//DAD = &x1[nud];
-				//double* Yd = new double;
-				//Yd = &y1[nud];
-				//std::cout << "Dad X = " << *DAD << " Y = " << *Yd << std::endl;
-
-				//dad << *DAD << " " << *Yd << std::endl;
-				//dad.close();
-
-				////KID
-				//kid.open("Kid.txt", std::ios::app);
-				//double KID, Yk, koef1, koef2, testk;
-				//koef1 = (rand() % 100) / double(100);
-				//koef2 = (rand() % 100) / double(100);
-				//KID = koef1 * (*MOM) + koef2 * (*DAD);
-				//Yk = Rastr(KID);
-				//std::cout << "KID X = " << KID << " Y = " << Yk << std::endl;
-
-				//kid << KID << " " << Yk << std::endl;
-				//kid.close();
-
-				////Replacing the worst element of the population with the kid
-				//x1[maxd] = KID;
-				//y1[maxd] = Rastr(x1[maxd]);
-				////double y1k = Rastr(x1[maxd]);
-				////std::cout << "kid y1 " << y1[maxd] << " rastr y " << y1k << std::endl;
-
-			};
-		}
-
-
-
-
-
+		fit = sqrt(devf);		
 		return;
 	}
 };
@@ -525,16 +365,16 @@ public:
 };
 
 //Function for writing dataset from the file to the array
-vector<struct data> SetData(std::string fileroute)
+vector<struct data> SetData(std::string fileroute, int len)
 {
 	std::ifstream datafile(fileroute);
 	vector<struct data> ExpData;
 	ExpData.clear();
-	ExpData.reserve(50000);
+	ExpData.reserve(len);
 	struct data curdata;
 	int i = 0;
 	
-	while (i < 1000) //Here you can vary the number of input data lines coming in
+	while (i < len)
 	{
 		if (datafile.eof())
 		{
@@ -569,9 +409,12 @@ Individ IndFromGenes(vector<Gene> genes)
 	outputInd.ind = "";
 	int vsize = genes.size();
 	outputInd.genes.resize(vsize);
+	int depth = 1;
 
 	//For the 1st element
 	outputInd.genes.at(0) = genes.at(0);
+	outputInd.genes.at(0).depth = depth;
+	depth += 1;
 	outputInd.ind = genes.at(0).elem;
 
 	for (int i = 1; i < vsize; i++)
@@ -580,40 +423,209 @@ Individ IndFromGenes(vector<Gene> genes)
 		{
 			outputInd.ind = (outputInd.ind) + genes.at(i).elem;
 			outputInd.genes.at(i) = genes.at(i);
-			std::cout << "So current ind is " << outputInd.ind << std::endl;
+			outputInd.genes.at(i).depth = depth;
+			depth += 1;
 		}
 
 		if (genes.at(i).oper == 2)
 		{
 			outputInd.ind = (outputInd.ind) - genes.at(i).elem;
 			outputInd.genes.at(i) = genes.at(i);
-			std::cout << "So current ind is " << outputInd.ind << std::endl;
+			outputInd.genes.at(i).depth = depth;
+			depth += 1;
 		}
 
 		if (genes.at(i).oper == 3)
 		{
 			outputInd.ind = (outputInd.ind) * genes.at(i).elem;
 			outputInd.genes.at(i) = genes.at(i);
-			std::cout << "So current ind is " << outputInd.ind << std::endl;
+			outputInd.genes.at(i).depth = depth;
+			depth += 1;
 		}
 
 		if (genes.at(i).oper == 4)
 		{
 			outputInd.ind = (outputInd.ind) / genes.at(i).elem;
 			outputInd.genes.at(i) = genes.at(i);
-			std::cout << "So current ind is " << outputInd.ind << std::endl;
+			outputInd.genes.at(i).depth = depth;
+			depth += 1;
 		}
 
 		if (genes.at(i).oper == 5)
 		{
 			outputInd.ind = pow((outputInd.ind), genes.at(i).elem);
 			outputInd.genes.at(i) = genes.at(i);
-			std::cout << "So current ind is " << outputInd.ind << std::endl;
+			outputInd.genes.at(i).depth = depth;
+			depth += 1;
 		}
 	}
 
-	std::cout << "Final ind is " << outputInd.ind << std::endl;
+	return(outputInd);
+}
 
+//Function for GA coefficient optimization
+Individ numGAopt(Individ inputInd, vector<struct data> ExpData, Symbolic t)
+{
+	Individ outputInd;
+	vector<Individ> numPop; //Population for numeric GA
+	vector<Gene> buf;
+	int GAsize = 15; //number of inds in GA
+	double resCoef = 0.0;
+	int bol = 0;
+	int dec = 0; //decision - is there any genes to optimize?
+
+	numPop.clear();
+	numPop.resize(GAsize);
+	std::cout << "\n Ind " << inputInd.ind << std::endl;
+
+	outputInd.ind = inputInd.ind;
+	outputInd.genes = inputInd.genes;
+	outputInd.numCoef = inputInd.numCoef;
+	outputInd.pop = inputInd.pop;
+
+	for (int i = 0; i < GAsize; i++)
+	{
+		numPop.at(i) = outputInd;
+	}
+
+	for (int i = 0; i < inputInd.genes.size(); i++)
+	{
+		if (inputInd.genes.at(i).type == 1)
+		{
+			dec += 1;
+			//creating new individual
+			for (int j = 0; j < GAsize; j++)
+			{
+				resCoef = numPop.at(j).genes.at(i).elem;
+				bol = rand() % 2; //boolean imitation
+
+				if (bol == 0)
+				{
+					//resCoef = resCoef / double(rand() % 40);
+					resCoef = double(rand() % 100);
+				}
+				else if (bol == 1)
+				{
+					//resCoef = resCoef / double(-(rand() % 40));
+					resCoef = double(-(rand() % 100));
+				};
+
+				numPop.at(j).genes.at(i).elem = resCoef;
+
+				std::cout << "new gene is " << numPop.at(j).genes.at(i).elem << std::endl;
+			}
+		}
+	}
+
+	if (dec == 0)
+	{
+		std::cout << "No numeric GA optimization needed" << std::endl;
+		return(outputInd);
+	}
+
+	else if (dec > 0)
+	{
+		buf.clear();
+		buf.resize(GAsize);
+		std::cout << "The initial ind fit is " << inputInd.fit << std::endl;
+		double multCoef = 2; //Condition: if multCoef * current_fit < initial_fit then GA stops
+
+		for (int i = 0; i < GAsize; i++)
+		{
+			buf = numPop.at(i).genes;
+			numPop.at(i) = IndFromGenes(buf);
+			std::cout << "New ind is " << numPop.at(i).ind << std::endl;
+		}
+
+		//MAIN GA LOOP
+
+		int limit = 50; //manual limit for GA loops
+		int mind, maxd;
+
+		for (int f = 0; f < limit; f++) {
+
+			mind = 0;
+			maxd = 0;
+			numPop.at(0).CalcFit(ExpData, t);
+
+			//Displaying current population
+			std::cout << "\nGA Population " << f + 1 << std::endl;
+			for (int g = 0; g < GAsize; g++)
+			{
+				numPop.at(g).CalcFit(ExpData, t);
+				std::cout << numPop.at(g).ind << " and fit " << numPop.at(g).fit << std::endl;
+				//Founding minimum
+				if (numPop.at(g).fit < numPop.at(mind).fit)
+				{
+					mind = g;
+				}
+
+				//Founding maximum
+				if (numPop.at(g).fit > numPop.at(maxd).fit)
+				{
+					maxd = g;
+				}
+			}
+
+			std::cout << "\nThe minimum fit in Population " << f << " is " << numPop.at(mind).fit << std::endl;
+			std::cout << "The maximum fit in Population " << f << " is " << numPop.at(maxd).fit << std::endl;
+
+			//Checking if the current minimum fit is twice smaller than the initial
+			if ((multCoef*(numPop.at(mind).fit)) < inputInd.fit)
+			{
+				std::cout << "Optimum coefficients found after " << f << " loops, final ind is "
+					<< numPop.at(mind).ind << " and fit = " << numPop.at(mind).fit << std::endl;
+				outputInd = numPop.at(mind);
+				return(outputInd);
+			}
+
+			//Setting Mom and Dad as 2 random elements of the population
+			//MOM
+			int numMOM = rand() % (GAsize - 1);
+			std::cout << "numMOM is " << numMOM << std::endl;
+			Individ MOM = numPop.at(numMOM);
+			std::cout << "MOM is " << MOM.ind << " and fit is " << MOM.fit << std::endl;
+
+			//DAD
+			int numDAD = rand() % (GAsize - 1);
+			if (numDAD == numMOM)
+			{
+				while (numDAD == numMOM)
+				{
+					numDAD = rand() % (GAsize - 1);
+				}
+			}
+
+			std::cout << "numDAD is " << numDAD << std::endl;
+			Individ DAD = numPop.at(numDAD);
+			std::cout << "DAD is " << DAD.ind << " and fit is " << DAD.fit << std::endl;
+
+			//KID
+			double koef1, koef2;
+			koef1 = (rand() % 100) / double(100);
+			koef2 = (rand() % 100) / double(100);
+			Individ KID = MOM;
+			
+			for (int q = 0; q < MOM.genes.size(); q++)
+			{
+				if (KID.genes.at(q).type == 1)
+				{
+					KID.genes.at(q).elem = koef1 * MOM.genes.at(q).elem + koef2 * DAD.genes.at(q).elem;
+				}
+			}
+			
+			KID = IndFromGenes(KID.genes);
+			KID.CalcFit(ExpData, t);
+			
+			std::cout << "KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
+
+			//Replacing the worst element of the population with the KID
+			numPop.at(maxd) = KID;
+			
+		};
+	}
+
+	std::cout << "GA optimization failed, ending the loop" << std::endl;
 	return(outputInd);
 }
 
@@ -628,10 +640,11 @@ int main(void) {
 	int k = 1; //Individual serial number
 	int numInd = 6; //number of individuals in the population
 	int numCoef = 0; //number of coefficients in the origin individual
+	int len = 1000; //number of lines in ExpData to read
 	Individ outputInd; //Buffer for Individ class
 	vector<struct data> ExpData; //Vector of experimental data
 	ExpData.clear();
-	ExpData.reserve(100000);
+	ExpData.reserve(len);
 
 	Population popul;
 	popul.CreatePop(v, t, numInd, numCoef); //Creating 1st population
@@ -643,7 +656,7 @@ int main(void) {
 
 	if (datafile.is_open())
 	{
-		ExpData = SetData(fileroute);
+		ExpData = SetData(fileroute, len);
 		datafile.close();
 	}
 	else
@@ -660,46 +673,15 @@ int main(void) {
 	for (int i = 0; i < numInd; i++)
 	{
 		popul.inds.at(i).CalcFit(ExpData, t); //t - the agrument which should be substituted
-		//popul.inds.at(i).numGAopt();
+		popul.inds.at(i) = numGAopt(popul.inds.at(i), ExpData, t);
 	}
 
-	Gene testg;
-	testg.elem = t;
-	testg.oper = 1;
-	testg.type = 2;
-	testg.depth = 1;
-	vector<Gene> testGen;
-	testGen.reserve(3);
-	testGen.push_back(testg);
-	testg.elem = 5;
-	testg.oper = 1;
-	testg.type = 1;
-	testg.depth = 2;
-	testGen.push_back(testg);
-	testg.elem = 2;
-	testg.oper = 3;
-	testg.type = 1;
-	testg.depth = 3;
-	testGen.push_back(testg);
-	int testn = testGen.size();
-
-	//testg.elem = "";
-	//testGen.push_back(testg);
-
-	for (int i = 0; i < testn; i++)
-	{
-		std::cout << "Those are genes " << testGen.at(i).elem << std::endl;
-	}
-
-	Individ testInd;
-	testInd = IndFromGenes(testGen);
-	std::cout << "\nThat's our ind " << testInd.ind << std::endl;
 
 
 	//Program runtime calculation
 	unsigned int endtime = clock();
 	double runtime = (endtime - startime) / (double)CLOCKS_PER_SEC;
-	std::cout << "\nRuntime is " << runtime << std::endl;
+	std::cout << "\nRuntime is " << runtime << " seconds" << std::endl;
 
 	return 0;
 }
