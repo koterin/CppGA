@@ -562,10 +562,57 @@ void OutputPlot()
 }
 
 //Function for creating new individual from the genes given
+//WARNING! Input genes vector MUST BE SORTED and organized the way it should be in the output Individual
 Individ IndFromGenes(vector<Gene> genes)
 {
 	Individ outputInd;
+	outputInd.ind = "";
+	int vsize = genes.size();
+	outputInd.genes.resize(vsize);
 
+	//For the 1st element
+	outputInd.genes.at(0) = genes.at(0);
+	outputInd.ind = genes.at(0).elem;
+
+	for (int i = 1; i < vsize; i++)
+	{
+		if (genes.at(i).oper == 1)
+		{
+			outputInd.ind = (outputInd.ind) + genes.at(i).elem;
+			outputInd.genes.at(i) = genes.at(i);
+			std::cout << "So current ind is " << outputInd.ind << std::endl;
+		}
+
+		if (genes.at(i).oper == 2)
+		{
+			outputInd.ind = (outputInd.ind) - genes.at(i).elem;
+			outputInd.genes.at(i) = genes.at(i);
+			std::cout << "So current ind is " << outputInd.ind << std::endl;
+		}
+
+		if (genes.at(i).oper == 3)
+		{
+			outputInd.ind = (outputInd.ind) * genes.at(i).elem;
+			outputInd.genes.at(i) = genes.at(i);
+			std::cout << "So current ind is " << outputInd.ind << std::endl;
+		}
+
+		if (genes.at(i).oper == 4)
+		{
+			outputInd.ind = (outputInd.ind) / genes.at(i).elem;
+			outputInd.genes.at(i) = genes.at(i);
+			std::cout << "So current ind is " << outputInd.ind << std::endl;
+		}
+
+		if (genes.at(i).oper == 5)
+		{
+			outputInd.ind = pow((outputInd.ind), genes.at(i).elem);
+			outputInd.genes.at(i) = genes.at(i);
+			std::cout << "So current ind is " << outputInd.ind << std::endl;
+		}
+	}
+
+	std::cout << "Final ind is " << outputInd.ind << std::endl;
 
 	return(outputInd);
 }
@@ -616,50 +663,37 @@ int main(void) {
 		//popul.inds.at(i).numGAopt();
 	}
 
+	Gene testg;
+	testg.elem = t;
+	testg.oper = 1;
+	testg.type = 2;
+	testg.depth = 1;
+	vector<Gene> testGen;
+	testGen.reserve(3);
+	testGen.push_back(testg);
+	testg.elem = 5;
+	testg.oper = 1;
+	testg.type = 1;
+	testg.depth = 2;
+	testGen.push_back(testg);
+	testg.elem = 2;
+	testg.oper = 3;
+	testg.type = 1;
+	testg.depth = 3;
+	testGen.push_back(testg);
+	int testn = testGen.size();
 
+	//testg.elem = "";
+	//testGen.push_back(testg);
 
-
-	outputInd = popul.inds.at(1);
-	outputInd.genes.push_back(popul.inds.at(3).genes.at(1));
-	outputInd.genes.at(2).depth = 3;
-
-	std::cout << "Changing ind is " << outputInd.ind << std::endl;
-
-	if (outputInd.genes.at(2).oper == 1)
+	for (int i = 0; i < testn; i++)
 	{
-		outputInd.ind = outputInd.ind + outputInd.genes.at(2).elem;
-		std::cout << "So current ind is " << outputInd.ind << std::endl;
-	}
-	if (outputInd.genes.at(2).oper == 2)
-	{
-		outputInd.ind = outputInd.ind - outputInd.genes.at(2).elem;
-		std::cout << "So current ind is " << outputInd.ind << std::endl;
-	}
-	if (outputInd.genes.at(2).oper == 3)
-	{
-		outputInd.ind = outputInd.ind * outputInd.genes.at(2).elem;
-		std::cout << "So current ind is " << outputInd.ind << std::endl;
-	}
-	if (outputInd.genes.at(2).oper == 4)
-	{
-		outputInd.ind = outputInd.ind / outputInd.genes.at(2).elem;
-		std::cout << "So current ind is " << outputInd.ind << std::endl;
-	}
-	if (outputInd.genes.at(2).oper == 5)
-	{
-		outputInd.ind = pow(outputInd.ind, outputInd.genes.at(2).elem);
-		std::cout << "So current ind is " << outputInd.ind << std::endl;
+		std::cout << "Those are genes " << testGen.at(i).elem << std::endl;
 	}
 
-
-	std::cout << "size is " << outputInd.genes.size() << std::endl;
-	for (int i = 0; i < outputInd.genes.size(); i++)
-	{
-		
-		std::cout << "I must be there for 3 times" << std::endl;
-	}
-
-
+	Individ testInd;
+	testInd = IndFromGenes(testGen);
+	std::cout << "\nThat's our ind " << testInd.ind << std::endl;
 
 
 	//Program runtime calculation
