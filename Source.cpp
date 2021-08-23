@@ -468,7 +468,6 @@ Individ numGAopt(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 {
 	Individ outputInd;
 	vector<Individ> numPop; //Population for numeric GA
-	vector<Gene> buf;
 	int GAsize = 15; //number of inds in GA
 	double resCoef = 0.0;
 	int bol = 0;
@@ -525,15 +524,12 @@ Individ numGAopt(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 
 	else if (dec > 0)
 	{
-		buf.clear();
-		buf.resize(GAsize);
 		std::cout << "The initial ind fit is " << inputInd.fit << std::endl;
 		double multCoef = 2; //Condition: if multCoef * current_fit < initial_fit then GA stops
 
 		for (int i = 0; i < GAsize; i++)
 		{
-			buf = numPop.at(i).genes;
-			numPop.at(i) = IndFromGenes(buf);
+			numPop.at(i) = IndFromGenes(numPop.at(i).genes);
 			std::cout << "New ind is " << numPop.at(i).ind << std::endl;
 		}
 
