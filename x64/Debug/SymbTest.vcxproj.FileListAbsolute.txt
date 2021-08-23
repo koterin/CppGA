@@ -1,0 +1,2 @@
+C:\Users\Katerina\source\repos\SymbTest\x64\Debug\SymbTest.exe
+C:\Users\Katerina\source\repos\CppGA\x64\Debug\CppGA.exe
