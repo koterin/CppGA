@@ -48,7 +48,7 @@ public:
 			++iter;
 		}
 
-		fit = sqrt(devf);		
+		fit = (1 / (1 + sqrt(devf))) * 100;		
 		return;
 	}
 };
@@ -482,9 +482,9 @@ Individ numGAopt(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 	outputInd.numCoef = inputInd.numCoef;
 	outputInd.pop = inputInd.pop;
 
-	for (int i = 0; i < GAsize; i++)
+	for (int i = 0; i < numPop.size(); i++)
 	{
-		numPop.at(i) = outputInd;
+		numPop[i] = outputInd;
 	}
 
 	for (int i = 0; i < inputInd.genes.size(); i++)
@@ -567,11 +567,11 @@ Individ numGAopt(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 			std::cout << "The maximum fit in Population " << f << " is " << numPop.at(maxd).fit << std::endl;
 
 			//Checking if the current minimum fit is twice smaller than the initial
-			if ((multCoef*(numPop.at(mind).fit)) < inputInd.fit)
+			if (((numPop.at(mind).fit) / multCoef) < inputInd.fit)
 			{
 				std::cout << "Optimum coefficients found after " << f << " loops, final ind is "
-					<< numPop.at(mind).ind << " and fit = " << numPop.at(mind).fit << std::endl;
-				outputInd = numPop.at(mind);
+					<< numPop.at(maxd).ind << " and fit = " << numPop.at(maxd).fit << std::endl;
+				outputInd = numPop.at(maxd);
 				return(outputInd);
 			}
 
@@ -616,7 +616,7 @@ Individ numGAopt(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 			std::cout << "KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
 
 			//Replacing the worst element of the population with the KID
-			numPop.at(maxd) = KID;
+			numPop.at(mind) = KID;
 			
 		};
 	}
