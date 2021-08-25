@@ -48,7 +48,7 @@ public:
 			++iter;
 		}
 
-		fit = (1 / (1 + sqrt(devf))) * 100;		
+		fit = sqrt(devf);		
 		return;
 	}
 };
@@ -482,9 +482,9 @@ Individ numGAopt(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 	outputInd.numCoef = inputInd.numCoef;
 	outputInd.pop = inputInd.pop;
 
-	for (int i = 0; i < numPop.size(); i++)
+	for (int i = 0; i < GAsize; i++)
 	{
-		numPop[i] = outputInd;
+		numPop.at(i) = outputInd;
 	}
 
 	for (int i = 0; i < inputInd.genes.size(); i++)
@@ -501,12 +501,12 @@ Individ numGAopt(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 				if (bol == 0)
 				{
 					//resCoef = resCoef / double(rand() % 40);
-					resCoef = double(rand() % 100);
+					resCoef = numPop.at(j).genes.at(i).elem / double(rand() % 100);
 				}
 				else if (bol == 1)
 				{
 					//resCoef = resCoef / double(-(rand() % 40));
-					resCoef = double(-(rand() % 100));
+					resCoef = numPop.at(j).genes.at(i).elem / double(-(rand() % 100));
 				};
 
 				numPop.at(j).genes.at(i).elem = resCoef;
@@ -567,11 +567,11 @@ Individ numGAopt(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 			std::cout << "The maximum fit in Population " << f << " is " << numPop.at(maxd).fit << std::endl;
 
 			//Checking if the current minimum fit is twice smaller than the initial
-			if (((numPop.at(mind).fit) / multCoef) < inputInd.fit)
+			if ((multCoef*(numPop.at(mind).fit)) < inputInd.fit)
 			{
 				std::cout << "Optimum coefficients found after " << f << " loops, final ind is "
-					<< numPop.at(maxd).ind << " and fit = " << numPop.at(maxd).fit << std::endl;
-				outputInd = numPop.at(maxd);
+					<< numPop.at(mind).ind << " and fit = " << numPop.at(mind).fit << std::endl;
+				outputInd = numPop.at(mind);
 				return(outputInd);
 			}
 
@@ -616,7 +616,7 @@ Individ numGAopt(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 			std::cout << "KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
 
 			//Replacing the worst element of the population with the KID
-			numPop.at(mind) = KID;
+			numPop.at(maxd) = KID;
 			
 		};
 	}
