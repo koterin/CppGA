@@ -411,50 +411,50 @@ Individ IndFromGenes(vector<Gene> genes)
 	int depth = 1;
 
 	//For the 1st element
-	outputInd.genes.at(0) = genes.at(0);
-	outputInd.genes.at(0).depth = depth;
+	outputInd.genes[0] = genes[0];
+	outputInd.genes[0].depth = depth;
 	depth += 1;
-	outputInd.ind = genes.at(0).elem;
+	outputInd.ind = genes[0].elem;
 
 	for (int i = 1; i < vsize; i++)
 	{
-		if (genes.at(i).oper == 1)
+		if (genes[i].oper == 1)
 		{
-			outputInd.ind = (outputInd.ind) + genes.at(i).elem;
-			outputInd.genes.at(i) = genes.at(i);
-			outputInd.genes.at(i).depth = depth;
+			outputInd.ind = (outputInd.ind) + genes[i].elem;
+			outputInd.genes[i] = genes[i];
+			outputInd.genes[i].depth = depth;
 			depth += 1;
 		}
 
-		if (genes.at(i).oper == 2)
+		if (genes[i].oper == 2)
 		{
-			outputInd.ind = (outputInd.ind) - genes.at(i).elem;
-			outputInd.genes.at(i) = genes.at(i);
-			outputInd.genes.at(i).depth = depth;
+			outputInd.ind = (outputInd.ind) - genes[i].elem;
+			outputInd.genes[i] = genes[i];
+			outputInd.genes[i].depth = depth;
 			depth += 1;
 		}
 
-		if (genes.at(i).oper == 3)
+		if (genes[i].oper == 3)
 		{
-			outputInd.ind = (outputInd.ind) * genes.at(i).elem;
-			outputInd.genes.at(i) = genes.at(i);
-			outputInd.genes.at(i).depth = depth;
+			outputInd.ind = (outputInd.ind) * genes[i].elem;
+			outputInd.genes[i] = genes[i];
+			outputInd.genes[i].depth = depth;
 			depth += 1;
 		}
 
-		if (genes.at(i).oper == 4)
+		if (genes[i].oper == 4)
 		{
-			outputInd.ind = (outputInd.ind) / genes.at(i).elem;
-			outputInd.genes.at(i) = genes.at(i);
-			outputInd.genes.at(i).depth = depth;
+			outputInd.ind = (outputInd.ind) / genes[i].elem;
+			outputInd.genes[i] = genes[i];
+			outputInd.genes[i].depth = depth;
 			depth += 1;
 		}
 
-		if (genes.at(i).oper == 5)
+		if (genes[i].oper == 5)
 		{
-			outputInd.ind = pow((outputInd.ind), genes.at(i).elem);
-			outputInd.genes.at(i) = genes.at(i);
-			outputInd.genes.at(i).depth = depth;
+			outputInd.ind = pow((outputInd.ind), genes[i].elem);
+			outputInd.genes[i] = genes[i];
+			outputInd.genes[i].depth = depth;
 			depth += 1;
 		}
 	}
@@ -488,7 +488,7 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 
 	for (int i = 0; i < inputInd.genes.size(); i++)
 	{
-		if (inputInd.genes.at(i).type == 1)
+		if (inputInd.genes[i].type == 1)
 		{
 			dec += 1;
 			//creating new individual
@@ -499,18 +499,16 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 
 				if (bol == 0)
 				{
-					//resCoef = resCoef / double(rand() % 40);
 					resCoef = double(rand() % 100);
 				}
 				else if (bol == 1)
 				{
-					//resCoef = resCoef / double(-(rand() % 40));
 					resCoef = double(-(rand() % 100));
 				};
 
 				numPop[j].genes[i].elem = resCoef;
 
-				std::cout << "new gene is " << numPop[j].genes.at(i).elem << std::endl;
+				std::cout << "new gene is " << numPop[j].genes[i].elem << std::endl;
 			}
 		}
 	}
@@ -518,7 +516,7 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 	if (dec == 0)
 	{
 		std::cout << "No numeric GA optimization needed" << std::endl;
-		return(outputInd);
+		return(inputInd);
 	}
 
 	else if (dec > 0)
@@ -563,13 +561,13 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 				}
 			}
 
-			std::cout << "\nThe minimum fit in Population " << f << " is " << numPop[mind].fit << std::endl;
-			std::cout << "The maximum fit in Population " << f << " is " << numPop[maxd].fit << std::endl;
+			std::cout << "\nThe minimum fit in Population " << f + 1 << " is " << numPop[mind].fit << std::endl;
+			std::cout << "The maximum fit in Population " << f + 1<< " is " << numPop[maxd].fit << std::endl;
 
 			//Checking if the current minimum fit is twice smaller than the initial
 			if (((numPop[maxd].fit) / multCoef) > inputInd.fit)
 			{
-				std::cout << "Optimum coefficients found after " << f << " loops, final ind is "
+				std::cout << "Optimum coefficients found after " << f + 1 << " loops, final ind is "
 					<< numPop[maxd].ind << " and fit = " << numPop[maxd].fit << std::endl;
 				outputInd = numPop[maxd];
 				return(outputInd);
@@ -580,7 +578,7 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 			int numMOM = rand() % (GAsize - 1);
 			std::cout << "numMOM is " << numMOM << std::endl;
 			Individ MOM = numPop[numMOM];
-			std::cout << "MOM is " << MOM.ind << " and fit is " << MOM.fit << std::endl;
+			std::cout << "num MOM is " << MOM.ind << " and fit is " << MOM.fit << std::endl;
 
 			//DAD
 			int numDAD = rand() % (GAsize - 1);
@@ -594,7 +592,7 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 
 			std::cout << "numDAD is " << numDAD << std::endl;
 			Individ DAD = numPop[numDAD];
-			std::cout << "DAD is " << DAD.ind << " and fit is " << DAD.fit << std::endl;
+			std::cout << "num DAD is " << DAD.ind << " and fit is " << DAD.fit << std::endl;
 
 			//KID
 			coef1 = (rand() % 100) / double(100);
@@ -612,10 +610,11 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 			KID = IndFromGenes(KID.genes);
 			KID.CalcFit(ExpData, t);
 			
-			std::cout << "KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
+			std::cout << "num KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
 
 			//Replacing the worst element of the population with the KID
 			numPop[mind] = KID;
+			outputInd = numPop[maxd];
 			
 		};
 	}
@@ -630,14 +629,20 @@ vector<int> MomDadChoice(Population popul)
 	nums.clear();
 	nums.reserve(3);
 	
+	int numMOM = 0;
 	//MOM
-	int numMOM = rand() % (popul.inds.size() - 1);
+	for (int i = 0; i < 1000; i++) //1000 - random number of loops, just so it would be enough
+	{
+		numMOM = rand() % (popul.inds.size() - 1);
+		if (popul.inds[numMOM].genes.size() != 1)
+		{
+			break;
+		};
+	}
 	Individ MOM = popul.inds[numMOM];
-	std::cout << "\nMOM is " << MOM.ind << " numMom is " << numMOM << std::endl;
-
+	
 	int nodeCross = (rand() % (MOM.genes.size() - 1)) + 1; //always excluding the 1st gene
-	std::cout << "nodeMom is " << nodeCross << std::endl;
-
+	
 	//DAD
 	int numDAD = rand() % (popul.inds.size() - 1);
 
@@ -650,11 +655,9 @@ vector<int> MomDadChoice(Population popul)
 	}
 
 	Individ DAD = popul.inds[numDAD];
-	std::cout << "numDAD is " << numDAD << " DAD is " << DAD.ind << " size is " << DAD.genes.size() << std::endl;
-
+	
 	if (DAD.genes.size() < (double(nodeCross) + 1))
 	{
-		std::cout << "nodeDAD not found, again" << std::endl;
 		nums = MomDadChoice(popul);
 
 		if (DAD.genes.size() < (double(nodeCross) + 1))
@@ -671,6 +674,28 @@ vector<int> MomDadChoice(Population popul)
 	}
 }
 
+Individ OnePointCrossover(Individ MOM, Individ DAD, int nodeCross)
+{
+	Individ KID;
+	vector<Gene> newKID;
+	newKID.clear();
+
+	for (int i = 0; i < DAD.genes.size(); i++)
+	{
+		if (i < nodeCross)
+		{
+			newKID.push_back(MOM.genes[i]);
+		}
+		else if (i >= nodeCross)
+		{
+			newKID.push_back(DAD.genes[i]);
+		}
+	}
+
+	KID = IndFromGenes(newKID);
+	return(KID);
+}
+
 //Function for GA symbolic optimization (main)
 Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsigned int startime)
 {
@@ -678,7 +703,7 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 	double stopPoint = 99.9;
 	
 	//MAIN GA LOOP
-	int limit = 2; //manual limit for GA loops
+	int limit = 20; //manual limit for GA loops
 	int mind, maxd;
 	double coef1, coef2;
 
@@ -737,37 +762,22 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 		numDAD = nums[1];
 		nodeCross = nums[2];
 
-		std::cout << "numMom is " << numMOM << std::endl;
 		Individ MOM = popul.inds[numMOM];
-		std::cout << "nodeMom is " << nodeCross << std::endl;
-		
 		Individ DAD = popul.inds[numDAD];
-		std::cout << "numDAD is " << numDAD << std::endl;
-
 		std::cout << "MOM is " << MOM.ind << " and fit is " << MOM.fit << std::endl;
 		std::cout << "DAD is " << DAD.ind << " and fit is " << DAD.fit << std::endl;
 
-		////KID
-		//coef1 = (rand() % 100) / double(100);
-		//coef2 = (rand() % 100) / double(100);
-		//Individ KID = MOM;
-
-		//for (int q = 0; q < MOM.genes.size(); q++)
-		//{
-		//	if (KID.genes.at(q).type == 1)
-		//	{
-		//		KID.genes.at(q).elem = coef1 * MOM.genes.at(q).elem + coef2 * DAD.genes.at(q).elem;
-		//	}
-		//}
-
-		//KID = IndFromGenes(KID.genes);
-		//KID.CalcFit(ExpData, t);
-
-		//std::cout << "KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
-
+		//KID
+		Individ KID = MOM;
+		KID = OnePointCrossover(MOM, DAD, nodeCross);
+		std::cout << "KID is " << KID.ind << std::endl;
+		KID.CalcFit(ExpData, t);
+		KID = numGA(KID, ExpData, t);
+		KID.pop = f + 2;
+		std::cout << "Optimimzed KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
 		//Replacing the worst element of the population with the KID
-		//numPop.at(mind) = KID;
-
+		popul.inds[mind] = KID;
+		outputInd = popul.inds[maxd];
 	};
 
 	//std::cout << "GA optimization failed, ending the loop" << std::endl;
