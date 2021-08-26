@@ -4,7 +4,6 @@
 #include <fstream> //for files
 #include "symbolicc++.h" //for symbolic
 #include <ctime> //for runtime calculations
-#include <typeinfo> //for typeid to work
 
 class Gene {
 
@@ -464,7 +463,7 @@ Individ IndFromGenes(vector<Gene> genes)
 }
 
 //Function for GA coefficient optimization
-Individ numGAopt(Individ inputInd, vector<struct data> ExpData, Symbolic t)
+Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 {
 	Individ outputInd;
 	vector<Individ> numPop; //Population for numeric GA
@@ -493,9 +492,9 @@ Individ numGAopt(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 		{
 			dec += 1;
 			//creating new individual
-			for (int j = 0; j < GAsize; j++)
+			for (int j = 0; j < numPop.size(); j++)
 			{
-				resCoef = numPop.at(j).genes.at(i).elem;
+				resCoef = numPop[j].genes[i].elem;
 				bol = rand() % 2; //boolean imitation
 
 				if (bol == 0)
@@ -509,9 +508,9 @@ Individ numGAopt(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 					resCoef = double(-(rand() % 100));
 				};
 
-				numPop.at(j).genes.at(i).elem = resCoef;
+				numPop[j].genes[i].elem = resCoef;
 
-				std::cout << "new gene is " << numPop.at(j).genes.at(i).elem << std::endl;
+				std::cout << "new gene is " << numPop[j].genes.at(i).elem << std::endl;
 			}
 		}
 	}
@@ -527,51 +526,52 @@ Individ numGAopt(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 		std::cout << "The initial ind fit is " << inputInd.fit << std::endl;
 		double multCoef = 2; //Condition: if multCoef * current_fit < initial_fit then GA stops
 
-		for (int i = 0; i < GAsize; i++)
+		for (int i = 0; i < numPop.size(); i++)
 		{
-			numPop.at(i) = IndFromGenes(numPop.at(i).genes);
-			std::cout << "New ind is " << numPop.at(i).ind << std::endl;
+			numPop[i] = IndFromGenes(numPop[i].genes);
+			std::cout << "New ind is " << numPop[i].ind << std::endl;
 		}
 
 		//MAIN GA LOOP
 
-		int limit = 50; //manual limit for GA loops
+		int limit = 2; //manual limit for GA loops
 		int mind, maxd;
+		double coef1, coef2;
 
 		for (int f = 0; f < limit; f++) {
 
 			mind = 0;
 			maxd = 0;
-			numPop.at(0).CalcFit(ExpData, t);
+			numPop[0].CalcFit(ExpData, t);
 
 			//Displaying current population
-			std::cout << "\nGA Population " << f + 1 << std::endl;
-			for (int g = 0; g < GAsize; g++)
+			std::cout << "\nNumeric GA Population " << f + 1 << std::endl;
+			for (int g = 0; g < numPop.size(); g++)
 			{
-				numPop.at(g).CalcFit(ExpData, t);
-				std::cout << numPop.at(g).ind << " and fit " << numPop.at(g).fit << std::endl;
+				numPop[g].CalcFit(ExpData, t);
+				std::cout << numPop[g].ind << " and fit " << numPop[g].fit << std::endl;
 				//Founding minimum
-				if (numPop.at(g).fit < numPop.at(mind).fit)
+				if (numPop[g].fit < numPop[mind].fit)
 				{
 					mind = g;
 				}
 
 				//Founding maximum
-				if (numPop.at(g).fit > numPop.at(maxd).fit)
+				if (numPop[g].fit > numPop[maxd].fit)
 				{
 					maxd = g;
 				}
 			}
 
-			std::cout << "\nThe minimum fit in Population " << f << " is " << numPop.at(mind).fit << std::endl;
-			std::cout << "The maximum fit in Population " << f << " is " << numPop.at(maxd).fit << std::endl;
+			std::cout << "\nThe minimum fit in Population " << f << " is " << numPop[mind].fit << std::endl;
+			std::cout << "The maximum fit in Population " << f << " is " << numPop[maxd].fit << std::endl;
 
 			//Checking if the current minimum fit is twice smaller than the initial
-			if (((numPop.at(mind).fit) / multCoef) < inputInd.fit)
+			if (((numPop[maxd].fit) / multCoef) > inputInd.fit)
 			{
 				std::cout << "Optimum coefficients found after " << f << " loops, final ind is "
-					<< numPop.at(maxd).ind << " and fit = " << numPop.at(maxd).fit << std::endl;
-				outputInd = numPop.at(maxd);
+					<< numPop[maxd].ind << " and fit = " << numPop[maxd].fit << std::endl;
+				outputInd = numPop[maxd];
 				return(outputInd);
 			}
 
@@ -579,7 +579,7 @@ Individ numGAopt(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 			//MOM
 			int numMOM = rand() % (GAsize - 1);
 			std::cout << "numMOM is " << numMOM << std::endl;
-			Individ MOM = numPop.at(numMOM);
+			Individ MOM = numPop[numMOM];
 			std::cout << "MOM is " << MOM.ind << " and fit is " << MOM.fit << std::endl;
 
 			//DAD
@@ -593,20 +593,19 @@ Individ numGAopt(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 			}
 
 			std::cout << "numDAD is " << numDAD << std::endl;
-			Individ DAD = numPop.at(numDAD);
+			Individ DAD = numPop[numDAD];
 			std::cout << "DAD is " << DAD.ind << " and fit is " << DAD.fit << std::endl;
 
 			//KID
-			double koef1, koef2;
-			koef1 = (rand() % 100) / double(100);
-			koef2 = (rand() % 100) / double(100);
+			coef1 = (rand() % 100) / double(100);
+			coef2 = (rand() % 100) / double(100);
 			Individ KID = MOM;
 			
 			for (int q = 0; q < MOM.genes.size(); q++)
 			{
-				if (KID.genes.at(q).type == 1)
+				if (KID.genes[q].type == 1)
 				{
-					KID.genes.at(q).elem = koef1 * MOM.genes.at(q).elem + koef2 * DAD.genes.at(q).elem;
+					KID.genes[q].elem = coef1 * MOM.genes[q].elem + coef2 * DAD.genes[q].elem;
 				}
 			}
 			
@@ -616,7 +615,7 @@ Individ numGAopt(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 			std::cout << "KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
 
 			//Replacing the worst element of the population with the KID
-			numPop.at(mind) = KID;
+			numPop[mind] = KID;
 			
 		};
 	}
@@ -625,7 +624,157 @@ Individ numGAopt(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 	return(outputInd);
 }
 
-int main(void) {
+vector<int> MomDadChoice(Population popul)
+{
+	vector<int> nums;
+	nums.clear();
+	nums.reserve(3);
+	
+	//MOM
+	int numMOM = rand() % (popul.inds.size() - 1);
+	Individ MOM = popul.inds[numMOM];
+	std::cout << "\nMOM is " << MOM.ind << " numMom is " << numMOM << std::endl;
+
+	int nodeCross = (rand() % (MOM.genes.size() - 1)) + 1; //always excluding the 1st gene
+	std::cout << "nodeMom is " << nodeCross << std::endl;
+
+	//DAD
+	int numDAD = rand() % (popul.inds.size() - 1);
+
+	if (numDAD == numMOM)
+	{
+		while (numDAD == numMOM)
+		{
+			numDAD = rand() % (popul.inds.size() - 1);
+		}
+	}
+
+	Individ DAD = popul.inds[numDAD];
+	std::cout << "numDAD is " << numDAD << " DAD is " << DAD.ind << " size is " << DAD.genes.size() << std::endl;
+
+	if (DAD.genes.size() < (double(nodeCross) + 1))
+	{
+		std::cout << "nodeDAD not found, again" << std::endl;
+		nums = MomDadChoice(popul);
+
+		if (DAD.genes.size() < (double(nodeCross) + 1))
+		{
+			return(nums);
+		}
+	}
+	else
+	{
+		nums.push_back(numMOM);
+		nums.push_back(numDAD);
+		nums.push_back(nodeCross);
+		return(nums);
+	}
+}
+
+//Function for GA symbolic optimization (main)
+Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsigned int startime)
+{
+	Individ outputInd;
+	double stopPoint = 99.9;
+	
+	//MAIN GA LOOP
+	int limit = 2; //manual limit for GA loops
+	int mind, maxd;
+	double coef1, coef2;
+
+	std::cout << "\n-------------THE SYMBOLIC GA STARTS-------------\n" << std::endl;
+	
+	for (int f = 0; f < limit; f++) {
+
+		unsigned int nowtime = clock();
+		double curtime = (nowtime - startime) / (double)CLOCKS_PER_SEC;
+		std::cout << "\ncurrent runtime is " << curtime << " seconds" << std::endl;
+		
+		mind = 0;
+		maxd = 0;
+		popul.inds[0].CalcFit(ExpData, t);
+
+		//Displaying current population
+		std::cout << "\nGA Population " << f + 1 << std::endl;
+		for (int g = 0; g < popul.inds.size(); g++)
+		{
+			popul.inds[g].CalcFit(ExpData, t);
+			std::cout << popul.inds[g].ind << " and fit " << popul.inds[g].fit << std::endl;
+			//Founding minimum
+			if (popul.inds[g].fit < popul.inds[mind].fit)
+			{
+				mind = g;
+			}
+
+			//Founding maximum
+			if (popul.inds[g].fit > popul.inds[maxd].fit)
+			{
+				maxd = g;
+			}
+		}
+
+		std::cout << "\nThe minimum fit in Population " << f << " is " << popul.inds[mind].fit << std::endl;
+		std::cout << "The maximum fit in Population " << f << " is " << popul.inds[maxd].fit << std::endl;
+
+		//Checking if the current minimum fit is the desired one
+		if (popul.inds[maxd].fit > stopPoint)
+		{
+			std::cout << "\n-----FINAL-----" <<
+				"Optimum coefficients found after " << f << " loops, final ind is "
+				<< popul.inds[maxd].ind << " and fit = " << popul.inds[maxd].fit << std::endl;
+			outputInd = popul.inds[maxd];
+			return(outputInd);
+		}
+
+		//Setting Mom and Dad as 2 random elements of the population
+		int numMOM = 0;
+		int numDAD = 0;
+		int nodeCross = 0;
+		vector<int> nums;
+		nums.resize(3);
+		nums = MomDadChoice(popul);
+		numMOM = nums[0];
+		numDAD = nums[1];
+		nodeCross = nums[2];
+
+		std::cout << "numMom is " << numMOM << std::endl;
+		Individ MOM = popul.inds[numMOM];
+		std::cout << "nodeMom is " << nodeCross << std::endl;
+		
+		Individ DAD = popul.inds[numDAD];
+		std::cout << "numDAD is " << numDAD << std::endl;
+
+		std::cout << "MOM is " << MOM.ind << " and fit is " << MOM.fit << std::endl;
+		std::cout << "DAD is " << DAD.ind << " and fit is " << DAD.fit << std::endl;
+
+		////KID
+		//coef1 = (rand() % 100) / double(100);
+		//coef2 = (rand() % 100) / double(100);
+		//Individ KID = MOM;
+
+		//for (int q = 0; q < MOM.genes.size(); q++)
+		//{
+		//	if (KID.genes.at(q).type == 1)
+		//	{
+		//		KID.genes.at(q).elem = coef1 * MOM.genes.at(q).elem + coef2 * DAD.genes.at(q).elem;
+		//	}
+		//}
+
+		//KID = IndFromGenes(KID.genes);
+		//KID.CalcFit(ExpData, t);
+
+		//std::cout << "KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
+
+		//Replacing the worst element of the population with the KID
+		//numPop.at(mind) = KID;
+
+	};
+
+	//std::cout << "GA optimization failed, ending the loop" << std::endl;
+	return(outputInd);
+}
+
+void main(void) {
 
 	std::clock_t start;
 	unsigned int startime = clock();
@@ -659,7 +808,7 @@ int main(void) {
 	{
 		std::cout << "\nInput data file not found" << std::endl;
 		std::cout << "The Program will be terminated\n";
-		return 0;
+		return;
 	}
 
 	std::cout << "\nExperimental data file size is " << ExpData.size() << std::endl;
@@ -669,15 +818,15 @@ int main(void) {
 	for (int i = 0; i < numInd; i++)
 	{
 		popul.inds.at(i).CalcFit(ExpData, t); //t - the agrument which should be substituted
-		popul.inds.at(i) = numGAopt(popul.inds.at(i), ExpData, t);
+		popul.inds.at(i) = numGA(popul.inds.at(i), ExpData, t);
 	}
 
-
+	outputInd = symbGA(popul, ExpData, t, startime);
 
 	//Program runtime calculation
 	unsigned int endtime = clock();
 	double runtime = (endtime - startime) / (double)CLOCKS_PER_SEC;
 	std::cout << "\nRuntime is " << runtime << " seconds" << std::endl;
 
-	return 0;
+	return;
 }
