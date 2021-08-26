@@ -9,7 +9,6 @@ class Gene {
 
 public:
 	Symbolic elem; //one symbolic gene
-	int depth; //depth of the gene (number of operations past the intial
 	int oper; //operator of the gene: 1 - plus, 2 - minus, 3 - mult, 4 - div, 5 - pow
 	int type; //type of the gene: 1 - numeric, 2 - symbolic
 };
@@ -27,7 +26,6 @@ public:
 	int pop; //popluation where the individual was last modified or created
 	vector<Gene> genes; //genes of the individual
 	double fit; //Value of the fitness function for the individual
-	int numCoef; //Number of numeric coefficients in the individual
 
 	//Function for calculation the fitness func for the individual
 	void CalcFit(vector<struct data> ExpData, Symbolic t) {
@@ -63,7 +61,7 @@ public:
 	int pop; //number of the population
 
 	//Function for creating the first population
-	void CreatePop(Symbolic y, Symbolic x, int n, int nc)
+	void CreatePop(Symbolic y, Symbolic x, int n)
 	{
 		//srand(time(0)); //turning on the random distribution
 		Symbolic z = y; //temporary variable for creating individuals
@@ -87,17 +85,14 @@ public:
 
 				indZero.ind = z; //initialization of y as an individual
 				indZero.pop = 1; //Ind population - 1st
-				indZero.numCoef = 0; //Number of numeric coefficients in the individual
 
 				genZero.elem = y; //setting the 1st gene as the imput y
-				genZero.depth = 1;
 				genZero.oper = 1;
 				genZero.type = 2;
 				indZero.genes.clear();
 				indZero.genes.push_back(genZero);
 
 				genZero.elem = x; //setting the 2nd gene as the operation inititated - "+ x"
-				genZero.depth = 2;
 				genZero.oper = 1;
 				genZero.type = 2;
 				indZero.genes.push_back(genZero);
@@ -111,17 +106,14 @@ public:
 
 				indZero.ind = z;
 				indZero.pop = 1;
-				indZero.numCoef = 0;
 
 				genZero.elem = y;
-				genZero.depth = 1;
 				genZero.oper = 1;
 				genZero.type = 2;
 				indZero.genes.clear();
 				indZero.genes.push_back(genZero);
 
 				genZero.elem = x;
-				genZero.depth = 2;
 				genZero.oper = 2;
 				genZero.type = 2;
 				indZero.genes.push_back(genZero);
@@ -135,17 +127,14 @@ public:
 
 				indZero.ind = z;
 				indZero.pop = 1;
-				indZero.numCoef = 0;
 
 				genZero.elem = y;
-				genZero.depth = 1;
 				genZero.oper = 1;
 				genZero.type = 2;
 				indZero.genes.clear();
 				indZero.genes.push_back(genZero);
 
 				genZero.elem = x;
-				genZero.depth = 2;
 				genZero.oper = 3;
 				genZero.type = 2;
 				indZero.genes.push_back(genZero);
@@ -159,17 +148,14 @@ public:
 
 				indZero.ind = z;
 				indZero.pop = 1;
-				indZero.numCoef = 0;
 
 				genZero.elem = y;
-				genZero.depth = 1;
 				genZero.oper = 1;
 				genZero.type = 2;
 				indZero.genes.clear();
 				indZero.genes.push_back(genZero);
 
 				genZero.elem = x;
-				genZero.depth = 2;
 				genZero.oper = 4;
 				genZero.type = 2;
 				indZero.genes.push_back(genZero);
@@ -183,17 +169,14 @@ public:
 
 				indZero.ind = z;
 				indZero.pop = 1;
-				indZero.numCoef = 0;
 
 				genZero.elem = y;
-				genZero.depth = 1;
 				genZero.oper = 1;
 				genZero.type = 2;
 				indZero.genes.clear();
 				indZero.genes.push_back(genZero);
 
 				genZero.elem = x;
-				genZero.depth = 2;
 				genZero.oper = 5;
 				genZero.type = 2;
 				indZero.genes.push_back(genZero);
@@ -208,17 +191,14 @@ public:
 
 				indZero.ind = z;
 				indZero.pop = 1;
-				indZero.numCoef = 1;
 
 				genZero.elem = y;
-				genZero.depth = 1;
 				genZero.oper = 1;
 				genZero.type = 2;
 				indZero.genes.clear();
 				indZero.genes.push_back(genZero);
 
 				genZero.elem = coeff;
-				genZero.depth = 2;
 				genZero.oper = 5;
 				genZero.type = 1;
 				indZero.genes.push_back(genZero);
@@ -233,17 +213,14 @@ public:
 
 				indZero.ind = z;
 				indZero.pop = 1;
-				indZero.numCoef = 1;
 
 				genZero.elem = y;
-				genZero.depth = 1;
 				genZero.oper = 1;
 				genZero.type = 2;
 				indZero.genes.clear();
 				indZero.genes.push_back(genZero);
 
 				genZero.elem = coeff;
-				genZero.depth = 2;
 				genZero.oper = 3;
 				genZero.type = 1;
 				indZero.genes.push_back(genZero);
@@ -258,17 +235,14 @@ public:
 
 				indZero.ind = z;
 				indZero.pop = 1;
-				indZero.numCoef = 1;
 
 				genZero.elem = y;
-				genZero.depth = 1;
 				genZero.oper = 1;
 				genZero.type = 2;
 				indZero.genes.clear();
 				indZero.genes.push_back(genZero);
 
 				genZero.elem = coeff;
-				genZero.depth = 2;
 				genZero.oper = 1;
 				genZero.type = 1;
 				indZero.genes.push_back(genZero);
@@ -283,17 +257,14 @@ public:
 
 				indZero.ind = z;
 				indZero.pop = 1;
-				indZero.numCoef = 1;
 
 				genZero.elem = y;
-				genZero.depth = 1;
 				genZero.oper = 1;
 				genZero.type = 2;
 				indZero.genes.clear();
 				indZero.genes.push_back(genZero);
 
 				genZero.elem = coeff;
-				genZero.depth = 2;
 				genZero.oper = 2;
 				genZero.type = 1;
 				indZero.genes.push_back(genZero);
@@ -308,17 +279,14 @@ public:
 
 				indZero.ind = z;
 				indZero.pop = 1;
-				indZero.numCoef = 1;
 
 				genZero.elem = y;
-				genZero.depth = 1;
 				genZero.oper = 1;
 				genZero.type = 2;
 				indZero.genes.clear();
 				indZero.genes.push_back(genZero);
 
 				genZero.elem = coeff;
-				genZero.depth = 2;
 				genZero.oper = 4;
 				genZero.type = 1;
 				indZero.genes.push_back(genZero);
@@ -337,9 +305,7 @@ public:
 			if (outputInd.ind == 0)
 			{
 				outputInd.ind = y;
-				outputInd.numCoef = 0;
 				outputGene.elem = y;
-				outputGene.depth = 1;
 				outputGene.oper = 1;
 				genZero.type = 2;
 				outputInd.genes.clear();
@@ -408,12 +374,9 @@ Individ IndFromGenes(vector<Gene> genes)
 	outputInd.ind = "";
 	int vsize = genes.size();
 	outputInd.genes.resize(vsize);
-	int depth = 1;
 
 	//For the 1st element
 	outputInd.genes[0] = genes[0];
-	outputInd.genes[0].depth = depth;
-	depth += 1;
 	outputInd.ind = genes[0].elem;
 
 	for (int i = 1; i < vsize; i++)
@@ -422,40 +385,30 @@ Individ IndFromGenes(vector<Gene> genes)
 		{
 			outputInd.ind = (outputInd.ind) + genes[i].elem;
 			outputInd.genes[i] = genes[i];
-			outputInd.genes[i].depth = depth;
-			depth += 1;
 		}
 
 		if (genes[i].oper == 2)
 		{
 			outputInd.ind = (outputInd.ind) - genes[i].elem;
 			outputInd.genes[i] = genes[i];
-			outputInd.genes[i].depth = depth;
-			depth += 1;
 		}
 
 		if (genes[i].oper == 3)
 		{
 			outputInd.ind = (outputInd.ind) * genes[i].elem;
 			outputInd.genes[i] = genes[i];
-			outputInd.genes[i].depth = depth;
-			depth += 1;
 		}
 
 		if (genes[i].oper == 4)
 		{
 			outputInd.ind = (outputInd.ind) / genes[i].elem;
 			outputInd.genes[i] = genes[i];
-			outputInd.genes[i].depth = depth;
-			depth += 1;
 		}
 
 		if (genes[i].oper == 5)
 		{
 			outputInd.ind = pow((outputInd.ind), genes[i].elem);
 			outputInd.genes[i] = genes[i];
-			outputInd.genes[i].depth = depth;
-			depth += 1;
 		}
 	}
 
@@ -478,7 +431,6 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 
 	outputInd.ind = inputInd.ind;
 	outputInd.genes = inputInd.genes;
-	outputInd.numCoef = inputInd.numCoef;
 	outputInd.pop = inputInd.pop;
 
 	for (int i = 0; i < numPop.size(); i++)
@@ -488,7 +440,9 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 
 	for (int i = 0; i < inputInd.genes.size(); i++)
 	{
-		if (inputInd.genes[i].type == 1)
+		auto buf = inputInd.genes[i].elem->clone();
+		
+		if ((typeid(*buf) == typeid(Number<double>)) || (typeid(*buf) == typeid(Number<int>)))
 		{
 			dec += 1;
 			//creating new individual
@@ -511,6 +465,8 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 				std::cout << "new gene is " << numPop[j].genes[i].elem << std::endl;
 			}
 		}
+
+		buf->unreference(buf);
 	}
 
 	if (dec == 0)
@@ -802,7 +758,7 @@ void main(void) {
 	ExpData.reserve(len);
 
 	Population popul;
-	popul.CreatePop(v, t, numInd, numCoef); //Creating 1st population
+	popul.CreatePop(v, t, numInd); //Creating 1st population
 
 	//Insert here the path to the input data file
 	//WARNING! All the phrases must be deleted from the file
