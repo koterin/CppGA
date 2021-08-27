@@ -10,7 +10,6 @@ class Gene {
 public:
 	Symbolic elem; //one symbolic gene
 	int oper; //operator of the gene: 1 - plus, 2 - minus, 3 - mult, 4 - div, 5 - pow
-	int type; //type of the gene: 1 - numeric, 2 - symbolic
 };
 
 struct data
@@ -88,13 +87,11 @@ public:
 
 				genZero.elem = y; //setting the 1st gene as the imput y
 				genZero.oper = 1;
-				genZero.type = 2;
 				indZero.genes.clear();
 				indZero.genes.push_back(genZero);
 
 				genZero.elem = x; //setting the 2nd gene as the operation inititated - "+ x"
 				genZero.oper = 1;
-				genZero.type = 2;
 				indZero.genes.push_back(genZero);
 				inds.push_back(indZero); //Putting new individual in the vector of the Population
 
@@ -109,13 +106,11 @@ public:
 
 				genZero.elem = y;
 				genZero.oper = 1;
-				genZero.type = 2;
 				indZero.genes.clear();
 				indZero.genes.push_back(genZero);
 
 				genZero.elem = x;
 				genZero.oper = 2;
-				genZero.type = 2;
 				indZero.genes.push_back(genZero);
 				inds.push_back(indZero);
 
@@ -130,13 +125,11 @@ public:
 
 				genZero.elem = y;
 				genZero.oper = 1;
-				genZero.type = 2;
 				indZero.genes.clear();
 				indZero.genes.push_back(genZero);
 
 				genZero.elem = x;
 				genZero.oper = 3;
-				genZero.type = 2;
 				indZero.genes.push_back(genZero);
 				inds.push_back(indZero);
 
@@ -151,13 +144,11 @@ public:
 
 				genZero.elem = y;
 				genZero.oper = 1;
-				genZero.type = 2;
 				indZero.genes.clear();
 				indZero.genes.push_back(genZero);
 
 				genZero.elem = x;
 				genZero.oper = 4;
-				genZero.type = 2;
 				indZero.genes.push_back(genZero);
 				inds.push_back(indZero);
 
@@ -172,13 +163,11 @@ public:
 
 				genZero.elem = y;
 				genZero.oper = 1;
-				genZero.type = 2;
 				indZero.genes.clear();
 				indZero.genes.push_back(genZero);
 
 				genZero.elem = x;
 				genZero.oper = 5;
-				genZero.type = 2;
 				indZero.genes.push_back(genZero);
 				inds.push_back(indZero);
 
@@ -194,13 +183,11 @@ public:
 
 				genZero.elem = y;
 				genZero.oper = 1;
-				genZero.type = 2;
 				indZero.genes.clear();
 				indZero.genes.push_back(genZero);
 
 				genZero.elem = coeff;
 				genZero.oper = 5;
-				genZero.type = 1;
 				indZero.genes.push_back(genZero);
 				inds.push_back(indZero);
 
@@ -216,13 +203,11 @@ public:
 
 				genZero.elem = y;
 				genZero.oper = 1;
-				genZero.type = 2;
 				indZero.genes.clear();
 				indZero.genes.push_back(genZero);
 
 				genZero.elem = coeff;
 				genZero.oper = 3;
-				genZero.type = 1;
 				indZero.genes.push_back(genZero);
 				inds.push_back(indZero);
 
@@ -238,13 +223,11 @@ public:
 
 				genZero.elem = y;
 				genZero.oper = 1;
-				genZero.type = 2;
 				indZero.genes.clear();
 				indZero.genes.push_back(genZero);
 
 				genZero.elem = coeff;
 				genZero.oper = 1;
-				genZero.type = 1;
 				indZero.genes.push_back(genZero);
 				inds.push_back(indZero);
 
@@ -260,13 +243,11 @@ public:
 
 				genZero.elem = y;
 				genZero.oper = 1;
-				genZero.type = 2;
 				indZero.genes.clear();
 				indZero.genes.push_back(genZero);
 
 				genZero.elem = coeff;
 				genZero.oper = 2;
-				genZero.type = 1;
 				indZero.genes.push_back(genZero);
 				inds.push_back(indZero);
 
@@ -282,13 +263,11 @@ public:
 
 				genZero.elem = y;
 				genZero.oper = 1;
-				genZero.type = 2;
 				indZero.genes.clear();
 				indZero.genes.push_back(genZero);
 
 				genZero.elem = coeff;
 				genZero.oper = 4;
-				genZero.type = 1;
 				indZero.genes.push_back(genZero);
 				inds.push_back(indZero);;
 
@@ -296,7 +275,7 @@ public:
 		}
 
 		//Outputting all of the population, checking if there's zeros
-		std::cout << "Population " << 1 << " = { ";
+		std::cout << "INITIAL POPULATION " << 1 << " = { ";
 
 		for (int i = 0; i < n; i++)
 		{
@@ -307,7 +286,6 @@ public:
 				outputInd.ind = y;
 				outputGene.elem = y;
 				outputGene.oper = 1;
-				genZero.type = 2;
 				outputInd.genes.clear();
 				outputInd.genes.push_back(outputGene);
 				inds.at(i) = outputInd;
@@ -338,6 +316,7 @@ vector<struct data> SetData(std::string fileroute, int len)
 	ExpData.reserve(len);
 	struct data curdata;
 	int i = 0;
+
 	
 	while (i < len)
 	{
@@ -420,13 +399,14 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 {
 	Individ outputInd;
 	vector<Individ> numPop; //Population for numeric GA
-	int GAsize = 15; //number of inds in GA
+	int GAsize = 10; //number of inds in GA
 	double resCoef = 0.0;
 	int bol = 0;
 	int dec = 0; //decision - is there any genes to optimize?
 
 	numPop.clear();
 	numPop.resize(GAsize);
+	std::cout << "------------NUMERIC GA STARTED-------------";
 	std::cout << "\n Ind " << inputInd.ind << std::endl;
 
 	outputInd.ind = inputInd.ind;
@@ -461,8 +441,6 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 				};
 
 				numPop[j].genes[i].elem = resCoef;
-
-				std::cout << "new gene is " << numPop[j].genes[i].elem << std::endl;
 			}
 		}
 
@@ -488,7 +466,7 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 
 		//MAIN GA LOOP
 
-		int limit = 2; //manual limit for GA loops
+		int limit = 50; //manual limit for GA loops
 		int mind, maxd;
 		double coef1, coef2;
 
@@ -517,13 +495,13 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 				}
 			}
 
-			std::cout << "\nThe minimum fit in Population " << f + 1 << " is " << numPop[mind].fit << std::endl;
-			std::cout << "The maximum fit in Population " << f + 1<< " is " << numPop[maxd].fit << std::endl;
+			std::cout << "\nThe minimum fit in NumPopulation " << f + 1 << " is " << numPop[mind].fit << std::endl;
+			std::cout << "The maximum fit in NumPopulation " << f + 1<< " is " << numPop[maxd].fit << std::endl;
 
 			//Checking if the current minimum fit is twice smaller than the initial
 			if (((numPop[maxd].fit) / multCoef) > inputInd.fit)
 			{
-				std::cout << "Optimum coefficients found after " << f + 1 << " loops, final ind is "
+				std::cout << "\nOptimum coefficients found after " << f + 1 << " loops, final ind is "
 					<< numPop[maxd].ind << " and fit = " << numPop[maxd].fit << std::endl;
 				outputInd = numPop[maxd];
 				return(outputInd);
@@ -532,7 +510,6 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 			//Setting Mom and Dad as 2 random elements of the population
 			//MOM
 			int numMOM = rand() % (GAsize - 1);
-			std::cout << "numMOM is " << numMOM << std::endl;
 			Individ MOM = numPop[numMOM];
 			std::cout << "num MOM is " << MOM.ind << " and fit is " << MOM.fit << std::endl;
 
@@ -546,7 +523,6 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 				}
 			}
 
-			std::cout << "numDAD is " << numDAD << std::endl;
 			Individ DAD = numPop[numDAD];
 			std::cout << "num DAD is " << DAD.ind << " and fit is " << DAD.fit << std::endl;
 
@@ -557,10 +533,12 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 			
 			for (int q = 0; q < MOM.genes.size(); q++)
 			{
-				if (KID.genes[q].type == 1)
+				auto buf = KID.genes[q].elem->clone();
+				if (typeid(*buf) == typeid(Number<double>))
 				{
 					KID.genes[q].elem = coef1 * MOM.genes[q].elem + coef2 * DAD.genes[q].elem;
 				}
+				buf->unreference(buf);
 			}
 			
 			KID = IndFromGenes(KID.genes);
@@ -575,7 +553,7 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t)
 		};
 	}
 
-	std::cout << "GA optimization failed, ending the loop" << std::endl;
+	std::cout << "numGA optimization failed, ending the loop" << std::endl;
 	return(outputInd);
 }
 
@@ -659,11 +637,11 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 	double stopPoint = 99.9;
 	
 	//MAIN GA LOOP
-	int limit = 20; //manual limit for GA loops
+	int limit = 1000; //manual limit for GA loops
 	int mind, maxd;
 	double coef1, coef2;
 
-	std::cout << "\n-------------THE SYMBOLIC GA STARTS-------------\n" << std::endl;
+	std::cout << "\n-------------THE SYMBOLIC GA STARTED-------------\n" << std::endl;
 	
 	for (int f = 0; f < limit; f++) {
 
@@ -676,7 +654,7 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 		popul.inds[0].CalcFit(ExpData, t);
 
 		//Displaying current population
-		std::cout << "\nGA Population " << f + 1 << std::endl;
+		std::cout << "\nsymbGA Population " << f + 1 << std::endl;
 		for (int g = 0; g < popul.inds.size(); g++)
 		{
 			popul.inds[g].CalcFit(ExpData, t);
@@ -700,7 +678,7 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 		//Checking if the current minimum fit is the desired one
 		if (popul.inds[maxd].fit > stopPoint)
 		{
-			std::cout << "\n-----FINAL-----" <<
+			std::cout << "\n---------------FINAL---------------" <<
 				"Optimum coefficients found after " << f << " loops, final ind is "
 				<< popul.inds[maxd].ind << " and fit = " << popul.inds[maxd].fit << std::endl;
 			outputInd = popul.inds[maxd];
@@ -749,7 +727,7 @@ void main(void) {
 	Symbolic t("t"); //t - time
 	v = t; //v depending on t
 	int k = 1; //Individual serial number
-	int numInd = 6; //number of individuals in the population
+	int numInd = 20; //number of individuals in the population
 	int numCoef = 0; //number of coefficients in the origin individual
 	int len = 1000; //number of lines in ExpData to read
 	Individ outputInd; //Buffer for Individ class
@@ -778,7 +756,6 @@ void main(void) {
 	}
 
 	std::cout << "\nExperimental data file size is " << ExpData.size() << std::endl;
-	std::cout << "Number of individuals in the population is " << numInd << "\n" << std::endl;
 	
 	//Fitness function calculations for the 1st gen
 	for (int i = 0; i < numInd; i++)
