@@ -322,22 +322,47 @@ vector<struct data> SetData(std::string fileroute, int len)
 	ExpData.clear();
 	ExpData.reserve(len);
 	struct data curdata;
-	int i = 0;
+	double num1, num2;
 
 	std::ofstream datain;
 	datain.open("Data\\expdata.txt");
+	std::string currentLine;
+	int totalLen = 0;
+	int i = 0;
 	
-	while (i < len)
+	//Counting the number of lines in the input file
+	while (!datafile.eof())
 	{
-		if (datafile.eof())
+		getline(datafile, currentLine);
+		totalLen++;
+	}
+
+	int freq = (totalLen / len); //number of lines which will be repeatedly skipped
+	if (freq < 1)
+	{
+		datain << "\nDesired length is bigger than the input file=" << std::endl;
+		return(ExpData);
+	}
+
+	std::cout << "Datafile is " << totalLen << " lines long, input frequiency will be "
+		<< freq << " lines" << std::endl;
+
+	datafile.seekg(std::ios_base::beg);
+
+	while (i < totalLen)
+	{
+		if (i % freq == 0)
 		{
-			datain << "\nDesired length if bigger than the input file, end of file on the line " << i << std::endl;
-			break;
+			datafile >> curdata.t >> curdata.v;
+			datain << curdata.t << "	" << curdata.v << std::endl;
+			ExpData.push_back(curdata);
 		}
 
-		datafile >> curdata.t >> curdata.v;
-		datain << curdata.t << "	" << curdata.v << std::endl;
-		ExpData.push_back(curdata);
+		else
+		{
+			datafile >> num1 >> num2;
+		}
+
 		i += 1;
 	}
 
@@ -564,7 +589,11 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 			fout << "num KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
 
 			//Replacing the worst element of the population with the KID
-			numPop[mind] = KID;
+			if (numPop[mind].fit < KID.fit)
+			{
+				numPop[mind] = KID;
+			}
+
 			outputInd = numPop[maxd];
 			
 		};
@@ -762,17 +791,20 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 		Individ KID = MOM;
 		//KID = OnePointCrossover(MOM, DAD, nodeCross);
 		KID = StakingCrossover(MOM, DAD, nodeCross);
-		std::cout << "KID is " << KID.ind << std::endl;
+		fout << "KID is " << KID.ind << std::endl;
 		KID.CalcFit(ExpData, t);
 		KID = numGA(KID, ExpData, t, foutname);
 		KID.pop = f + 2;
 		fout << "Optimimzed KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
 		//Replacing the worst element of the population with the KID
-		popul.inds[mind] = KID;
+		if (popul.inds[mind].fit < KID.fit)
+		{
+			popul.inds[mind] = KID;
+		}
+
 		outputInd = popul.inds[maxd];
 	};
 
-	std::cout << "GA optimization failed, ending the loop" << std::endl;
 	fout << "GA optimization failed, ending the loop" << std::endl;
 	fout.close();
 
