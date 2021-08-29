@@ -1,16 +1,14 @@
 Program started
 
 INITIAL POPULATION 1 = { t | t+35 | 2*t | 0.04*t | t-59 | t^(2) | t^t | t^(46) | t | t+62 | t | t^(43) | t+37 | t | t^t | t^(2) | t | t^(2) | t^(2) | t }; 
-Starting the CppGA Application
 
-
-Experimental data file size is 1000 lines
+Experimental data file size is 1022 lines
 ------------NUMERIC GA STARTED-------------
  Ind t
 No numeric GA optimization needed for the t
 ------------NUMERIC GA STARTED-------------
  Ind t+35
-The initial ind fit is 0.0833438
+The initial ind fit is 0.105323
 New ind is t+18
 New ind is t-47
 New ind is t+71
@@ -23,3370 +21,1818 @@ New ind is t-73
 New ind is t+41
 
 Numeric GA Population 1
-t+18 and fit 0.0575561
-t-47 and fit 0.0263649
-t+71 and fit 1.62675
-t+69 and fit 0.80196
-t+67 and fit 0.532106
-t-35 and fit 0.0292959
-t+3 and fit 0.0452125
-t-22 and fit 0.0333073
-t-73 and fit 0.021668
-t+41 and fit 0.0989989
+t+18 and fit 0.0759228
+t-47 and fit 0.0310543
+t+71 and fit 0.0958511
+t+69 and fit 0.0995781
+t+67 and fit 0.103322
+t-35 and fit 0.0350816
+t+3 and fit 0.0581154
+t-22 and fit 0.0407354
+t-73 and fit 0.0248135
+t+41 and fit 0.115588
 
-The minimum fit in NumPopulation 1 is 0.021668
-The maximum fit in NumPopulation 1 is 1.62675
+The minimum fit in NumPopulation 1 is 0.0248135
+The maximum fit in NumPopulation 1 is 0.115588
+num MOM is t-22 and fit is 0.0407354
+num DAD is t+71 and fit is 0.0958511
+num KID is t+18.41 and fit is 0.0765217
 
-Optimum coefficients found after 1 loops, final ind is t+71 and fit = 1.62675
+Numeric GA Population 2
+t+18 and fit 0.0759228
+t-47 and fit 0.0310543
+t+71 and fit 0.0958511
+t+69 and fit 0.0995781
+t+67 and fit 0.103322
+t-35 and fit 0.0350816
+t+3 and fit 0.0581154
+t-22 and fit 0.0407354
+t+18.41 and fit 0.0765217
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 2 is 0.0310543
+The maximum fit in NumPopulation 2 is 0.115588
+num MOM is t-35 and fit is 0.0350816
+num DAD is t-47 and fit is 0.0310543
+num KID is t-37.34 and fit is 0.0342196
+
+Numeric GA Population 3
+t+18 and fit 0.0759228
+t-37.34 and fit 0.0342196
+t+71 and fit 0.0958511
+t+69 and fit 0.0995781
+t+67 and fit 0.103322
+t-35 and fit 0.0350816
+t+3 and fit 0.0581154
+t-22 and fit 0.0407354
+t+18.41 and fit 0.0765217
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 3 is 0.0342196
+The maximum fit in NumPopulation 3 is 0.115588
+num MOM is t-22 and fit is 0.0407354
+num DAD is t+71 and fit is 0.0958511
+num KID is t+11.57 and fit is 0.0673579
+
+Numeric GA Population 4
+t+18 and fit 0.0759228
+t+11.57 and fit 0.0673579
+t+71 and fit 0.0958511
+t+69 and fit 0.0995781
+t+67 and fit 0.103322
+t-35 and fit 0.0350816
+t+3 and fit 0.0581154
+t-22 and fit 0.0407354
+t+18.41 and fit 0.0765217
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 4 is 0.0350816
+The maximum fit in NumPopulation 4 is 0.115588
+num MOM is t+67 and fit is 0.103322
+num DAD is t+71 and fit is 0.0958511
+num KID is t+90.12 and fit is 0.066436
+
+Numeric GA Population 5
+t+18 and fit 0.0759228
+t+11.57 and fit 0.0673579
+t+71 and fit 0.0958511
+t+69 and fit 0.0995781
+t+67 and fit 0.103322
+t+90.12 and fit 0.066436
+t+3 and fit 0.0581154
+t-22 and fit 0.0407354
+t+18.41 and fit 0.0765217
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 5 is 0.0407354
+The maximum fit in NumPopulation 5 is 0.115588
+num MOM is t+18 and fit is 0.0759228
+num DAD is t+11.57 and fit is 0.0673579
+num KID is t+12.0594 and fit is 0.0679569
+
+Numeric GA Population 6
+t+18 and fit 0.0759228
+t+11.57 and fit 0.0673579
+t+71 and fit 0.0958511
+t+69 and fit 0.0995781
+t+67 and fit 0.103322
+t+90.12 and fit 0.066436
+t+3 and fit 0.0581154
+t+12.0594 and fit 0.0679569
+t+18.41 and fit 0.0765217
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 6 is 0.0581154
+The maximum fit in NumPopulation 6 is 0.115588
+num MOM is t+67 and fit is 0.103322
+num DAD is t+90.12 and fit is 0.066436
+num KID is t+84.458 and fit is 0.0737382
+
+Numeric GA Population 7
+t+18 and fit 0.0759228
+t+11.57 and fit 0.0673579
+t+71 and fit 0.0958511
+t+69 and fit 0.0995781
+t+67 and fit 0.103322
+t+90.12 and fit 0.066436
+t+84.458 and fit 0.0737382
+t+12.0594 and fit 0.0679569
+t+18.41 and fit 0.0765217
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 7 is 0.066436
+The maximum fit in NumPopulation 7 is 0.115588
+num MOM is t+84.458 and fit is 0.0737382
+num DAD is t+12.0594 and fit is 0.0679569
+num KID is t+42.9526 and fit is 0.118298
+
+Numeric GA Population 8
+t+18 and fit 0.0759228
+t+11.57 and fit 0.0673579
+t+71 and fit 0.0958511
+t+69 and fit 0.0995781
+t+67 and fit 0.103322
+t+42.9526 and fit 0.118298
+t+84.458 and fit 0.0737382
+t+12.0594 and fit 0.0679569
+t+18.41 and fit 0.0765217
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 8 is 0.0673579
+The maximum fit in NumPopulation 8 is 0.118298
+num MOM is t+84.458 and fit is 0.0737382
+num DAD is t+69 and fit is 0.0995781
+num KID is t+60.5498 and fit is 0.114632
+
+Numeric GA Population 9
+t+18 and fit 0.0759228
+t+60.5498 and fit 0.114632
+t+71 and fit 0.0958511
+t+69 and fit 0.0995781
+t+67 and fit 0.103322
+t+42.9526 and fit 0.118298
+t+84.458 and fit 0.0737382
+t+12.0594 and fit 0.0679569
+t+18.41 and fit 0.0765217
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 9 is 0.0679569
+The maximum fit in NumPopulation 9 is 0.118298
+num MOM is t+42.9526 and fit is 0.118298
+num DAD is t+18 and fit is 0.0759228
+num KID is t+33.2744 and fit is 0.102109
+
+Numeric GA Population 10
+t+18 and fit 0.0759228
+t+60.5498 and fit 0.114632
+t+71 and fit 0.0958511
+t+69 and fit 0.0995781
+t+67 and fit 0.103322
+t+42.9526 and fit 0.118298
+t+84.458 and fit 0.0737382
+t+33.2744 and fit 0.102109
+t+18.41 and fit 0.0765217
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 10 is 0.0737382
+The maximum fit in NumPopulation 10 is 0.118298
+num MOM is t+42.9526 and fit is 0.118298
+num DAD is t+33.2744 and fit is 0.102109
+num KID is t+42.959 and fit is 0.118306
+
+Numeric GA Population 11
+t+18 and fit 0.0759228
+t+60.5498 and fit 0.114632
+t+71 and fit 0.0958511
+t+69 and fit 0.0995781
+t+67 and fit 0.103322
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+33.2744 and fit 0.102109
+t+18.41 and fit 0.0765217
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 11 is 0.0759228
+The maximum fit in NumPopulation 11 is 0.118306
+num MOM is t+60.5498 and fit is 0.114632
+num DAD is t+42.959 and fit is 0.118306
+num KID is t+34.7838 and fit is 0.104923
+
+Numeric GA Population 12
+t+34.7838 and fit 0.104923
+t+60.5498 and fit 0.114632
+t+71 and fit 0.0958511
+t+69 and fit 0.0995781
+t+67 and fit 0.103322
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+33.2744 and fit 0.102109
+t+18.41 and fit 0.0765217
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 12 is 0.0765217
+The maximum fit in NumPopulation 12 is 0.118306
+num MOM is t+60.5498 and fit is 0.114632
+num DAD is t+71 and fit is 0.0958511
+num KID is t+35.7889 and fit is 0.106773
+
+Numeric GA Population 13
+t+34.7838 and fit 0.104923
+t+60.5498 and fit 0.114632
+t+71 and fit 0.0958511
+t+69 and fit 0.0995781
+t+67 and fit 0.103322
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+33.2744 and fit 0.102109
+t+35.7889 and fit 0.106773
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 13 is 0.0958511
+The maximum fit in NumPopulation 13 is 0.118306
+num MOM is t+69 and fit is 0.0995781
+num DAD is t+42.959 and fit is 0.118306
+num KID is t+42.4665 and fit is 0.117665
+
+Numeric GA Population 14
+t+34.7838 and fit 0.104923
+t+60.5498 and fit 0.114632
+t+42.4665 and fit 0.117665
+t+69 and fit 0.0995781
+t+67 and fit 0.103322
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+33.2744 and fit 0.102109
+t+35.7889 and fit 0.106773
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 14 is 0.0995781
+The maximum fit in NumPopulation 14 is 0.118306
+num MOM is t+42.4665 and fit is 0.117665
+num DAD is t+67 and fit is 0.103322
+num KID is t+27.3106 and fit is 0.0910895
+
+Numeric GA Population 15
+t+34.7838 and fit 0.104923
+t+60.5498 and fit 0.114632
+t+42.4665 and fit 0.117665
+t+69 and fit 0.0995781
+t+67 and fit 0.103322
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+33.2744 and fit 0.102109
+t+35.7889 and fit 0.106773
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 15 is 0.0995781
+The maximum fit in NumPopulation 15 is 0.118306
+num MOM is t+69 and fit is 0.0995781
+num DAD is t+34.7838 and fit is 0.104923
+num KID is t+29.5322 and fit is 0.0951288
+
+Numeric GA Population 16
+t+34.7838 and fit 0.104923
+t+60.5498 and fit 0.114632
+t+42.4665 and fit 0.117665
+t+69 and fit 0.0995781
+t+67 and fit 0.103322
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+33.2744 and fit 0.102109
+t+35.7889 and fit 0.106773
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 16 is 0.0995781
+The maximum fit in NumPopulation 16 is 0.118306
+num MOM is t+69 and fit is 0.0995781
+num DAD is t+35.7889 and fit is 0.106773
+num KID is t+39.6393 and fit is 0.113467
+
+Numeric GA Population 17
+t+34.7838 and fit 0.104923
+t+60.5498 and fit 0.114632
+t+42.4665 and fit 0.117665
+t+39.6393 and fit 0.113467
+t+67 and fit 0.103322
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+33.2744 and fit 0.102109
+t+35.7889 and fit 0.106773
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 17 is 0.102109
+The maximum fit in NumPopulation 17 is 0.118306
+num MOM is t+60.5498 and fit is 0.114632
+num DAD is t+42.959 and fit is 0.118306
+num KID is t+50.6379 and fit is 0.123381
+
+Numeric GA Population 18
+t+34.7838 and fit 0.104923
+t+60.5498 and fit 0.114632
+t+42.4665 and fit 0.117665
+t+39.6393 and fit 0.113467
+t+67 and fit 0.103322
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+35.7889 and fit 0.106773
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 18 is 0.103322
+The maximum fit in NumPopulation 18 is 0.123381
+num MOM is t+39.6393 and fit is 0.113467
+num DAD is t+42.959 and fit is 0.118306
+num KID is t+72.7529 and fit is 0.0926385
+
+Numeric GA Population 19
+t+34.7838 and fit 0.104923
+t+60.5498 and fit 0.114632
+t+42.4665 and fit 0.117665
+t+39.6393 and fit 0.113467
+t+67 and fit 0.103322
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+35.7889 and fit 0.106773
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 19 is 0.103322
+The maximum fit in NumPopulation 19 is 0.123381
+num MOM is t+35.7889 and fit is 0.106773
+num DAD is t+42.959 and fit is 0.118306
+num KID is t+48.4665 and fit is 0.123003
+
+Numeric GA Population 20
+t+34.7838 and fit 0.104923
+t+60.5498 and fit 0.114632
+t+42.4665 and fit 0.117665
+t+39.6393 and fit 0.113467
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+35.7889 and fit 0.106773
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 20 is 0.104923
+The maximum fit in NumPopulation 20 is 0.123381
+num MOM is t+39.6393 and fit is 0.113467
+num DAD is t+48.4665 and fit is 0.123003
+num KID is t+37.4908 and fit is 0.109829
+
+Numeric GA Population 21
+t+37.4908 and fit 0.109829
+t+60.5498 and fit 0.114632
+t+42.4665 and fit 0.117665
+t+39.6393 and fit 0.113467
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+35.7889 and fit 0.106773
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 21 is 0.106773
+The maximum fit in NumPopulation 21 is 0.123381
+num MOM is t+35.7889 and fit is 0.106773
+num DAD is t+50.6379 and fit is 0.123381
+num KID is t+26.8266 and fit is 0.0902266
+
+Numeric GA Population 22
+t+37.4908 and fit 0.109829
+t+60.5498 and fit 0.114632
+t+42.4665 and fit 0.117665
+t+39.6393 and fit 0.113467
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+35.7889 and fit 0.106773
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 22 is 0.106773
+The maximum fit in NumPopulation 22 is 0.123381
+num MOM is t+50.6379 and fit is 0.123381
+num DAD is t+60.5498 and fit is 0.114632
+num KID is t+58.645 and fit is 0.117412
+
+Numeric GA Population 23
+t+37.4908 and fit 0.109829
+t+60.5498 and fit 0.114632
+t+42.4665 and fit 0.117665
+t+39.6393 and fit 0.113467
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+58.645 and fit 0.117412
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 23 is 0.109829
+The maximum fit in NumPopulation 23 is 0.123381
+num MOM is t+50.6379 and fit is 0.123381
+num DAD is t+42.959 and fit is 0.118306
+num KID is t+66.2379 and fit is 0.104741
+
+Numeric GA Population 24
+t+37.4908 and fit 0.109829
+t+60.5498 and fit 0.114632
+t+42.4665 and fit 0.117665
+t+39.6393 and fit 0.113467
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+58.645 and fit 0.117412
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 24 is 0.109829
+The maximum fit in NumPopulation 24 is 0.123381
+num MOM is t+42.959 and fit is 0.118306
+num DAD is t+42.9526 and fit is 0.118298
+num KID is t+7.73204 and fit is 0.062939
+
+Numeric GA Population 25
+t+37.4908 and fit 0.109829
+t+60.5498 and fit 0.114632
+t+42.4665 and fit 0.117665
+t+39.6393 and fit 0.113467
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+58.645 and fit 0.117412
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 25 is 0.109829
+The maximum fit in NumPopulation 25 is 0.123381
+num MOM is t+42.4665 and fit is 0.117665
+num DAD is t+39.6393 and fit is 0.113467
+num KID is t+27.5767 and fit is 0.0915669
+
+Numeric GA Population 26
+t+37.4908 and fit 0.109829
+t+60.5498 and fit 0.114632
+t+42.4665 and fit 0.117665
+t+39.6393 and fit 0.113467
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+58.645 and fit 0.117412
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 26 is 0.109829
+The maximum fit in NumPopulation 26 is 0.123381
+num MOM is t+42.4665 and fit is 0.117665
+num DAD is t+50.6379 and fit is 0.123381
+num KID is t+39.9544 and fit is 0.113973
+
+Numeric GA Population 27
+t+39.9544 and fit 0.113973
+t+60.5498 and fit 0.114632
+t+42.4665 and fit 0.117665
+t+39.6393 and fit 0.113467
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+58.645 and fit 0.117412
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 27 is 0.113467
+The maximum fit in NumPopulation 27 is 0.123381
+num MOM is t+39.9544 and fit is 0.113973
+num DAD is t+42.4665 and fit is 0.117665
+num KID is t+48.1283 and fit is 0.122864
+
+Numeric GA Population 28
+t+39.9544 and fit 0.113973
+t+60.5498 and fit 0.114632
+t+42.4665 and fit 0.117665
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+58.645 and fit 0.117412
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 28 is 0.113973
+The maximum fit in NumPopulation 28 is 0.123381
+num MOM is t+48.4665 and fit is 0.123003
+num DAD is t+42.9526 and fit is 0.118298
+num KID is t+27.5244 and fit is 0.0914729
+
+Numeric GA Population 29
+t+39.9544 and fit 0.113973
+t+60.5498 and fit 0.114632
+t+42.4665 and fit 0.117665
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+58.645 and fit 0.117412
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 29 is 0.113973
+The maximum fit in NumPopulation 29 is 0.123381
+num MOM is t+42.4665 and fit is 0.117665
+num DAD is t+48.1283 and fit is 0.122864
+num KID is t+60.0757 and fit is 0.115359
+
+Numeric GA Population 30
+t+60.0757 and fit 0.115359
+t+60.5498 and fit 0.114632
+t+42.4665 and fit 0.117665
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+58.645 and fit 0.117412
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 30 is 0.114632
+The maximum fit in NumPopulation 30 is 0.123381
+num MOM is t+42.4665 and fit is 0.117665
+num DAD is t+42.9526 and fit is 0.118298
+num KID is t+54.1074 and fit is 0.122126
+
+Numeric GA Population 31
+t+60.0757 and fit 0.115359
+t+54.1074 and fit 0.122126
+t+42.4665 and fit 0.117665
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+58.645 and fit 0.117412
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 31 is 0.115359
+The maximum fit in NumPopulation 31 is 0.123381
+num MOM is t+42.9526 and fit is 0.118298
+num DAD is t+48.4665 and fit is 0.123003
+num KID is t+51.4124 and fit is 0.123297
+
+Numeric GA Population 32
+t+51.4124 and fit 0.123297
+t+54.1074 and fit 0.122126
+t+42.4665 and fit 0.117665
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+58.645 and fit 0.117412
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 32 is 0.115588
+The maximum fit in NumPopulation 32 is 0.123381
+num MOM is t+42.959 and fit is 0.118306
+num DAD is t+48.1283 and fit is 0.122864
+num KID is t+75.0695 and fit is 0.0885136
+
+Numeric GA Population 33
+t+51.4124 and fit 0.123297
+t+54.1074 and fit 0.122126
+t+42.4665 and fit 0.117665
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+58.645 and fit 0.117412
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 33 is 0.115588
+The maximum fit in NumPopulation 33 is 0.123381
+num MOM is t+51.4124 and fit is 0.123297
+num DAD is t+58.645 and fit is 0.117412
+num KID is t+61.4544 and fit is 0.11319
+
+Numeric GA Population 34
+t+51.4124 and fit 0.123297
+t+54.1074 and fit 0.122126
+t+42.4665 and fit 0.117665
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+58.645 and fit 0.117412
+t+41 and fit 0.115588
+
+The minimum fit in NumPopulation 34 is 0.115588
+The maximum fit in NumPopulation 34 is 0.123381
+num MOM is t+42.4665 and fit is 0.117665
+num DAD is t+42.959 and fit is 0.118306
+num KID is t+48.9694 and fit is 0.123171
+
+Numeric GA Population 35
+t+51.4124 and fit 0.123297
+t+54.1074 and fit 0.122126
+t+42.4665 and fit 0.117665
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+58.645 and fit 0.117412
+t+48.9694 and fit 0.123171
+
+The minimum fit in NumPopulation 35 is 0.117412
+The maximum fit in NumPopulation 35 is 0.123381
+num MOM is t+58.645 and fit is 0.117412
+num DAD is t+42.4665 and fit is 0.117665
+num KID is t+74.9238 and fit is 0.0887683
+
+Numeric GA Population 36
+t+51.4124 and fit 0.123297
+t+54.1074 and fit 0.122126
+t+42.4665 and fit 0.117665
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+58.645 and fit 0.117412
+t+48.9694 and fit 0.123171
+
+The minimum fit in NumPopulation 36 is 0.117412
+The maximum fit in NumPopulation 36 is 0.123381
+num MOM is t+54.1074 and fit is 0.122126
+num DAD is t+42.9526 and fit is 0.118298
+num KID is t+15.6578 and fit is 0.0726249
+
+Numeric GA Population 37
+t+51.4124 and fit 0.123297
+t+54.1074 and fit 0.122126
+t+42.4665 and fit 0.117665
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+58.645 and fit 0.117412
+t+48.9694 and fit 0.123171
+
+The minimum fit in NumPopulation 37 is 0.117412
+The maximum fit in NumPopulation 37 is 0.123381
+num MOM is t+42.4665 and fit is 0.117665
+num DAD is t+50.6379 and fit is 0.123381
+num KID is t+10.5027 and fit is 0.0660801
+
+Numeric GA Population 38
+t+51.4124 and fit 0.123297
+t+54.1074 and fit 0.122126
+t+42.4665 and fit 0.117665
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+58.645 and fit 0.117412
+t+48.9694 and fit 0.123171
+
+The minimum fit in NumPopulation 38 is 0.117412
+The maximum fit in NumPopulation 38 is 0.123381
+num MOM is t+42.4665 and fit is 0.117665
+num DAD is t+58.645 and fit is 0.117412
+num KID is t+21.6579 and fit is 0.0814973
+
+Numeric GA Population 39
+t+51.4124 and fit 0.123297
+t+54.1074 and fit 0.122126
+t+42.4665 and fit 0.117665
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+58.645 and fit 0.117412
+t+48.9694 and fit 0.123171
+
+The minimum fit in NumPopulation 39 is 0.117412
+The maximum fit in NumPopulation 39 is 0.123381
+num MOM is t+42.4665 and fit is 0.117665
+num DAD is t+48.4665 and fit is 0.123003
+num KID is t+71.2783 and fit is 0.0953368
+
+Numeric GA Population 40
+t+51.4124 and fit 0.123297
+t+54.1074 and fit 0.122126
+t+42.4665 and fit 0.117665
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+58.645 and fit 0.117412
+t+48.9694 and fit 0.123171
+
+The minimum fit in NumPopulation 40 is 0.117412
+The maximum fit in NumPopulation 40 is 0.123381
+num MOM is t+51.4124 and fit is 0.123297
+num DAD is t+42.9526 and fit is 0.118298
+num KID is t+23.0121 and fit is 0.0836917
+
+Numeric GA Population 41
+t+51.4124 and fit 0.123297
+t+54.1074 and fit 0.122126
+t+42.4665 and fit 0.117665
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+58.645 and fit 0.117412
+t+48.9694 and fit 0.123171
+
+The minimum fit in NumPopulation 41 is 0.117412
+The maximum fit in NumPopulation 41 is 0.123381
+num MOM is t+42.4665 and fit is 0.117665
+num DAD is t+48.4665 and fit is 0.123003
+num KID is t+46.8925 and fit is 0.122178
+
+Numeric GA Population 42
+t+51.4124 and fit 0.123297
+t+54.1074 and fit 0.122126
+t+42.4665 and fit 0.117665
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+46.8925 and fit 0.122178
+t+48.9694 and fit 0.123171
+
+The minimum fit in NumPopulation 42 is 0.117665
+The maximum fit in NumPopulation 42 is 0.123381
+num MOM is t+54.1074 and fit is 0.122126
+num DAD is t+42.959 and fit is 0.118306
+num KID is t+33.1468 and fit is 0.10187
+
+Numeric GA Population 43
+t+51.4124 and fit 0.123297
+t+54.1074 and fit 0.122126
+t+42.4665 and fit 0.117665
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+46.8925 and fit 0.122178
+t+48.9694 and fit 0.123171
+
+The minimum fit in NumPopulation 43 is 0.117665
+The maximum fit in NumPopulation 43 is 0.123381
+num MOM is t+48.1283 and fit is 0.122864
+num DAD is t+54.1074 and fit is 0.122126
+num KID is t+27.4154 and fit is 0.0912773
+
+Numeric GA Population 44
+t+51.4124 and fit 0.123297
+t+54.1074 and fit 0.122126
+t+42.4665 and fit 0.117665
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+46.8925 and fit 0.122178
+t+48.9694 and fit 0.123171
+
+The minimum fit in NumPopulation 44 is 0.117665
+The maximum fit in NumPopulation 44 is 0.123381
+num MOM is t+51.4124 and fit is 0.123297
+num DAD is t+48.1283 and fit is 0.122864
+num KID is t+47.7569 and fit is 0.122687
+
+Numeric GA Population 45
+t+51.4124 and fit 0.123297
+t+54.1074 and fit 0.122126
+t+47.7569 and fit 0.122687
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+46.8925 and fit 0.122178
+t+48.9694 and fit 0.123171
+
+The minimum fit in NumPopulation 45 is 0.118298
+The maximum fit in NumPopulation 45 is 0.123381
+num MOM is t+42.9526 and fit is 0.118298
+num DAD is t+47.7569 and fit is 0.122687
+num KID is t+77.2952 and fit is 0.0847125
+
+Numeric GA Population 46
+t+51.4124 and fit 0.123297
+t+54.1074 and fit 0.122126
+t+47.7569 and fit 0.122687
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+46.8925 and fit 0.122178
+t+48.9694 and fit 0.123171
+
+The minimum fit in NumPopulation 46 is 0.118298
+The maximum fit in NumPopulation 46 is 0.123381
+num MOM is t+46.8925 and fit is 0.122178
+num DAD is t+54.1074 and fit is 0.122126
+num KID is t+65.686 and fit is 0.105761
+
+Numeric GA Population 47
+t+51.4124 and fit 0.123297
+t+54.1074 and fit 0.122126
+t+47.7569 and fit 0.122687
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+46.8925 and fit 0.122178
+t+48.9694 and fit 0.123171
+
+The minimum fit in NumPopulation 47 is 0.118298
+The maximum fit in NumPopulation 47 is 0.123381
+num MOM is t+42.959 and fit is 0.118306
+num DAD is t+50.6379 and fit is 0.123381
+num KID is t+58.7647 and fit is 0.117249
+
+Numeric GA Population 48
+t+51.4124 and fit 0.123297
+t+54.1074 and fit 0.122126
+t+47.7569 and fit 0.122687
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+42.9526 and fit 0.118298
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+46.8925 and fit 0.122178
+t+48.9694 and fit 0.123171
+
+The minimum fit in NumPopulation 48 is 0.118298
+The maximum fit in NumPopulation 48 is 0.123381
+num MOM is t+42.9526 and fit is 0.118298
+num DAD is t+54.1074 and fit is 0.122126
+num KID is t+55.8653 and fit is 0.12067
+
+Numeric GA Population 49
+t+51.4124 and fit 0.123297
+t+54.1074 and fit 0.122126
+t+47.7569 and fit 0.122687
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+55.8653 and fit 0.12067
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+46.8925 and fit 0.122178
+t+48.9694 and fit 0.123171
+
+The minimum fit in NumPopulation 49 is 0.118306
+The maximum fit in NumPopulation 49 is 0.123381
+num MOM is t+46.8925 and fit is 0.122178
+num DAD is t+42.959 and fit is 0.118306
+num KID is t+65.3224 and fit is 0.106429
+
+Numeric GA Population 50
+t+51.4124 and fit 0.123297
+t+54.1074 and fit 0.122126
+t+47.7569 and fit 0.122687
+t+48.1283 and fit 0.122864
+t+48.4665 and fit 0.123003
+t+55.8653 and fit 0.12067
+t+42.959 and fit 0.118306
+t+50.6379 and fit 0.123381
+t+46.8925 and fit 0.122178
+t+48.9694 and fit 0.123171
+
+The minimum fit in NumPopulation 50 is 0.118306
+The maximum fit in NumPopulation 50 is 0.123381
+num MOM is t+51.4124 and fit is 0.123297
+num DAD is t+47.7569 and fit is 0.122687
+num KID is t+51.8652 and fit is 0.123195
+numGA optimization failed, ending the loop
 ------------NUMERIC GA STARTED-------------
  Ind 2*t
 No numeric GA optimization needed for the 2*t
 ------------NUMERIC GA STARTED-------------
  Ind 0.04*t
-The initial ind fit is 0.043353
-New ind is -0.0188679*t
-New ind is 0.0212766*t
+The initial ind fit is 0.0553739
+New ind is -0.0357143*t
 New ind is 0.016129*t
-New ind is -0.027027*t
-New ind is -0.0434783*t
-New ind is -0.0344828*t
-New ind is 0.0625*t
-New ind is -0.0111111*t
-New ind is 0.0113636*t
-New ind is 0.025*t
+New ind is 0.0133333*t
+New ind is -0.0144928*t
+New ind is 0.0227273*t
+New ind is 0.0123457*t
+New ind is 0.0454545*t
+New ind is -0.047619*t
+New ind is -0.0175439*t
+New ind is 0.0108696*t
 
 Numeric GA Population 1
--0.0188679*t and fit 0.043353
-0.0212766*t and fit 0.043353
-0.016129*t and fit 0.043353
--0.027027*t and fit 0.043353
--0.0434783*t and fit 0.043353
--0.0344828*t and fit 0.043353
-0.0625*t and fit 0.043353
--0.0111111*t and fit 0.043353
-0.0113636*t and fit 0.043353
-0.025*t and fit 0.043353
+-0.0357143*t and fit 0.0553738
+0.016129*t and fit 0.0553738
+0.0133333*t and fit 0.0553738
+-0.0144928*t and fit 0.0553738
+0.0227273*t and fit 0.0553738
+0.0123457*t and fit 0.0553738
+0.0454545*t and fit 0.0553739
+-0.047619*t and fit 0.0553738
+-0.0175439*t and fit 0.0553738
+0.0108696*t and fit 0.0553738
 
-The minimum fit in NumPopulation 1 is 0.043353
-The maximum fit in NumPopulation 1 is 0.043353
-num MOM is -0.0344828*t and fit is 0.043353
-num DAD is -0.0434783*t and fit is 0.043353
-num KID is -0.0408163*t and fit is 0.043353
+The minimum fit in NumPopulation 1 is 0.0553738
+The maximum fit in NumPopulation 1 is 0.0553739
+num MOM is -0.0175439*t and fit is 0.0553738
+num DAD is 0.0133333*t and fit is 0.0553738
+num KID is 0.133333*t and fit is 0.0553739
 
 Numeric GA Population 2
--0.0188679*t and fit 0.043353
-0.0212766*t and fit 0.043353
-0.016129*t and fit 0.043353
--0.027027*t and fit 0.043353
--0.0408163*t and fit 0.043353
--0.0344828*t and fit 0.043353
-0.0625*t and fit 0.043353
--0.0111111*t and fit 0.043353
-0.0113636*t and fit 0.043353
-0.025*t and fit 0.043353
+-0.0357143*t and fit 0.0553738
+0.016129*t and fit 0.0553738
+0.0133333*t and fit 0.0553738
+-0.0144928*t and fit 0.0553738
+0.0227273*t and fit 0.0553738
+0.0123457*t and fit 0.0553738
+0.0454545*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+-0.0175439*t and fit 0.0553738
+0.0108696*t and fit 0.0553738
 
-The minimum fit in NumPopulation 2 is 0.043353
-The maximum fit in NumPopulation 2 is 0.043353
-num MOM is -0.0188679*t and fit is 0.043353
-num DAD is -0.0344828*t and fit is 0.043353
-num KID is -0.0280348*t and fit is 0.043353
+The minimum fit in NumPopulation 2 is 0.0553738
+The maximum fit in NumPopulation 2 is 0.0553739
+num MOM is 0.0454545*t and fit is 0.0553739
+num DAD is 0.0227273*t and fit is 0.0553738
+num KID is 0.0191791*t and fit is 0.0553738
 
 Numeric GA Population 3
--0.0188679*t and fit 0.043353
-0.0212766*t and fit 0.043353
-0.016129*t and fit 0.043353
--0.027027*t and fit 0.043353
--0.0280348*t and fit 0.043353
--0.0344828*t and fit 0.043353
-0.0625*t and fit 0.043353
--0.0111111*t and fit 0.043353
-0.0113636*t and fit 0.043353
-0.025*t and fit 0.043353
+0.0191791*t and fit 0.0553738
+0.016129*t and fit 0.0553738
+0.0133333*t and fit 0.0553738
+-0.0144928*t and fit 0.0553738
+0.0227273*t and fit 0.0553738
+0.0123457*t and fit 0.0553738
+0.0454545*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+-0.0175439*t and fit 0.0553738
+0.0108696*t and fit 0.0553738
 
-The minimum fit in NumPopulation 3 is 0.043353
-The maximum fit in NumPopulation 3 is 0.043353
-num MOM is -0.0344828*t and fit is 0.043353
-num DAD is -0.027027*t and fit is 0.043353
-num KID is -0.0288184*t and fit is 0.043353
+The minimum fit in NumPopulation 3 is 0.0553738
+The maximum fit in NumPopulation 3 is 0.0553739
+num MOM is 0.0191791*t and fit is 0.0553738
+num DAD is 0.0454545*t and fit is 0.0553739
+num KID is 0.029641*t and fit is 0.0553738
 
 Numeric GA Population 4
--0.0188679*t and fit 0.043353
-0.0212766*t and fit 0.043353
-0.016129*t and fit 0.043353
--0.027027*t and fit 0.043353
--0.0280348*t and fit 0.043353
--0.0288184*t and fit 0.043353
-0.0625*t and fit 0.043353
--0.0111111*t and fit 0.043353
-0.0113636*t and fit 0.043353
-0.025*t and fit 0.043353
+0.0191791*t and fit 0.0553738
+0.016129*t and fit 0.0553738
+0.0133333*t and fit 0.0553738
+-0.0144928*t and fit 0.0553738
+0.0227273*t and fit 0.0553738
+0.0123457*t and fit 0.0553738
+0.0454545*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.029641*t and fit 0.0553738
+0.0108696*t and fit 0.0553738
 
-The minimum fit in NumPopulation 4 is 0.043353
-The maximum fit in NumPopulation 4 is 0.043353
-num MOM is 0.016129*t and fit is 0.043353
-num DAD is -0.0188679*t and fit is 0.043353
-num KID is -0.0330469*t and fit is 0.043353
+The minimum fit in NumPopulation 4 is 0.0553738
+The maximum fit in NumPopulation 4 is 0.0553739
+num MOM is 0.133333*t and fit is 0.0553739
+num DAD is 0.016129*t and fit is 0.0553738
+num KID is 0.0169924*t and fit is 0.0553738
 
 Numeric GA Population 5
--0.0188679*t and fit 0.043353
-0.0212766*t and fit 0.043353
-0.016129*t and fit 0.043353
--0.027027*t and fit 0.043353
--0.0280348*t and fit 0.043353
--0.0330469*t and fit 0.043353
-0.0625*t and fit 0.043353
--0.0111111*t and fit 0.043353
-0.0113636*t and fit 0.043353
-0.025*t and fit 0.043353
+0.0191791*t and fit 0.0553738
+0.016129*t and fit 0.0553738
+0.0133333*t and fit 0.0553738
+0.0169924*t and fit 0.0553738
+0.0227273*t and fit 0.0553738
+0.0123457*t and fit 0.0553738
+0.0454545*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.029641*t and fit 0.0553738
+0.0108696*t and fit 0.0553738
 
-The minimum fit in NumPopulation 5 is 0.043353
-The maximum fit in NumPopulation 5 is 0.043353
-num MOM is 0.0212766*t and fit is 0.043353
-num DAD is -0.0188679*t and fit is 0.043353
-num KID is -0.0618047*t and fit is 0.043353
+The minimum fit in NumPopulation 5 is 0.0553738
+The maximum fit in NumPopulation 5 is 0.0553739
+num MOM is 0.133333*t and fit is 0.0553739
+num DAD is 0.0454545*t and fit is 0.0553739
+num KID is 0.0883783*t and fit is 0.0553739
 
 Numeric GA Population 6
--0.0188679*t and fit 0.043353
-0.0212766*t and fit 0.043353
-0.016129*t and fit 0.043353
--0.027027*t and fit 0.043353
--0.0280348*t and fit 0.043353
--0.0618047*t and fit 0.043353
-0.0625*t and fit 0.043353
--0.0111111*t and fit 0.043353
-0.0113636*t and fit 0.043353
-0.025*t and fit 0.043353
+0.0191791*t and fit 0.0553738
+0.016129*t and fit 0.0553738
+0.0133333*t and fit 0.0553738
+0.0169924*t and fit 0.0553738
+0.0227273*t and fit 0.0553738
+0.0123457*t and fit 0.0553738
+0.0454545*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.029641*t and fit 0.0553738
+0.0883783*t and fit 0.0553739
 
-The minimum fit in NumPopulation 6 is 0.043353
-The maximum fit in NumPopulation 6 is 0.043353
-num MOM is -0.0618047*t and fit is 0.043353
-num DAD is 0.0113636*t and fit is 0.043353
-num KID is 0.0267197*t and fit is 0.043353
+The minimum fit in NumPopulation 6 is 0.0553738
+The maximum fit in NumPopulation 6 is 0.0553739
+num MOM is 0.029641*t and fit is 0.0553738
+num DAD is 0.0133333*t and fit is 0.0553738
+num KID is 0.0294395*t and fit is 0.0553738
 
 Numeric GA Population 7
--0.0188679*t and fit 0.043353
-0.0212766*t and fit 0.043353
-0.016129*t and fit 0.043353
--0.027027*t and fit 0.043353
--0.0280348*t and fit 0.043353
-0.0267197*t and fit 0.043353
-0.0625*t and fit 0.043353
--0.0111111*t and fit 0.043353
-0.0113636*t and fit 0.043353
-0.025*t and fit 0.043353
+0.0191791*t and fit 0.0553738
+0.016129*t and fit 0.0553738
+0.0133333*t and fit 0.0553738
+0.0169924*t and fit 0.0553738
+0.0227273*t and fit 0.0553738
+0.0294395*t and fit 0.0553738
+0.0454545*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.029641*t and fit 0.0553738
+0.0883783*t and fit 0.0553739
 
-The minimum fit in NumPopulation 7 is 0.043353
-The maximum fit in NumPopulation 7 is 0.043353
-num MOM is -0.027027*t and fit is 0.043353
-num DAD is 0.016129*t and fit is 0.043353
-num KID is 0.0693001*t and fit is 0.043353
+The minimum fit in NumPopulation 7 is 0.0553738
+The maximum fit in NumPopulation 7 is 0.0553739
+num MOM is 0.029641*t and fit is 0.0553738
+num DAD is 0.0294395*t and fit is 0.0553738
+num KID is 0.0304118*t and fit is 0.0553738
 
 Numeric GA Population 8
--0.0188679*t and fit 0.043353
-0.0212766*t and fit 0.043353
-0.016129*t and fit 0.043353
--0.027027*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0267197*t and fit 0.043353
-0.0625*t and fit 0.043353
--0.0111111*t and fit 0.043353
-0.0113636*t and fit 0.043353
-0.025*t and fit 0.043353
+0.0191791*t and fit 0.0553738
+0.016129*t and fit 0.0553738
+0.0304118*t and fit 0.0553738
+0.0169924*t and fit 0.0553738
+0.0227273*t and fit 0.0553738
+0.0294395*t and fit 0.0553738
+0.0454545*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.029641*t and fit 0.0553738
+0.0883783*t and fit 0.0553739
 
-The minimum fit in NumPopulation 8 is 0.043353
-The maximum fit in NumPopulation 8 is 0.043353
-num MOM is 0.0212766*t and fit is 0.043353
-num DAD is 0.0113636*t and fit is 0.043353
-num KID is 0.0156104*t and fit is 0.043353
+The minimum fit in NumPopulation 8 is 0.0553738
+The maximum fit in NumPopulation 8 is 0.0553739
+num MOM is 0.0191791*t and fit is 0.0553738
+num DAD is 0.0294395*t and fit is 0.0553738
+num KID is 0.0248595*t and fit is 0.0553738
 
 Numeric GA Population 9
--0.0188679*t and fit 0.043353
-0.0212766*t and fit 0.043353
-0.016129*t and fit 0.043353
-0.0156104*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0267197*t and fit 0.043353
-0.0625*t and fit 0.043353
--0.0111111*t and fit 0.043353
-0.0113636*t and fit 0.043353
-0.025*t and fit 0.043353
+0.0191791*t and fit 0.0553738
+0.0248595*t and fit 0.0553738
+0.0304118*t and fit 0.0553738
+0.0169924*t and fit 0.0553738
+0.0227273*t and fit 0.0553738
+0.0294395*t and fit 0.0553738
+0.0454545*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.029641*t and fit 0.0553738
+0.0883783*t and fit 0.0553739
 
-The minimum fit in NumPopulation 9 is 0.043353
-The maximum fit in NumPopulation 9 is 0.043353
-num MOM is 0.0113636*t and fit is 0.043353
-num DAD is -0.0188679*t and fit is 0.043353
-num KID is -0.133869*t and fit is 0.043353
+The minimum fit in NumPopulation 9 is 0.0553738
+The maximum fit in NumPopulation 9 is 0.0553739
+num MOM is 0.133333*t and fit is 0.0553739
+num DAD is 0.029641*t and fit is 0.0553738
+num KID is 0.042342*t and fit is 0.0553739
 
 Numeric GA Population 10
--0.133869*t and fit 0.043353
-0.0212766*t and fit 0.043353
-0.016129*t and fit 0.043353
-0.0156104*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0267197*t and fit 0.043353
-0.0625*t and fit 0.043353
--0.0111111*t and fit 0.043353
-0.0113636*t and fit 0.043353
-0.025*t and fit 0.043353
+0.0191791*t and fit 0.0553738
+0.0248595*t and fit 0.0553738
+0.0304118*t and fit 0.0553738
+0.042342*t and fit 0.0553739
+0.0227273*t and fit 0.0553738
+0.0294395*t and fit 0.0553738
+0.0454545*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.029641*t and fit 0.0553738
+0.0883783*t and fit 0.0553739
 
-The minimum fit in NumPopulation 10 is 0.043353
-The maximum fit in NumPopulation 10 is 0.043353
-num MOM is 0.0156104*t and fit is 0.043353
-num DAD is 0.0625*t and fit is 0.043353
-num KID is 0.0317078*t and fit is 0.043353
+The minimum fit in NumPopulation 10 is 0.0553738
+The maximum fit in NumPopulation 10 is 0.0553739
+num MOM is 0.0248595*t and fit is 0.0553738
+num DAD is 0.0191791*t and fit is 0.0553738
+num KID is 0.0361267*t and fit is 0.0553739
 
 Numeric GA Population 11
-0.0317078*t and fit 0.043353
-0.0212766*t and fit 0.043353
-0.016129*t and fit 0.043353
-0.0156104*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0267197*t and fit 0.043353
-0.0625*t and fit 0.043353
--0.0111111*t and fit 0.043353
-0.0113636*t and fit 0.043353
-0.025*t and fit 0.043353
+0.0361267*t and fit 0.0553739
+0.0248595*t and fit 0.0553738
+0.0304118*t and fit 0.0553738
+0.042342*t and fit 0.0553739
+0.0227273*t and fit 0.0553738
+0.0294395*t and fit 0.0553738
+0.0454545*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.029641*t and fit 0.0553738
+0.0883783*t and fit 0.0553739
 
-The minimum fit in NumPopulation 11 is 0.043353
-The maximum fit in NumPopulation 11 is 0.043353
-num MOM is 0.016129*t and fit is 0.043353
-num DAD is 0.0156104*t and fit is 0.043353
-num KID is 0.0238966*t and fit is 0.043353
+The minimum fit in NumPopulation 11 is 0.0553738
+The maximum fit in NumPopulation 11 is 0.0553739
+num MOM is 0.133333*t and fit is 0.0553739
+num DAD is 0.0227273*t and fit is 0.0553738
+num KID is 0.0518538*t and fit is 0.0553739
 
 Numeric GA Population 12
-0.0317078*t and fit 0.043353
-0.0212766*t and fit 0.043353
-0.016129*t and fit 0.043353
-0.0156104*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0267197*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0238966*t and fit 0.043353
-0.0113636*t and fit 0.043353
-0.025*t and fit 0.043353
+0.0361267*t and fit 0.0553739
+0.0248595*t and fit 0.0553738
+0.0304118*t and fit 0.0553738
+0.042342*t and fit 0.0553739
+0.0518538*t and fit 0.0553739
+0.0294395*t and fit 0.0553738
+0.0454545*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.029641*t and fit 0.0553738
+0.0883783*t and fit 0.0553739
 
-The minimum fit in NumPopulation 12 is 0.043353
-The maximum fit in NumPopulation 12 is 0.043353
-num MOM is 0.0267197*t and fit is 0.043353
-num DAD is 0.0212766*t and fit is 0.043353
-num KID is 0.025108*t and fit is 0.043353
+The minimum fit in NumPopulation 12 is 0.0553738
+The maximum fit in NumPopulation 12 is 0.0553739
+num MOM is 0.0518538*t and fit is 0.0553739
+num DAD is 0.042342*t and fit is 0.0553739
+num KID is 0.0318333*t and fit is 0.0553738
 
 Numeric GA Population 13
-0.0317078*t and fit 0.043353
-0.0212766*t and fit 0.043353
-0.016129*t and fit 0.043353
-0.0156104*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0267197*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0238966*t and fit 0.043353
-0.025108*t and fit 0.043353
-0.025*t and fit 0.043353
+0.0361267*t and fit 0.0553739
+0.0318333*t and fit 0.0553738
+0.0304118*t and fit 0.0553738
+0.042342*t and fit 0.0553739
+0.0518538*t and fit 0.0553739
+0.0294395*t and fit 0.0553738
+0.0454545*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.029641*t and fit 0.0553738
+0.0883783*t and fit 0.0553739
 
-The minimum fit in NumPopulation 13 is 0.043353
-The maximum fit in NumPopulation 13 is 0.043353
-num MOM is 0.016129*t and fit is 0.043353
-num DAD is 0.0156104*t and fit is 0.043353
-num KID is 0.0147433*t and fit is 0.043353
+The minimum fit in NumPopulation 13 is 0.0553738
+The maximum fit in NumPopulation 13 is 0.0553739
+num MOM is 0.0304118*t and fit is 0.0553738
+num DAD is 0.042342*t and fit is 0.0553739
+num KID is 0.0391054*t and fit is 0.0553739
 
 Numeric GA Population 14
-0.0317078*t and fit 0.043353
-0.0212766*t and fit 0.043353
-0.016129*t and fit 0.043353
-0.0147433*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0267197*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0238966*t and fit 0.043353
-0.025108*t and fit 0.043353
-0.025*t and fit 0.043353
+0.0361267*t and fit 0.0553739
+0.0318333*t and fit 0.0553738
+0.0304118*t and fit 0.0553738
+0.042342*t and fit 0.0553739
+0.0518538*t and fit 0.0553739
+0.0391054*t and fit 0.0553739
+0.0454545*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.029641*t and fit 0.0553738
+0.0883783*t and fit 0.0553739
 
-The minimum fit in NumPopulation 14 is 0.043353
-The maximum fit in NumPopulation 14 is 0.043353
-num MOM is 0.0212766*t and fit is 0.043353
-num DAD is 0.0625*t and fit is 0.043353
-num KID is 0.0290444*t and fit is 0.043353
+The minimum fit in NumPopulation 14 is 0.0553738
+The maximum fit in NumPopulation 14 is 0.0553739
+num MOM is 0.0518538*t and fit is 0.0553739
+num DAD is 0.029641*t and fit is 0.0553738
+num KID is 0.0290959*t and fit is 0.0553738
 
 Numeric GA Population 15
-0.0317078*t and fit 0.043353
-0.0212766*t and fit 0.043353
-0.016129*t and fit 0.043353
-0.0290444*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0267197*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0238966*t and fit 0.043353
-0.025108*t and fit 0.043353
-0.025*t and fit 0.043353
+0.0361267*t and fit 0.0553739
+0.0318333*t and fit 0.0553738
+0.0304118*t and fit 0.0553738
+0.042342*t and fit 0.0553739
+0.0518538*t and fit 0.0553739
+0.0391054*t and fit 0.0553739
+0.0454545*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.029641*t and fit 0.0553738
+0.0883783*t and fit 0.0553739
 
-The minimum fit in NumPopulation 15 is 0.043353
-The maximum fit in NumPopulation 15 is 0.043353
-num MOM is 0.025108*t and fit is 0.043353
-num DAD is 0.0290444*t and fit is 0.043353
-num KID is 0.0249091*t and fit is 0.043353
+The minimum fit in NumPopulation 15 is 0.0553738
+The maximum fit in NumPopulation 15 is 0.0553739
+num MOM is 0.042342*t and fit is 0.0553739
+num DAD is 0.0454545*t and fit is 0.0553739
+num KID is 0.266228*t and fit is 0.0553739
 
 Numeric GA Population 16
-0.0317078*t and fit 0.043353
-0.0212766*t and fit 0.043353
-0.0249091*t and fit 0.043353
-0.0290444*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0267197*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0238966*t and fit 0.043353
-0.025108*t and fit 0.043353
-0.025*t and fit 0.043353
+0.0361267*t and fit 0.0553739
+0.0318333*t and fit 0.0553738
+0.0304118*t and fit 0.0553738
+0.042342*t and fit 0.0553739
+0.0518538*t and fit 0.0553739
+0.0391054*t and fit 0.0553739
+0.0454545*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.266228*t and fit 0.0553739
+0.0883783*t and fit 0.0553739
 
-The minimum fit in NumPopulation 16 is 0.043353
-The maximum fit in NumPopulation 16 is 0.043353
-num MOM is 0.0212766*t and fit is 0.043353
-num DAD is 0.025108*t and fit is 0.043353
-num KID is 0.0251071*t and fit is 0.043353
+The minimum fit in NumPopulation 16 is 0.0553738
+The maximum fit in NumPopulation 16 is 0.0553739
+num MOM is 0.133333*t and fit is 0.0553739
+num DAD is 0.266228*t and fit is 0.0553739
+num KID is 0.191817*t and fit is 0.0553739
 
 Numeric GA Population 17
-0.0317078*t and fit 0.043353
-0.0251071*t and fit 0.043353
-0.0249091*t and fit 0.043353
-0.0290444*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0267197*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0238966*t and fit 0.043353
-0.025108*t and fit 0.043353
-0.025*t and fit 0.043353
+0.0361267*t and fit 0.0553739
+0.0318333*t and fit 0.0553738
+0.191817*t and fit 0.0553739
+0.042342*t and fit 0.0553739
+0.0518538*t and fit 0.0553739
+0.0391054*t and fit 0.0553739
+0.0454545*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.266228*t and fit 0.0553739
+0.0883783*t and fit 0.0553739
 
-The minimum fit in NumPopulation 17 is 0.043353
-The maximum fit in NumPopulation 17 is 0.043353
-num MOM is 0.0238966*t and fit is 0.043353
-num DAD is 0.0251071*t and fit is 0.043353
-num KID is 0.0255271*t and fit is 0.043353
+The minimum fit in NumPopulation 17 is 0.0553738
+The maximum fit in NumPopulation 17 is 0.0553739
+num MOM is 0.0318333*t and fit is 0.0553738
+num DAD is 0.0361267*t and fit is 0.0553739
+num KID is 0.0500729*t and fit is 0.0553739
 
 Numeric GA Population 18
-0.0317078*t and fit 0.043353
-0.0251071*t and fit 0.043353
-0.0249091*t and fit 0.043353
-0.0290444*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0267197*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0255271*t and fit 0.043353
-0.025108*t and fit 0.043353
-0.025*t and fit 0.043353
+0.0361267*t and fit 0.0553739
+0.0500729*t and fit 0.0553739
+0.191817*t and fit 0.0553739
+0.042342*t and fit 0.0553739
+0.0518538*t and fit 0.0553739
+0.0391054*t and fit 0.0553739
+0.0454545*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.266228*t and fit 0.0553739
+0.0883783*t and fit 0.0553739
 
-The minimum fit in NumPopulation 18 is 0.043353
-The maximum fit in NumPopulation 18 is 0.043353
-num MOM is 0.0255271*t and fit is 0.043353
-num DAD is 0.0625*t and fit is 0.043353
-num KID is 0.0275868*t and fit is 0.043353
+The minimum fit in NumPopulation 18 is 0.0553739
+The maximum fit in NumPopulation 18 is 0.0553739
+num MOM is 0.266228*t and fit is 0.0553739
+num DAD is 0.0391054*t and fit is 0.0553739
+num KID is 0.199417*t and fit is 0.0553739
 
 Numeric GA Population 19
-0.0317078*t and fit 0.043353
-0.0251071*t and fit 0.043353
-0.0275868*t and fit 0.043353
-0.0290444*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0267197*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0255271*t and fit 0.043353
-0.025108*t and fit 0.043353
-0.025*t and fit 0.043353
+0.199417*t and fit 0.0553739
+0.0500729*t and fit 0.0553739
+0.191817*t and fit 0.0553739
+0.042342*t and fit 0.0553739
+0.0518538*t and fit 0.0553739
+0.0391054*t and fit 0.0553739
+0.0454545*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.266228*t and fit 0.0553739
+0.0883783*t and fit 0.0553739
 
-The minimum fit in NumPopulation 19 is 0.043353
-The maximum fit in NumPopulation 19 is 0.043353
-num MOM is 0.0625*t and fit is 0.043353
-num DAD is 0.0267197*t and fit is 0.043353
-num KID is 0.207974*t and fit is 0.043353
+The minimum fit in NumPopulation 19 is 0.0553739
+The maximum fit in NumPopulation 19 is 0.0553739
+num MOM is 0.199417*t and fit is 0.0553739
+num DAD is 0.133333*t and fit is 0.0553739
+num KID is 0.15727*t and fit is 0.0553739
 
 Numeric GA Population 20
-0.0317078*t and fit 0.043353
-0.0251071*t and fit 0.043353
-0.0275868*t and fit 0.043353
-0.0290444*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0267197*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0255271*t and fit 0.043353
-0.025108*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.199417*t and fit 0.0553739
+0.0500729*t and fit 0.0553739
+0.191817*t and fit 0.0553739
+0.042342*t and fit 0.0553739
+0.0518538*t and fit 0.0553739
+0.15727*t and fit 0.0553739
+0.0454545*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.266228*t and fit 0.0553739
+0.0883783*t and fit 0.0553739
 
-The minimum fit in NumPopulation 20 is 0.043353
-The maximum fit in NumPopulation 20 is 0.043353
-num MOM is 0.0275868*t and fit is 0.043353
-num DAD is 0.0290444*t and fit is 0.043353
-num KID is 0.0419945*t and fit is 0.043353
+The minimum fit in NumPopulation 20 is 0.0553739
+The maximum fit in NumPopulation 20 is 0.0553739
+num MOM is 0.0500729*t and fit is 0.0553739
+num DAD is 0.0518538*t and fit is 0.0553739
+num KID is 0.036629*t and fit is 0.0553739
 
 Numeric GA Population 21
-0.0317078*t and fit 0.043353
-0.0419945*t and fit 0.043353
-0.0275868*t and fit 0.043353
-0.0290444*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0267197*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0255271*t and fit 0.043353
-0.025108*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.199417*t and fit 0.0553739
+0.0500729*t and fit 0.0553739
+0.191817*t and fit 0.0553739
+0.042342*t and fit 0.0553739
+0.0518538*t and fit 0.0553739
+0.15727*t and fit 0.0553739
+0.0454545*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.266228*t and fit 0.0553739
+0.0883783*t and fit 0.0553739
 
-The minimum fit in NumPopulation 21 is 0.043353
-The maximum fit in NumPopulation 21 is 0.043353
-num MOM is 0.0275868*t and fit is 0.043353
-num DAD is 0.0255271*t and fit is 0.043353
-num KID is 0.0318971*t and fit is 0.043353
+The minimum fit in NumPopulation 21 is 0.0553739
+The maximum fit in NumPopulation 21 is 0.0553739
+num MOM is 0.266228*t and fit is 0.0553739
+num DAD is 0.0500729*t and fit is 0.0553739
+num KID is 0.107746*t and fit is 0.0553739
 
 Numeric GA Population 22
-0.0317078*t and fit 0.043353
-0.0419945*t and fit 0.043353
-0.0275868*t and fit 0.043353
-0.0290444*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0267197*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0255271*t and fit 0.043353
-0.0318971*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.199417*t and fit 0.0553739
+0.0500729*t and fit 0.0553739
+0.191817*t and fit 0.0553739
+0.107746*t and fit 0.0553739
+0.0518538*t and fit 0.0553739
+0.15727*t and fit 0.0553739
+0.0454545*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.266228*t and fit 0.0553739
+0.0883783*t and fit 0.0553739
 
-The minimum fit in NumPopulation 22 is 0.043353
-The maximum fit in NumPopulation 22 is 0.043353
-num MOM is 0.0317078*t and fit is 0.043353
-num DAD is 0.0275868*t and fit is 0.043353
-num KID is 0.0253225*t and fit is 0.043353
+The minimum fit in NumPopulation 22 is 0.0553739
+The maximum fit in NumPopulation 22 is 0.0553739
+num MOM is 0.191817*t and fit is 0.0553739
+num DAD is 0.0518538*t and fit is 0.0553739
+num KID is 0.0838491*t and fit is 0.0553739
 
 Numeric GA Population 23
-0.0317078*t and fit 0.043353
-0.0419945*t and fit 0.043353
-0.0275868*t and fit 0.043353
-0.0290444*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0267197*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0253225*t and fit 0.043353
-0.0318971*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.199417*t and fit 0.0553739
+0.0500729*t and fit 0.0553739
+0.191817*t and fit 0.0553739
+0.107746*t and fit 0.0553739
+0.0518538*t and fit 0.0553739
+0.15727*t and fit 0.0553739
+0.0838491*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.266228*t and fit 0.0553739
+0.0883783*t and fit 0.0553739
 
-The minimum fit in NumPopulation 23 is 0.043353
-The maximum fit in NumPopulation 23 is 0.043353
-num MOM is 0.0693001*t and fit is 0.043353
-num DAD is 0.0267197*t and fit is 0.043353
-num KID is 0.0577678*t and fit is 0.043353
+The minimum fit in NumPopulation 23 is 0.0553739
+The maximum fit in NumPopulation 23 is 0.0553739
+num MOM is 0.15727*t and fit is 0.0553739
+num DAD is 0.107746*t and fit is 0.0553739
+num KID is 0.135157*t and fit is 0.0553739
 
 Numeric GA Population 24
-0.0317078*t and fit 0.043353
-0.0419945*t and fit 0.043353
-0.0275868*t and fit 0.043353
-0.0290444*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0267197*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0577678*t and fit 0.043353
-0.0318971*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.199417*t and fit 0.0553739
+0.135157*t and fit 0.0553739
+0.191817*t and fit 0.0553739
+0.107746*t and fit 0.0553739
+0.0518538*t and fit 0.0553739
+0.15727*t and fit 0.0553739
+0.0838491*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.266228*t and fit 0.0553739
+0.0883783*t and fit 0.0553739
 
-The minimum fit in NumPopulation 24 is 0.043353
-The maximum fit in NumPopulation 24 is 0.043353
-num MOM is 0.0275868*t and fit is 0.043353
-num DAD is 0.0290444*t and fit is 0.043353
-num KID is 0.020596*t and fit is 0.043353
+The minimum fit in NumPopulation 24 is 0.0553739
+The maximum fit in NumPopulation 24 is 0.0553739
+num MOM is 0.266228*t and fit is 0.0553739
+num DAD is 0.199417*t and fit is 0.0553739
+num KID is 0.379911*t and fit is 0.055374
 
 Numeric GA Population 25
-0.0317078*t and fit 0.043353
-0.0419945*t and fit 0.043353
-0.0275868*t and fit 0.043353
-0.0290444*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.020596*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0577678*t and fit 0.043353
-0.0318971*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.199417*t and fit 0.0553739
+0.135157*t and fit 0.0553739
+0.191817*t and fit 0.0553739
+0.107746*t and fit 0.0553739
+0.379911*t and fit 0.055374
+0.15727*t and fit 0.0553739
+0.0838491*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.266228*t and fit 0.0553739
+0.0883783*t and fit 0.0553739
 
-The minimum fit in NumPopulation 25 is 0.043353
-The maximum fit in NumPopulation 25 is 0.043353
-num MOM is 0.0275868*t and fit is 0.043353
-num DAD is 0.020596*t and fit is 0.043353
-num KID is 0.0198154*t and fit is 0.043353
+The minimum fit in NumPopulation 25 is 0.0553739
+The maximum fit in NumPopulation 25 is 0.055374
+num MOM is 0.107746*t and fit is 0.0553739
+num DAD is 0.135157*t and fit is 0.0553739
+num KID is 0.149664*t and fit is 0.0553739
 
 Numeric GA Population 26
-0.0317078*t and fit 0.043353
-0.0419945*t and fit 0.043353
-0.0275868*t and fit 0.043353
-0.0290444*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0198154*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0577678*t and fit 0.043353
-0.0318971*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.199417*t and fit 0.0553739
+0.135157*t and fit 0.0553739
+0.191817*t and fit 0.0553739
+0.107746*t and fit 0.0553739
+0.379911*t and fit 0.055374
+0.15727*t and fit 0.0553739
+0.149664*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.266228*t and fit 0.0553739
+0.0883783*t and fit 0.0553739
 
-The minimum fit in NumPopulation 26 is 0.043353
-The maximum fit in NumPopulation 26 is 0.043353
-num MOM is 0.0198154*t and fit is 0.043353
-num DAD is 0.0693001*t and fit is 0.043353
-num KID is 0.0194259*t and fit is 0.043353
+The minimum fit in NumPopulation 26 is 0.0553739
+The maximum fit in NumPopulation 26 is 0.055374
+num MOM is 0.15727*t and fit is 0.0553739
+num DAD is 0.266228*t and fit is 0.0553739
+num KID is 0.226634*t and fit is 0.0553739
 
 Numeric GA Population 27
-0.0317078*t and fit 0.043353
-0.0419945*t and fit 0.043353
-0.0275868*t and fit 0.043353
-0.0290444*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0194259*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0577678*t and fit 0.043353
-0.0318971*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.199417*t and fit 0.0553739
+0.135157*t and fit 0.0553739
+0.191817*t and fit 0.0553739
+0.107746*t and fit 0.0553739
+0.379911*t and fit 0.055374
+0.15727*t and fit 0.0553739
+0.149664*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.266228*t and fit 0.0553739
+0.226634*t and fit 0.0553739
 
-The minimum fit in NumPopulation 27 is 0.043353
-The maximum fit in NumPopulation 27 is 0.043353
-num MOM is 0.0625*t and fit is 0.043353
-num DAD is 0.0290444*t and fit is 0.043353
-num KID is 0.0241965*t and fit is 0.043353
+The minimum fit in NumPopulation 27 is 0.0553739
+The maximum fit in NumPopulation 27 is 0.055374
+num MOM is 0.15727*t and fit is 0.0553739
+num DAD is 0.107746*t and fit is 0.0553739
+num KID is 0.167453*t and fit is 0.0553739
 
 Numeric GA Population 28
-0.0317078*t and fit 0.043353
-0.0419945*t and fit 0.043353
-0.0275868*t and fit 0.043353
-0.0290444*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0241965*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0577678*t and fit 0.043353
-0.0318971*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.199417*t and fit 0.0553739
+0.135157*t and fit 0.0553739
+0.191817*t and fit 0.0553739
+0.167453*t and fit 0.0553739
+0.379911*t and fit 0.055374
+0.15727*t and fit 0.0553739
+0.149664*t and fit 0.0553739
+0.133333*t and fit 0.0553739
+0.266228*t and fit 0.0553739
+0.226634*t and fit 0.0553739
 
-The minimum fit in NumPopulation 28 is 0.043353
-The maximum fit in NumPopulation 28 is 0.043353
-num MOM is 0.0317078*t and fit is 0.043353
-num DAD is 0.0318971*t and fit is 0.043353
-num KID is 0.0271254*t and fit is 0.043353
+The minimum fit in NumPopulation 28 is 0.0553739
+The maximum fit in NumPopulation 28 is 0.055374
+num MOM is 0.133333*t and fit is 0.0553739
+num DAD is 0.266228*t and fit is 0.0553739
+num KID is 0.634572*t and fit is 0.055374
 
 Numeric GA Population 29
-0.0317078*t and fit 0.043353
-0.0419945*t and fit 0.043353
-0.0275868*t and fit 0.043353
-0.0290444*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0271254*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0577678*t and fit 0.043353
-0.0318971*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.199417*t and fit 0.0553739
+0.135157*t and fit 0.0553739
+0.191817*t and fit 0.0553739
+0.167453*t and fit 0.0553739
+0.379911*t and fit 0.055374
+0.15727*t and fit 0.0553739
+0.149664*t and fit 0.0553739
+0.634572*t and fit 0.055374
+0.266228*t and fit 0.0553739
+0.226634*t and fit 0.0553739
 
-The minimum fit in NumPopulation 29 is 0.043353
-The maximum fit in NumPopulation 29 is 0.043353
-num MOM is 0.0275868*t and fit is 0.043353
-num DAD is 0.0625*t and fit is 0.043353
-num KID is 0.0276096*t and fit is 0.043353
+The minimum fit in NumPopulation 29 is 0.0553739
+The maximum fit in NumPopulation 29 is 0.055374
+num MOM is 0.167453*t and fit is 0.0553739
+num DAD is 0.266228*t and fit is 0.0553739
+num KID is 0.153472*t and fit is 0.0553739
 
 Numeric GA Population 30
-0.0317078*t and fit 0.043353
-0.0419945*t and fit 0.043353
-0.0275868*t and fit 0.043353
-0.0290444*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0276096*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0577678*t and fit 0.043353
-0.0318971*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.199417*t and fit 0.0553739
+0.153472*t and fit 0.0553739
+0.191817*t and fit 0.0553739
+0.167453*t and fit 0.0553739
+0.379911*t and fit 0.055374
+0.15727*t and fit 0.0553739
+0.149664*t and fit 0.0553739
+0.634572*t and fit 0.055374
+0.266228*t and fit 0.0553739
+0.226634*t and fit 0.0553739
 
-The minimum fit in NumPopulation 30 is 0.043353
-The maximum fit in NumPopulation 30 is 0.043353
-num MOM is 0.0318971*t and fit is 0.043353
-num DAD is 0.0275868*t and fit is 0.043353
-num KID is 0.0214796*t and fit is 0.043353
+The minimum fit in NumPopulation 30 is 0.0553739
+The maximum fit in NumPopulation 30 is 0.055374
+num MOM is 0.634572*t and fit is 0.055374
+num DAD is 0.266228*t and fit is 0.0553739
+num KID is 0.199422*t and fit is 0.0553739
 
 Numeric GA Population 31
-0.0317078*t and fit 0.043353
-0.0419945*t and fit 0.043353
-0.0214796*t and fit 0.043353
-0.0290444*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0276096*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0577678*t and fit 0.043353
-0.0318971*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.199417*t and fit 0.0553739
+0.153472*t and fit 0.0553739
+0.191817*t and fit 0.0553739
+0.167453*t and fit 0.0553739
+0.379911*t and fit 0.055374
+0.15727*t and fit 0.0553739
+0.199422*t and fit 0.0553739
+0.634572*t and fit 0.055374
+0.266228*t and fit 0.0553739
+0.226634*t and fit 0.0553739
 
-The minimum fit in NumPopulation 31 is 0.043353
-The maximum fit in NumPopulation 31 is 0.043353
-num MOM is 0.0419945*t and fit is 0.043353
-num DAD is 0.0276096*t and fit is 0.043353
-num KID is 0.115975*t and fit is 0.043353
+The minimum fit in NumPopulation 31 is 0.0553739
+The maximum fit in NumPopulation 31 is 0.055374
+num MOM is 0.167453*t and fit is 0.0553739
+num DAD is 0.15727*t and fit is 0.0553739
+num KID is 0.113502*t and fit is 0.0553739
 
 Numeric GA Population 32
-0.0317078*t and fit 0.043353
-0.0419945*t and fit 0.043353
-0.115975*t and fit 0.043353
-0.0290444*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.0276096*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0577678*t and fit 0.043353
-0.0318971*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.199417*t and fit 0.0553739
+0.153472*t and fit 0.0553739
+0.191817*t and fit 0.0553739
+0.167453*t and fit 0.0553739
+0.379911*t and fit 0.055374
+0.15727*t and fit 0.0553739
+0.199422*t and fit 0.0553739
+0.634572*t and fit 0.055374
+0.266228*t and fit 0.0553739
+0.226634*t and fit 0.0553739
 
-The minimum fit in NumPopulation 32 is 0.043353
-The maximum fit in NumPopulation 32 is 0.043353
-num MOM is 0.115975*t and fit is 0.043353
-num DAD is 0.0577678*t and fit is 0.043353
-num KID is 0.361648*t and fit is 0.043353
+The minimum fit in NumPopulation 32 is 0.0553739
+The maximum fit in NumPopulation 32 is 0.055374
+num MOM is 0.266228*t and fit is 0.0553739
+num DAD is 0.379911*t and fit is 0.055374
+num KID is 0.175653*t and fit is 0.0553739
 
 Numeric GA Population 33
-0.0317078*t and fit 0.043353
-0.0419945*t and fit 0.043353
-0.115975*t and fit 0.043353
-0.0290444*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.361648*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0577678*t and fit 0.043353
-0.0318971*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.199417*t and fit 0.0553739
+0.175653*t and fit 0.0553739
+0.191817*t and fit 0.0553739
+0.167453*t and fit 0.0553739
+0.379911*t and fit 0.055374
+0.15727*t and fit 0.0553739
+0.199422*t and fit 0.0553739
+0.634572*t and fit 0.055374
+0.266228*t and fit 0.0553739
+0.226634*t and fit 0.0553739
 
-The minimum fit in NumPopulation 33 is 0.043353
-The maximum fit in NumPopulation 33 is 0.043353
-num MOM is 0.115975*t and fit is 0.043353
-num DAD is 0.0318971*t and fit is 0.043353
-num KID is 0.227401*t and fit is 0.043353
+The minimum fit in NumPopulation 33 is 0.0553739
+The maximum fit in NumPopulation 33 is 0.055374
+num MOM is 0.199422*t and fit is 0.0553739
+num DAD is 0.191817*t and fit is 0.0553739
+num KID is 0.485561*t and fit is 0.055374
 
 Numeric GA Population 34
-0.0317078*t and fit 0.043353
-0.0419945*t and fit 0.043353
-0.115975*t and fit 0.043353
-0.227401*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.361648*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0577678*t and fit 0.043353
-0.0318971*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.199417*t and fit 0.0553739
+0.175653*t and fit 0.0553739
+0.191817*t and fit 0.0553739
+0.167453*t and fit 0.0553739
+0.379911*t and fit 0.055374
+0.485561*t and fit 0.055374
+0.199422*t and fit 0.0553739
+0.634572*t and fit 0.055374
+0.266228*t and fit 0.0553739
+0.226634*t and fit 0.0553739
 
-The minimum fit in NumPopulation 34 is 0.043353
-The maximum fit in NumPopulation 34 is 0.043353
-num MOM is 0.115975*t and fit is 0.043353
-num DAD is 0.0693001*t and fit is 0.043353
-num KID is 0.0527147*t and fit is 0.043353
+The minimum fit in NumPopulation 34 is 0.0553739
+The maximum fit in NumPopulation 34 is 0.055374
+num MOM is 0.485561*t and fit is 0.055374
+num DAD is 0.379911*t and fit is 0.055374
+num KID is 0.82365*t and fit is 0.0553741
 
 Numeric GA Population 35
-0.0527147*t and fit 0.043353
-0.0419945*t and fit 0.043353
-0.115975*t and fit 0.043353
-0.227401*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.361648*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0577678*t and fit 0.043353
-0.0318971*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.199417*t and fit 0.0553739
+0.175653*t and fit 0.0553739
+0.191817*t and fit 0.0553739
+0.82365*t and fit 0.0553741
+0.379911*t and fit 0.055374
+0.485561*t and fit 0.055374
+0.199422*t and fit 0.0553739
+0.634572*t and fit 0.055374
+0.266228*t and fit 0.0553739
+0.226634*t and fit 0.0553739
 
-The minimum fit in NumPopulation 35 is 0.043353
-The maximum fit in NumPopulation 35 is 0.043353
-num MOM is 0.0527147*t and fit is 0.043353
-num DAD is 0.361648*t and fit is 0.043353
-num KID is 0.36573*t and fit is 0.043353
+The minimum fit in NumPopulation 35 is 0.0553739
+The maximum fit in NumPopulation 35 is 0.0553741
+num MOM is 0.379911*t and fit is 0.055374
+num DAD is 0.634572*t and fit is 0.055374
+num KID is 0.574703*t and fit is 0.055374
 
 Numeric GA Population 36
-0.0527147*t and fit 0.043353
-0.0419945*t and fit 0.043353
-0.115975*t and fit 0.043353
-0.227401*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.361648*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0577678*t and fit 0.043353
-0.36573*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.199417*t and fit 0.0553739
+0.574703*t and fit 0.055374
+0.191817*t and fit 0.0553739
+0.82365*t and fit 0.0553741
+0.379911*t and fit 0.055374
+0.485561*t and fit 0.055374
+0.199422*t and fit 0.0553739
+0.634572*t and fit 0.055374
+0.266228*t and fit 0.0553739
+0.226634*t and fit 0.0553739
 
-The minimum fit in NumPopulation 36 is 0.043353
-The maximum fit in NumPopulation 36 is 0.043353
-num MOM is 0.115975*t and fit is 0.043353
-num DAD is 0.0693001*t and fit is 0.043353
-num KID is 0.0720412*t and fit is 0.043353
+The minimum fit in NumPopulation 36 is 0.0553739
+The maximum fit in NumPopulation 36 is 0.0553741
+num MOM is 0.191817*t and fit is 0.0553739
+num DAD is 0.199422*t and fit is 0.0553739
+num KID is 0.567848*t and fit is 0.055374
 
 Numeric GA Population 37
-0.0527147*t and fit 0.043353
-0.0720412*t and fit 0.043353
-0.115975*t and fit 0.043353
-0.227401*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.361648*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0577678*t and fit 0.043353
-0.36573*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.199417*t and fit 0.0553739
+0.574703*t and fit 0.055374
+0.567848*t and fit 0.055374
+0.82365*t and fit 0.0553741
+0.379911*t and fit 0.055374
+0.485561*t and fit 0.055374
+0.199422*t and fit 0.0553739
+0.634572*t and fit 0.055374
+0.266228*t and fit 0.0553739
+0.226634*t and fit 0.0553739
 
-The minimum fit in NumPopulation 37 is 0.043353
-The maximum fit in NumPopulation 37 is 0.043353
-num MOM is 0.0720412*t and fit is 0.043353
-num DAD is 0.0625*t and fit is 0.043353
-num KID is 0.10364*t and fit is 0.043353
+The minimum fit in NumPopulation 37 is 0.0553739
+The maximum fit in NumPopulation 37 is 0.0553741
+num MOM is 0.199417*t and fit is 0.0553739
+num DAD is 0.266228*t and fit is 0.0553739
+num KID is 0.413553*t and fit is 0.055374
 
 Numeric GA Population 38
-0.10364*t and fit 0.043353
-0.0720412*t and fit 0.043353
-0.115975*t and fit 0.043353
-0.227401*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.361648*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.0577678*t and fit 0.043353
-0.36573*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.413553*t and fit 0.055374
+0.574703*t and fit 0.055374
+0.567848*t and fit 0.055374
+0.82365*t and fit 0.0553741
+0.379911*t and fit 0.055374
+0.485561*t and fit 0.055374
+0.199422*t and fit 0.0553739
+0.634572*t and fit 0.055374
+0.266228*t and fit 0.0553739
+0.226634*t and fit 0.0553739
 
-The minimum fit in NumPopulation 38 is 0.043353
-The maximum fit in NumPopulation 38 is 0.043353
-num MOM is 0.227401*t and fit is 0.043353
-num DAD is 0.0720412*t and fit is 0.043353
-num KID is 0.147172*t and fit is 0.043353
+The minimum fit in NumPopulation 38 is 0.0553739
+The maximum fit in NumPopulation 38 is 0.0553741
+num MOM is 0.485561*t and fit is 0.055374
+num DAD is 0.634572*t and fit is 0.055374
+num KID is 0.552997*t and fit is 0.055374
 
 Numeric GA Population 39
-0.10364*t and fit 0.043353
-0.0720412*t and fit 0.043353
-0.115975*t and fit 0.043353
-0.227401*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.361648*t and fit 0.043353
-0.0625*t and fit 0.043353
-0.147172*t and fit 0.043353
-0.36573*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.413553*t and fit 0.055374
+0.574703*t and fit 0.055374
+0.567848*t and fit 0.055374
+0.82365*t and fit 0.0553741
+0.379911*t and fit 0.055374
+0.485561*t and fit 0.055374
+0.552997*t and fit 0.055374
+0.634572*t and fit 0.055374
+0.266228*t and fit 0.0553739
+0.226634*t and fit 0.0553739
 
-The minimum fit in NumPopulation 39 is 0.043353
-The maximum fit in NumPopulation 39 is 0.043353
-num MOM is 0.10364*t and fit is 0.043353
-num DAD is 0.227401*t and fit is 0.043353
-num KID is 0.190302*t and fit is 0.043353
+The minimum fit in NumPopulation 39 is 0.0553739
+The maximum fit in NumPopulation 39 is 0.0553741
+num MOM is 0.485561*t and fit is 0.055374
+num DAD is 0.634572*t and fit is 0.055374
+num KID is 0.365329*t and fit is 0.055374
 
 Numeric GA Population 40
-0.10364*t and fit 0.043353
-0.0720412*t and fit 0.043353
-0.115975*t and fit 0.043353
-0.227401*t and fit 0.043353
-0.0693001*t and fit 0.043353
-0.361648*t and fit 0.043353
-0.190302*t and fit 0.043353
-0.147172*t and fit 0.043353
-0.36573*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.413553*t and fit 0.055374
+0.574703*t and fit 0.055374
+0.567848*t and fit 0.055374
+0.82365*t and fit 0.0553741
+0.379911*t and fit 0.055374
+0.485561*t and fit 0.055374
+0.552997*t and fit 0.055374
+0.634572*t and fit 0.055374
+0.266228*t and fit 0.0553739
+0.365329*t and fit 0.055374
 
-The minimum fit in NumPopulation 40 is 0.043353
-The maximum fit in NumPopulation 40 is 0.043353
-num MOM is 0.361648*t and fit is 0.043353
-num DAD is 0.115975*t and fit is 0.043353
-num KID is 0.100869*t and fit is 0.043353
+The minimum fit in NumPopulation 40 is 0.0553739
+The maximum fit in NumPopulation 40 is 0.0553741
+num MOM is 0.82365*t and fit is 0.0553741
+num DAD is 0.485561*t and fit is 0.055374
+num KID is 0.436394*t and fit is 0.055374
 
 Numeric GA Population 41
-0.10364*t and fit 0.043353
-0.0720412*t and fit 0.043353
-0.115975*t and fit 0.043353
-0.227401*t and fit 0.043353
-0.100869*t and fit 0.043353
-0.361648*t and fit 0.043353
-0.190302*t and fit 0.043353
-0.147172*t and fit 0.043353
-0.36573*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.413553*t and fit 0.055374
+0.574703*t and fit 0.055374
+0.567848*t and fit 0.055374
+0.82365*t and fit 0.0553741
+0.379911*t and fit 0.055374
+0.485561*t and fit 0.055374
+0.552997*t and fit 0.055374
+0.634572*t and fit 0.055374
+0.436394*t and fit 0.055374
+0.365329*t and fit 0.055374
 
-The minimum fit in NumPopulation 41 is 0.043353
-The maximum fit in NumPopulation 41 is 0.043353
-num MOM is 0.36573*t and fit is 0.043353
-num DAD is 0.0720412*t and fit is 0.043353
-num KID is 0.086559*t and fit is 0.043353
+The minimum fit in NumPopulation 41 is 0.055374
+The maximum fit in NumPopulation 41 is 0.0553741
+num MOM is 0.574703*t and fit is 0.055374
+num DAD is 0.436394*t and fit is 0.055374
+num KID is 0.638444*t and fit is 0.0553741
 
 Numeric GA Population 42
-0.10364*t and fit 0.043353
-0.086559*t and fit 0.043353
-0.115975*t and fit 0.043353
-0.227401*t and fit 0.043353
-0.100869*t and fit 0.043353
-0.361648*t and fit 0.043353
-0.190302*t and fit 0.043353
-0.147172*t and fit 0.043353
-0.36573*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.413553*t and fit 0.055374
+0.574703*t and fit 0.055374
+0.567848*t and fit 0.055374
+0.82365*t and fit 0.0553741
+0.379911*t and fit 0.055374
+0.485561*t and fit 0.055374
+0.552997*t and fit 0.055374
+0.634572*t and fit 0.055374
+0.436394*t and fit 0.055374
+0.638444*t and fit 0.0553741
 
-The minimum fit in NumPopulation 42 is 0.043353
-The maximum fit in NumPopulation 42 is 0.043353
-num MOM is 0.190302*t and fit is 0.043353
-num DAD is 0.147172*t and fit is 0.043353
-num KID is 0.134836*t and fit is 0.043353
+The minimum fit in NumPopulation 42 is 0.055374
+The maximum fit in NumPopulation 42 is 0.0553741
+num MOM is 0.485561*t and fit is 0.055374
+num DAD is 0.379911*t and fit is 0.055374
+num KID is 0.480165*t and fit is 0.055374
 
 Numeric GA Population 43
-0.10364*t and fit 0.043353
-0.134836*t and fit 0.043353
-0.115975*t and fit 0.043353
-0.227401*t and fit 0.043353
-0.100869*t and fit 0.043353
-0.361648*t and fit 0.043353
-0.190302*t and fit 0.043353
-0.147172*t and fit 0.043353
-0.36573*t and fit 0.043353
-0.207974*t and fit 0.043353
+0.413553*t and fit 0.055374
+0.574703*t and fit 0.055374
+0.567848*t and fit 0.055374
+0.82365*t and fit 0.0553741
+0.480165*t and fit 0.055374
+0.485561*t and fit 0.055374
+0.552997*t and fit 0.055374
+0.634572*t and fit 0.055374
+0.436394*t and fit 0.055374
+0.638444*t and fit 0.0553741
 
-The minimum fit in NumPopulation 43 is 0.043353
-The maximum fit in NumPopulation 43 is 0.043353
-num MOM is 0.361648*t and fit is 0.043353
-num DAD is 0.134836*t and fit is 0.043353
-num KID is 0.170136*t and fit is 0.043353
+The minimum fit in NumPopulation 43 is 0.055374
+The maximum fit in NumPopulation 43 is 0.0553741
+num MOM is 0.485561*t and fit is 0.055374
+num DAD is 0.480165*t and fit is 0.055374
+num KID is 1.12363*t and fit is 0.0553742
 
 Numeric GA Population 44
-0.10364*t and fit 0.043353
-0.134836*t and fit 0.043353
-0.115975*t and fit 0.043353
-0.227401*t and fit 0.043353
-0.170136*t and fit 0.043353
-0.361648*t and fit 0.043353
-0.190302*t and fit 0.043353
-0.147172*t and fit 0.043353
-0.36573*t and fit 0.043353
-0.207974*t and fit 0.043353
+1.12363*t and fit 0.0553742
+0.574703*t and fit 0.055374
+0.567848*t and fit 0.055374
+0.82365*t and fit 0.0553741
+0.480165*t and fit 0.055374
+0.485561*t and fit 0.055374
+0.552997*t and fit 0.055374
+0.634572*t and fit 0.055374
+0.436394*t and fit 0.055374
+0.638444*t and fit 0.0553741
 
-The minimum fit in NumPopulation 44 is 0.043353
-The maximum fit in NumPopulation 44 is 0.043353
-num MOM is 0.36573*t and fit is 0.043353
-num DAD is 0.190302*t and fit is 0.043353
-num KID is 0.186957*t and fit is 0.043353
+The minimum fit in NumPopulation 44 is 0.055374
+The maximum fit in NumPopulation 44 is 0.0553742
+num MOM is 0.574703*t and fit is 0.055374
+num DAD is 0.436394*t and fit is 0.055374
+num KID is 0.337302*t and fit is 0.055374
 
 Numeric GA Population 45
-0.186957*t and fit 0.043353
-0.134836*t and fit 0.043353
-0.115975*t and fit 0.043353
-0.227401*t and fit 0.043353
-0.170136*t and fit 0.043353
-0.361648*t and fit 0.043353
-0.190302*t and fit 0.043353
-0.147172*t and fit 0.043353
-0.36573*t and fit 0.043353
-0.207974*t and fit 0.043353
+1.12363*t and fit 0.0553742
+0.574703*t and fit 0.055374
+0.567848*t and fit 0.055374
+0.82365*t and fit 0.0553741
+0.480165*t and fit 0.055374
+0.485561*t and fit 0.055374
+0.552997*t and fit 0.055374
+0.634572*t and fit 0.055374
+0.436394*t and fit 0.055374
+0.638444*t and fit 0.0553741
 
-The minimum fit in NumPopulation 45 is 0.043353
-The maximum fit in NumPopulation 45 is 0.043353
-num MOM is 0.186957*t and fit is 0.043353
-num DAD is 0.115975*t and fit is 0.043353
-num KID is 0.124582*t and fit is 0.043353
+The minimum fit in NumPopulation 45 is 0.055374
+The maximum fit in NumPopulation 45 is 0.0553742
+num MOM is 0.480165*t and fit is 0.055374
+num DAD is 0.574703*t and fit is 0.055374
+num KID is 0.366066*t and fit is 0.055374
 
 Numeric GA Population 46
-0.186957*t and fit 0.043353
-0.134836*t and fit 0.043353
-0.124582*t and fit 0.043353
-0.227401*t and fit 0.043353
-0.170136*t and fit 0.043353
-0.361648*t and fit 0.043353
-0.190302*t and fit 0.043353
-0.147172*t and fit 0.043353
-0.36573*t and fit 0.043353
-0.207974*t and fit 0.043353
+1.12363*t and fit 0.0553742
+0.574703*t and fit 0.055374
+0.567848*t and fit 0.055374
+0.82365*t and fit 0.0553741
+0.480165*t and fit 0.055374
+0.485561*t and fit 0.055374
+0.552997*t and fit 0.055374
+0.634572*t and fit 0.055374
+0.436394*t and fit 0.055374
+0.638444*t and fit 0.0553741
 
-The minimum fit in NumPopulation 46 is 0.043353
-The maximum fit in NumPopulation 46 is 0.043353
-num MOM is 0.227401*t and fit is 0.043353
-num DAD is 0.190302*t and fit is 0.043353
-num KID is 0.189364*t and fit is 0.043353
+The minimum fit in NumPopulation 46 is 0.055374
+The maximum fit in NumPopulation 46 is 0.0553742
+num MOM is 0.82365*t and fit is 0.0553741
+num DAD is 0.574703*t and fit is 0.055374
+num KID is 0.750156*t and fit is 0.0553741
 
 Numeric GA Population 47
-0.186957*t and fit 0.043353
-0.134836*t and fit 0.043353
-0.189364*t and fit 0.043353
-0.227401*t and fit 0.043353
-0.170136*t and fit 0.043353
-0.361648*t and fit 0.043353
-0.190302*t and fit 0.043353
-0.147172*t and fit 0.043353
-0.36573*t and fit 0.043353
-0.207974*t and fit 0.043353
+1.12363*t and fit 0.0553742
+0.574703*t and fit 0.055374
+0.567848*t and fit 0.055374
+0.82365*t and fit 0.0553741
+0.480165*t and fit 0.055374
+0.485561*t and fit 0.055374
+0.552997*t and fit 0.055374
+0.634572*t and fit 0.055374
+0.750156*t and fit 0.0553741
+0.638444*t and fit 0.0553741
 
-The minimum fit in NumPopulation 47 is 0.043353
-The maximum fit in NumPopulation 47 is 0.043353
-num MOM is 0.36573*t and fit is 0.043353
-num DAD is 0.189364*t and fit is 0.043353
-num KID is 0.21997*t and fit is 0.043353
+The minimum fit in NumPopulation 47 is 0.055374
+The maximum fit in NumPopulation 47 is 0.0553742
+num MOM is 0.552997*t and fit is 0.055374
+num DAD is 0.485561*t and fit is 0.055374
+num KID is 1.06346*t and fit is 0.0553742
 
 Numeric GA Population 48
-0.186957*t and fit 0.043353
-0.21997*t and fit 0.043353
-0.189364*t and fit 0.043353
-0.227401*t and fit 0.043353
-0.170136*t and fit 0.043353
-0.361648*t and fit 0.043353
-0.190302*t and fit 0.043353
-0.147172*t and fit 0.043353
-0.36573*t and fit 0.043353
-0.207974*t and fit 0.043353
+1.12363*t and fit 0.0553742
+0.574703*t and fit 0.055374
+0.567848*t and fit 0.055374
+0.82365*t and fit 0.0553741
+1.06346*t and fit 0.0553742
+0.485561*t and fit 0.055374
+0.552997*t and fit 0.055374
+0.634572*t and fit 0.055374
+0.750156*t and fit 0.0553741
+0.638444*t and fit 0.0553741
 
-The minimum fit in NumPopulation 48 is 0.043353
-The maximum fit in NumPopulation 48 is 0.043353
-num MOM is 0.186957*t and fit is 0.043353
-num DAD is 0.227401*t and fit is 0.043353
-num KID is 0.226357*t and fit is 0.043353
+The minimum fit in NumPopulation 48 is 0.055374
+The maximum fit in NumPopulation 48 is 0.0553742
+num MOM is 0.552997*t and fit is 0.055374
+num DAD is 0.574703*t and fit is 0.055374
+num KID is 1.55239*t and fit is 0.0553744
 
 Numeric GA Population 49
-0.186957*t and fit 0.043353
-0.21997*t and fit 0.043353
-0.189364*t and fit 0.043353
-0.227401*t and fit 0.043353
-0.170136*t and fit 0.043353
-0.361648*t and fit 0.043353
-0.190302*t and fit 0.043353
-0.226357*t and fit 0.043353
-0.36573*t and fit 0.043353
-0.207974*t and fit 0.043353
+1.12363*t and fit 0.0553742
+0.574703*t and fit 0.055374
+0.567848*t and fit 0.055374
+0.82365*t and fit 0.0553741
+1.06346*t and fit 0.0553742
+1.55239*t and fit 0.0553744
+0.552997*t and fit 0.055374
+0.634572*t and fit 0.055374
+0.750156*t and fit 0.0553741
+0.638444*t and fit 0.0553741
 
-The minimum fit in NumPopulation 49 is 0.043353
-The maximum fit in NumPopulation 49 is 0.043353
-num MOM is 0.227401*t and fit is 0.043353
-num DAD is 0.36573*t and fit is 0.043353
-num KID is 0.354997*t and fit is 0.043353
+The minimum fit in NumPopulation 49 is 0.055374
+The maximum fit in NumPopulation 49 is 0.0553744
+num MOM is 1.55239*t and fit is 0.0553744
+num DAD is 1.06346*t and fit is 0.0553742
+num KID is 1.23263*t and fit is 0.0553742
 
 Numeric GA Population 50
-0.186957*t and fit 0.043353
-0.21997*t and fit 0.043353
-0.189364*t and fit 0.043353
-0.227401*t and fit 0.043353
-0.354997*t and fit 0.043353
-0.361648*t and fit 0.043353
-0.190302*t and fit 0.043353
-0.226357*t and fit 0.043353
-0.36573*t and fit 0.043353
-0.207974*t and fit 0.043353
-
-The minimum fit in NumPopulation 50 is 0.043353
-The maximum fit in NumPopulation 50 is 0.043353
-num MOM is 0.189364*t and fit is 0.043353
-num DAD is 0.186957*t and fit is 0.043353
-num KID is 0.103963*t and fit is 0.043353
-numGA optimization failed, ending the loop
-------------NUMERIC GA STARTED-------------
- Ind t-59
-The initial ind fit is 0.0239671
-New ind is t+12
-New ind is t-10
-New ind is t+69
-New ind is t+88
-New ind is t+89
-New ind is t+23
-New ind is t-85
-New ind is t-85
-New ind is t-26
-New ind is t+57
-
-Numeric GA Population 1
-t+12 and fit 0.0518895
-t-10 and fit 0.0381261
-t+69 and fit 0.80196
-t+88 and fit 0.209132
-t+89 and fit 0.19616
-t+23 and fit 0.0633183
-t-85 and fit 0.0200217
-t-85 and fit 0.0200217
-t-26 and fit 0.0319608
-t+57 and fit 0.198353
-
-The minimum fit in NumPopulation 1 is 0.0200217
-The maximum fit in NumPopulation 1 is 0.80196
-
-Optimum coefficients found after 1 loops, final ind is t+69 and fit = 0.80196
-------------NUMERIC GA STARTED-------------
- Ind t^(2)
-No numeric GA optimization needed for the t^(2)
-------------NUMERIC GA STARTED-------------
- Ind t^t
-No numeric GA optimization needed for the t^t
-------------NUMERIC GA STARTED-------------
- Ind t^(46)
-The initial ind fit is 0.043353
-New ind is t^(32)
-New ind is t^(-54)
-New ind is t^(-89)
-New ind is t^(29)
-New ind is t^(92)
-New ind is t^(-55)
-New ind is t^(49)
-New ind is t^(-12)
-New ind is t^(-60)
-New ind is t^(53)
-
-Numeric GA Population 1
-t^(32) and fit 0.043353
-t^(-54) and fit 0
-t^(-89) and fit 0
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(-55) and fit 0
-t^(49) and fit 0.043353
-t^(-12) and fit 2.71044e-90
-t^(-60) and fit 0
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 1 is 0
-The maximum fit in NumPopulation 1 is 0.043353
-num MOM is t^(-89) and fit is 0
-num DAD is t^(29) and fit is 0.043353
-num KID is t^(-42.47) and fit is 0
-
-Numeric GA Population 2
-t^(32) and fit 0.043353
-t^(-42.47) and fit 0
-t^(-89) and fit 0
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(-55) and fit 0
-t^(49) and fit 0.043353
-t^(-12) and fit 2.71044e-90
-t^(-60) and fit 0
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 2 is 0
-The maximum fit in NumPopulation 2 is 0.043353
-num MOM is t^(-42.47) and fit is 0
-num DAD is t^(92) and fit is 0.043353
-num KID is t^(45.0061) and fit is 0.043353
-
-Numeric GA Population 3
-t^(32) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(-89) and fit 0
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(-55) and fit 0
-t^(49) and fit 0.043353
-t^(-12) and fit 2.71044e-90
-t^(-60) and fit 0
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 3 is 0
-The maximum fit in NumPopulation 3 is 0.043353
-num MOM is t^(-12) and fit is 2.71044e-90
-num DAD is t^(92) and fit is 0.043353
-num KID is t^(77.84) and fit is 0.043353
-
-Numeric GA Population 4
-t^(32) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(-55) and fit 0
-t^(49) and fit 0.043353
-t^(-12) and fit 2.71044e-90
-t^(-60) and fit 0
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 4 is 0
-The maximum fit in NumPopulation 4 is 0.043353
-num MOM is t^(92) and fit is 0.043353
-num DAD is t^(-60) and fit is 0
-num KID is t^(-48.2) and fit is 0
-
-Numeric GA Population 5
-t^(32) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(-48.2) and fit 0
-t^(49) and fit 0.043353
-t^(-12) and fit 2.71044e-90
-t^(-60) and fit 0
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 5 is 0
-The maximum fit in NumPopulation 5 is 0.043353
-num MOM is t^(45.0061) and fit is 0.043353
-num DAD is t^(-60) and fit is 0
-num KID is t^(6.90207) and fit is 0.043353
-
-Numeric GA Population 6
-t^(32) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(-12) and fit 2.71044e-90
-t^(-60) and fit 0
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 6 is 0
-The maximum fit in NumPopulation 6 is 0.043353
-num MOM is t^(45.0061) and fit is 0.043353
-num DAD is t^(6.90207) and fit is 0.043353
-num KID is t^(37.8901) and fit is 0.043353
-
-Numeric GA Population 7
-t^(32) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(-12) and fit 2.71044e-90
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 7 is 2.71044e-90
-The maximum fit in NumPopulation 7 is 0.043353
-num MOM is t^(6.90207) and fit is 0.043353
-num DAD is t^(77.84) and fit is 0.043353
-num KID is t^(69.9601) and fit is 0.043353
-
-Numeric GA Population 8
-t^(32) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 8 is 0.043353
-The maximum fit in NumPopulation 8 is 0.043353
-num MOM is t^(45.0061) and fit is 0.043353
-num DAD is t^(29) and fit is 0.043353
-num KID is t^(12.8805) and fit is 0.043353
-
-Numeric GA Population 9
-t^(12.8805) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 9 is 0.043353
-The maximum fit in NumPopulation 9 is 0.043353
-num MOM is t^(77.84) and fit is 0.043353
-num DAD is t^(12.8805) and fit is 0.043353
-num KID is t^(23.8171) and fit is 0.043353
-
-Numeric GA Population 10
-t^(23.8171) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 10 is 0.043353
-The maximum fit in NumPopulation 10 is 0.043353
-num MOM is t^(29) and fit is 0.043353
-num DAD is t^(45.0061) and fit is 0.043353
-num KID is t^(43.2927) and fit is 0.043353
-
-Numeric GA Population 11
-t^(43.2927) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 11 is 0.043353
-The maximum fit in NumPopulation 11 is 0.043353
-num MOM is t^(29) and fit is 0.043353
-num DAD is t^(37.8901) and fit is 0.043353
-num KID is t^(31.523) and fit is 0.043353
-
-Numeric GA Population 12
-t^(31.523) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 12 is 0.043353
-The maximum fit in NumPopulation 12 is 0.043353
-num MOM is t^(31.523) and fit is 0.043353
-num DAD is t^(77.84) and fit is 0.043353
-num KID is t^(74.3862) and fit is 0.043353
-
-Numeric GA Population 13
-t^(74.3862) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 13 is 0.043353
-The maximum fit in NumPopulation 13 is 0.043353
-num MOM is t^(77.84) and fit is 0.043353
-num DAD is t^(6.90207) and fit is 0.043353
-num KID is t^(74.3046) and fit is 0.043353
-
-Numeric GA Population 14
-t^(74.3046) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 14 is 0.043353
-The maximum fit in NumPopulation 14 is 0.043353
-num MOM is t^(74.3046) and fit is 0.043353
-num DAD is t^(37.8901) and fit is 0.043353
-num KID is t^(43.9135) and fit is 0.043353
-
-Numeric GA Population 15
-t^(43.9135) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 15 is 0.043353
-The maximum fit in NumPopulation 15 is 0.043353
-num MOM is t^(77.84) and fit is 0.043353
-num DAD is t^(29) and fit is 0.043353
-num KID is t^(70.7124) and fit is 0.043353
-
-Numeric GA Population 16
-t^(70.7124) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 16 is 0.043353
-The maximum fit in NumPopulation 16 is 0.043353
-num MOM is t^(45.0061) and fit is 0.043353
-num DAD is t^(6.90207) and fit is 0.043353
-num KID is t^(31.8465) and fit is 0.043353
-
-Numeric GA Population 17
-t^(31.8465) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 17 is 0.043353
-The maximum fit in NumPopulation 17 is 0.043353
-num MOM is t^(92) and fit is 0.043353
-num DAD is t^(6.90207) and fit is 0.043353
-num KID is t^(59.6409) and fit is 0.043353
-
-Numeric GA Population 18
-t^(59.6409) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 18 is 0.043353
-The maximum fit in NumPopulation 18 is 0.043353
-num MOM is t^(6.90207) and fit is 0.043353
-num DAD is t^(69.9601) and fit is 0.043353
-num KID is t^(15.109) and fit is 0.043353
-
-Numeric GA Population 19
-t^(15.109) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 19 is 0.043353
-The maximum fit in NumPopulation 19 is 0.043353
-num MOM is t^(37.8901) and fit is 0.043353
-num DAD is t^(29) and fit is 0.043353
-num KID is t^(34.3426) and fit is 0.043353
-
-Numeric GA Population 20
-t^(34.3426) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 20 is 0.043353
-The maximum fit in NumPopulation 20 is 0.043353
-num MOM is t^(34.3426) and fit is 0.043353
-num DAD is t^(37.8901) and fit is 0.043353
-num KID is t^(37.8562) and fit is 0.043353
-
-Numeric GA Population 21
-t^(37.8562) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 21 is 0.043353
-The maximum fit in NumPopulation 21 is 0.043353
-num MOM is t^(37.8901) and fit is 0.043353
-num DAD is t^(45.0061) and fit is 0.043353
-num KID is t^(41.4749) and fit is 0.043353
-
-Numeric GA Population 22
-t^(41.4749) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 22 is 0.043353
-The maximum fit in NumPopulation 22 is 0.043353
-num MOM is t^(69.9601) and fit is 0.043353
-num DAD is t^(6.90207) and fit is 0.043353
-num KID is t^(48.7683) and fit is 0.043353
-
-Numeric GA Population 23
-t^(48.7683) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 23 is 0.043353
-The maximum fit in NumPopulation 23 is 0.043353
-num MOM is t^(77.84) and fit is 0.043353
-num DAD is t^(37.8901) and fit is 0.043353
-num KID is t^(31.8689) and fit is 0.043353
-
-Numeric GA Population 24
-t^(31.8689) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 24 is 0.043353
-The maximum fit in NumPopulation 24 is 0.043353
-num MOM is t^(37.8901) and fit is 0.043353
-num DAD is t^(92) and fit is 0.043353
-num KID is t^(91.8378) and fit is 0.043353
-
-Numeric GA Population 25
-t^(91.8378) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 25 is 0.043353
-The maximum fit in NumPopulation 25 is 0.043353
-num MOM is t^(37.8901) and fit is 0.043353
-num DAD is t^(49) and fit is 0.043353
-num KID is t^(28.0527) and fit is 0.043353
-
-Numeric GA Population 26
-t^(28.0527) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 26 is 0.043353
-The maximum fit in NumPopulation 26 is 0.043353
-num MOM is t^(69.9601) and fit is 0.043353
-num DAD is t^(77.84) and fit is 0.043353
-num KID is t^(105.726) and fit is 0.043353
-
-Numeric GA Population 27
-t^(105.726) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 27 is 0.043353
-The maximum fit in NumPopulation 27 is 0.043353
-num MOM is t^(69.9601) and fit is 0.043353
-num DAD is t^(105.726) and fit is 0.043353
-num KID is t^(101.823) and fit is 0.043353
-
-Numeric GA Population 28
-t^(101.823) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 28 is 0.043353
-The maximum fit in NumPopulation 28 is 0.043353
-num MOM is t^(101.823) and fit is 0.043353
-num DAD is t^(37.8901) and fit is 0.043353
-num KID is t^(109.591) and fit is 0.043353
-
-Numeric GA Population 29
-t^(109.591) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 29 is 0.043353
-The maximum fit in NumPopulation 29 is 0.043353
-num MOM is t^(6.90207) and fit is 0.043353
-num DAD is t^(77.84) and fit is 0.043353
-num KID is t^(4.41733) and fit is 0.043353
-
-Numeric GA Population 30
-t^(4.41733) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 30 is 0.043353
-The maximum fit in NumPopulation 30 is 0.043353
-num MOM is t^(37.8901) and fit is 0.043353
-num DAD is t^(29) and fit is 0.043353
-num KID is t^(48.3387) and fit is 0.043353
-
-Numeric GA Population 31
-t^(48.3387) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 31 is 0.043353
-The maximum fit in NumPopulation 31 is 0.043353
-num MOM is t^(45.0061) and fit is 0.043353
-num DAD is t^(37.8901) and fit is 0.043353
-num KID is t^(27.6847) and fit is 0.043353
-
-Numeric GA Population 32
-t^(27.6847) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 32 is 0.043353
-The maximum fit in NumPopulation 32 is 0.043353
-num MOM is t^(6.90207) and fit is 0.043353
-num DAD is t^(92) and fit is 0.043353
-num KID is t^(40.251) and fit is 0.043353
-
-Numeric GA Population 33
-t^(40.251) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 33 is 0.043353
-The maximum fit in NumPopulation 33 is 0.043353
-num MOM is t^(6.90207) and fit is 0.043353
-num DAD is t^(92) and fit is 0.043353
-num KID is t^(19.1365) and fit is 0.043353
-
-Numeric GA Population 34
-t^(19.1365) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 34 is 0.043353
-The maximum fit in NumPopulation 34 is 0.043353
-num MOM is t^(45.0061) and fit is 0.043353
-num DAD is t^(37.8901) and fit is 0.043353
-num KID is t^(64.282) and fit is 0.043353
-
-Numeric GA Population 35
-t^(64.282) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 35 is 0.043353
-The maximum fit in NumPopulation 35 is 0.043353
-num MOM is t^(92) and fit is 0.043353
-num DAD is t^(45.0061) and fit is 0.043353
-num KID is t^(95.8248) and fit is 0.043353
-
-Numeric GA Population 36
-t^(95.8248) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 36 is 0.043353
-The maximum fit in NumPopulation 36 is 0.043353
-num MOM is t^(29) and fit is 0.043353
-num DAD is t^(45.0061) and fit is 0.043353
-num KID is t^(32.4611) and fit is 0.043353
-
-Numeric GA Population 37
-t^(32.4611) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 37 is 0.043353
-The maximum fit in NumPopulation 37 is 0.043353
-num MOM is t^(49) and fit is 0.043353
-num DAD is t^(6.90207) and fit is 0.043353
-num KID is t^(25.48) and fit is 0.043353
-
-Numeric GA Population 38
-t^(25.48) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 38 is 0.043353
-The maximum fit in NumPopulation 38 is 0.043353
-num MOM is t^(49) and fit is 0.043353
-num DAD is t^(45.0061) and fit is 0.043353
-num KID is t^(17.2406) and fit is 0.043353
-
-Numeric GA Population 39
-t^(17.2406) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 39 is 0.043353
-The maximum fit in NumPopulation 39 is 0.043353
-num MOM is t^(6.90207) and fit is 0.043353
-num DAD is t^(92) and fit is 0.043353
-num KID is t^(70.9553) and fit is 0.043353
-
-Numeric GA Population 40
-t^(70.9553) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 40 is 0.043353
-The maximum fit in NumPopulation 40 is 0.043353
-num MOM is t^(6.90207) and fit is 0.043353
-num DAD is t^(45.0061) and fit is 0.043353
-num KID is t^(32.8071) and fit is 0.043353
-
-Numeric GA Population 41
-t^(32.8071) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 41 is 0.043353
-The maximum fit in NumPopulation 41 is 0.043353
-num MOM is t^(49) and fit is 0.043353
-num DAD is t^(69.9601) and fit is 0.043353
-num KID is t^(87.6141) and fit is 0.043353
-
-Numeric GA Population 42
-t^(87.6141) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 42 is 0.043353
-The maximum fit in NumPopulation 42 is 0.043353
-num MOM is t^(92) and fit is 0.043353
-num DAD is t^(29) and fit is 0.043353
-num KID is t^(75.33) and fit is 0.043353
-
-Numeric GA Population 43
-t^(75.33) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 43 is 0.043353
-The maximum fit in NumPopulation 43 is 0.043353
-num MOM is t^(92) and fit is 0.043353
-num DAD is t^(6.90207) and fit is 0.043353
-num KID is t^(22.5404) and fit is 0.043353
-
-Numeric GA Population 44
-t^(22.5404) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 44 is 0.043353
-The maximum fit in NumPopulation 44 is 0.043353
-num MOM is t^(37.8901) and fit is 0.043353
-num DAD is t^(92) and fit is 0.043353
-num KID is t^(97.0347) and fit is 0.043353
-
-Numeric GA Population 45
-t^(97.0347) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 45 is 0.043353
-The maximum fit in NumPopulation 45 is 0.043353
-num MOM is t^(77.84) and fit is 0.043353
-num DAD is t^(92) and fit is 0.043353
-num KID is t^(96.948) and fit is 0.043353
-
-Numeric GA Population 46
-t^(96.948) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 46 is 0.043353
-The maximum fit in NumPopulation 46 is 0.043353
-num MOM is t^(92) and fit is 0.043353
-num DAD is t^(69.9601) and fit is 0.043353
-num KID is t^(13.0336) and fit is 0.043353
-
-Numeric GA Population 47
-t^(13.0336) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 47 is 0.043353
-The maximum fit in NumPopulation 47 is 0.043353
-num MOM is t^(37.8901) and fit is 0.043353
-num DAD is t^(92) and fit is 0.043353
-num KID is t^(69.4879) and fit is 0.043353
-
-Numeric GA Population 48
-t^(69.4879) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 48 is 0.043353
-The maximum fit in NumPopulation 48 is 0.043353
-num MOM is t^(29) and fit is 0.043353
-num DAD is t^(6.90207) and fit is 0.043353
-num KID is t^(16.7504) and fit is 0.043353
-
-Numeric GA Population 49
-t^(16.7504) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 49 is 0.043353
-The maximum fit in NumPopulation 49 is 0.043353
-num MOM is t^(16.7504) and fit is 0.043353
-num DAD is t^(77.84) and fit is 0.043353
-num KID is t^(63.7796) and fit is 0.043353
-
-Numeric GA Population 50
-t^(63.7796) and fit 0.043353
-t^(45.0061) and fit 0.043353
-t^(77.84) and fit 0.043353
-t^(29) and fit 0.043353
-t^(92) and fit 0.043353
-t^(6.90207) and fit 0.043353
-t^(49) and fit 0.043353
-t^(69.9601) and fit 0.043353
-t^(37.8901) and fit 0.043353
-t^(53) and fit 0.043353
-
-The minimum fit in NumPopulation 50 is 0.043353
-The maximum fit in NumPopulation 50 is 0.043353
-num MOM is t^(37.8901) and fit is 0.043353
-num DAD is t^(69.9601) and fit is 0.043353
-num KID is t^(43.7803) and fit is 0.043353
-numGA optimization failed, ending the loop
-------------NUMERIC GA STARTED-------------
- Ind t
-No numeric GA optimization needed for the t
-------------NUMERIC GA STARTED-------------
- Ind t+62
-The initial ind fit is 0.288984
-New ind is t+13
-New ind is t+78
-New ind is t-7
-New ind is t
-New ind is t+39
-New ind is t-60
-New ind is t-24
-New ind is t-8
-New ind is t-87
-New ind is t-50
-
-Numeric GA Population 1
-t+13 and fit 0.0527552
-t+78 and fit 0.617474
-t-7 and fit 0.0395569
-t and fit 0.043353
-t+39 and fit 0.0931656
-t-60 and fit 0.0237868
-t-24 and fit 0.0326201
-t-8 and fit 0.0390682
-t-87 and fit 0.0197713
-t-50 and fit 0.0257216
-
-The minimum fit in NumPopulation 1 is 0.0197713
-The maximum fit in NumPopulation 1 is 0.617474
-
-Optimum coefficients found after 1 loops, final ind is t+78 and fit = 0.617474
-------------NUMERIC GA STARTED-------------
- Ind t
-No numeric GA optimization needed for the t
-------------NUMERIC GA STARTED-------------
- Ind t^(43)
-The initial ind fit is 0.043353
-New ind is t^(28)
-New ind is t^(-84)
-New ind is t^(-40)
-New ind is t^(-4)
-New ind is t^(-56)
-New ind is t^(50)
-New ind is t^(-85)
-New ind is t^(16)
-New ind is t^(57)
-New ind is t^(57)
-
-Numeric GA Population 1
-t^(28) and fit 0.043353
-t^(-84) and fit 0
-t^(-40) and fit 0
-t^(-4) and fit 2.99776e-29
-t^(-56) and fit 0
-t^(50) and fit 0.043353
-t^(-85) and fit 0
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 1 is 0
-The maximum fit in NumPopulation 1 is 0.043353
-num MOM is t^(-85) and fit is 0
-num DAD is t^(-84) and fit is 0
-num KID is t^(-132.49) and fit is 0
-
-Numeric GA Population 2
-t^(28) and fit 0.043353
-t^(-132.49) and fit 0
-t^(-40) and fit 0
-t^(-4) and fit 2.99776e-29
-t^(-56) and fit 0
-t^(50) and fit 0.043353
-t^(-85) and fit 0
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 2 is 0
-The maximum fit in NumPopulation 2 is 0.043353
-num MOM is t^(57) and fit is 0.043353
-num DAD is t^(16) and fit is 0.043353
-num KID is t^(9.56) and fit is 0.043353
-
-Numeric GA Population 3
-t^(28) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(-40) and fit 0
-t^(-4) and fit 2.99776e-29
-t^(-56) and fit 0
-t^(50) and fit 0.043353
-t^(-85) and fit 0
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 3 is 0
-The maximum fit in NumPopulation 3 is 0.043353
-num MOM is t^(-4) and fit is 2.99776e-29
-num DAD is t^(-40) and fit is 0
-num KID is t^(-10.84) and fit is 1.92536e-81
-
-Numeric GA Population 4
-t^(28) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(-10.84) and fit 1.92536e-81
-t^(-4) and fit 2.99776e-29
-t^(-56) and fit 0
-t^(50) and fit 0.043353
-t^(-85) and fit 0
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 4 is 0
-The maximum fit in NumPopulation 4 is 0.043353
-num MOM is t^(28) and fit is 0.043353
-num DAD is t^(9.56) and fit is 0.043353
-num KID is t^(23.8404) and fit is 0.043353
-
-Numeric GA Population 5
-t^(28) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(-10.84) and fit 1.92536e-81
-t^(-4) and fit 2.99776e-29
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(-85) and fit 0
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 5 is 0
-The maximum fit in NumPopulation 5 is 0.043353
-num MOM is t^(23.8404) and fit is 0.043353
-num DAD is t^(-4) and fit is 2.99776e-29
-num KID is t^(10.9922) and fit is 0.043353
-
-Numeric GA Population 6
-t^(28) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(-10.84) and fit 1.92536e-81
-t^(-4) and fit 2.99776e-29
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 6 is 1.92536e-81
-The maximum fit in NumPopulation 6 is 0.043353
-num MOM is t^(10.9922) and fit is 0.043353
-num DAD is t^(-10.84) and fit is 1.92536e-81
-num KID is t^(-2.11625) and fit is 6.87945e-15
-
-Numeric GA Population 7
-t^(28) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(-2.11625) and fit 6.87945e-15
-t^(-4) and fit 2.99776e-29
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 7 is 2.99776e-29
-The maximum fit in NumPopulation 7 is 0.043353
-num MOM is t^(16) and fit is 0.043353
-num DAD is t^(9.56) and fit is 0.043353
-num KID is t^(14.0992) and fit is 0.043353
-
-Numeric GA Population 8
-t^(28) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(-2.11625) and fit 6.87945e-15
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 8 is 6.87945e-15
-The maximum fit in NumPopulation 8 is 0.043353
-num MOM is t^(-2.11625) and fit is 6.87945e-15
-num DAD is t^(10.9922) and fit is 0.043353
-num KID is t^(-0.547339) and fit is 0.00291989
-
-Numeric GA Population 9
-t^(28) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(-0.547339) and fit 0.00291989
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 9 is 0.00291989
-The maximum fit in NumPopulation 9 is 0.043353
-num MOM is t^(16) and fit is 0.043353
-num DAD is t^(50) and fit is 0.043353
-num KID is t^(45.18) and fit is 0.043353
-
-Numeric GA Population 10
-t^(28) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 10 is 0.043353
-The maximum fit in NumPopulation 10 is 0.043353
-num MOM is t^(50) and fit is 0.043353
-num DAD is t^(28) and fit is 0.043353
-num KID is t^(36.12) and fit is 0.043353
-
-Numeric GA Population 11
-t^(36.12) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 11 is 0.043353
-The maximum fit in NumPopulation 11 is 0.043353
-num MOM is t^(23.8404) and fit is 0.043353
-num DAD is t^(16) and fit is 0.043353
-num KID is t^(27.3203) and fit is 0.043353
-
-Numeric GA Population 12
-t^(27.3203) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 12 is 0.043353
-The maximum fit in NumPopulation 12 is 0.043353
-num MOM is t^(50) and fit is 0.043353
-num DAD is t^(57) and fit is 0.043353
-num KID is t^(49.82) and fit is 0.043353
-
-Numeric GA Population 13
-t^(49.82) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 13 is 0.043353
-The maximum fit in NumPopulation 13 is 0.043353
-num MOM is t^(45.18) and fit is 0.043353
-num DAD is t^(23.8404) and fit is 0.043353
-num KID is t^(49.4196) and fit is 0.043353
-
-Numeric GA Population 14
-t^(49.4196) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 14 is 0.043353
-The maximum fit in NumPopulation 14 is 0.043353
-num MOM is t^(9.56) and fit is 0.043353
-num DAD is t^(23.8404) and fit is 0.043353
-num KID is t^(22.2672) and fit is 0.043353
-
-Numeric GA Population 15
-t^(22.2672) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 15 is 0.043353
-The maximum fit in NumPopulation 15 is 0.043353
-num MOM is t^(57) and fit is 0.043353
-num DAD is t^(45.18) and fit is 0.043353
-num KID is t^(73.9374) and fit is 0.043353
-
-Numeric GA Population 16
-t^(73.9374) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 16 is 0.043353
-The maximum fit in NumPopulation 16 is 0.043353
-num MOM is t^(10.9922) and fit is 0.043353
-num DAD is t^(9.56) and fit is 0.043353
-num KID is t^(11.404) and fit is 0.043353
-
-Numeric GA Population 17
-t^(11.404) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 17 is 0.043353
-The maximum fit in NumPopulation 17 is 0.043353
-num MOM is t^(50) and fit is 0.043353
-num DAD is t^(14.0992) and fit is 0.043353
-num KID is t^(12.2807) and fit is 0.043353
-
-Numeric GA Population 18
-t^(12.2807) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 18 is 0.043353
-The maximum fit in NumPopulation 18 is 0.043353
-num MOM is t^(9.56) and fit is 0.043353
-num DAD is t^(10.9922) and fit is 0.043353
-num KID is t^(10.8304) and fit is 0.043353
-
-Numeric GA Population 19
-t^(10.8304) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 19 is 0.043353
-The maximum fit in NumPopulation 19 is 0.043353
-num MOM is t^(57) and fit is 0.043353
-num DAD is t^(16) and fit is 0.043353
-num KID is t^(26.16) and fit is 0.043353
-
-Numeric GA Population 20
-t^(26.16) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 20 is 0.043353
-The maximum fit in NumPopulation 20 is 0.043353
-num MOM is t^(10.9922) and fit is 0.043353
-num DAD is t^(45.18) and fit is 0.043353
-num KID is t^(43.5339) and fit is 0.043353
-
-Numeric GA Population 21
-t^(43.5339) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 21 is 0.043353
-The maximum fit in NumPopulation 21 is 0.043353
-num MOM is t^(50) and fit is 0.043353
-num DAD is t^(16) and fit is 0.043353
-num KID is t^(49.02) and fit is 0.043353
-
-Numeric GA Population 22
-t^(49.02) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 22 is 0.043353
-The maximum fit in NumPopulation 22 is 0.043353
-num MOM is t^(45.18) and fit is 0.043353
-num DAD is t^(16) and fit is 0.043353
-num KID is t^(12.8006) and fit is 0.043353
-
-Numeric GA Population 23
-t^(12.8006) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 23 is 0.043353
-The maximum fit in NumPopulation 23 is 0.043353
-num MOM is t^(50) and fit is 0.043353
-num DAD is t^(45.18) and fit is 0.043353
-num KID is t^(33.572) and fit is 0.043353
-
-Numeric GA Population 24
-t^(33.572) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 24 is 0.043353
-The maximum fit in NumPopulation 24 is 0.043353
-num MOM is t^(9.56) and fit is 0.043353
-num DAD is t^(45.18) and fit is 0.043353
-num KID is t^(52.4286) and fit is 0.043353
-
-Numeric GA Population 25
-t^(52.4286) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 25 is 0.043353
-The maximum fit in NumPopulation 25 is 0.043353
-num MOM is t^(10.9922) and fit is 0.043353
-num DAD is t^(16) and fit is 0.043353
-num KID is t^(13.4265) and fit is 0.043353
-
-Numeric GA Population 26
-t^(13.4265) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 26 is 0.043353
-The maximum fit in NumPopulation 26 is 0.043353
-num MOM is t^(13.4265) and fit is 0.043353
-num DAD is t^(14.0992) and fit is 0.043353
-num KID is t^(11.5742) and fit is 0.043353
-
-Numeric GA Population 27
-t^(11.5742) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 27 is 0.043353
-The maximum fit in NumPopulation 27 is 0.043353
-num MOM is t^(57) and fit is 0.043353
-num DAD is t^(45.18) and fit is 0.043353
-num KID is t^(75.1956) and fit is 0.043353
-
-Numeric GA Population 28
-t^(75.1956) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 28 is 0.043353
-The maximum fit in NumPopulation 28 is 0.043353
-num MOM is t^(75.1956) and fit is 0.043353
-num DAD is t^(9.56) and fit is 0.043353
-num KID is t^(61.1952) and fit is 0.043353
-
-Numeric GA Population 29
-t^(61.1952) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 29 is 0.043353
-The maximum fit in NumPopulation 29 is 0.043353
-num MOM is t^(23.8404) and fit is 0.043353
-num DAD is t^(10.9922) and fit is 0.043353
-num KID is t^(12.0201) and fit is 0.043353
-
-Numeric GA Population 30
-t^(12.0201) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 30 is 0.043353
-The maximum fit in NumPopulation 30 is 0.043353
-num MOM is t^(14.0992) and fit is 0.043353
-num DAD is t^(57) and fit is 0.043353
-num KID is t^(42.6656) and fit is 0.043353
-
-Numeric GA Population 31
-t^(42.6656) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 31 is 0.043353
-The maximum fit in NumPopulation 31 is 0.043353
-num MOM is t^(9.56) and fit is 0.043353
-num DAD is t^(50) and fit is 0.043353
-num KID is t^(18.4196) and fit is 0.043353
-
-Numeric GA Population 32
-t^(18.4196) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 32 is 0.043353
-The maximum fit in NumPopulation 32 is 0.043353
-num MOM is t^(9.56) and fit is 0.043353
-num DAD is t^(14.0992) and fit is 0.043353
-num KID is t^(7.21539) and fit is 0.043353
-
-Numeric GA Population 33
-t^(7.21539) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 33 is 0.043353
-The maximum fit in NumPopulation 33 is 0.043353
-num MOM is t^(45.18) and fit is 0.043353
-num DAD is t^(9.56) and fit is 0.043353
-num KID is t^(38.7422) and fit is 0.043353
-
-Numeric GA Population 34
-t^(38.7422) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 34 is 0.043353
-The maximum fit in NumPopulation 34 is 0.043353
-num MOM is t^(16) and fit is 0.043353
-num DAD is t^(14.0992) and fit is 0.043353
-num KID is t^(13.1313) and fit is 0.043353
-
-Numeric GA Population 35
-t^(13.1313) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 35 is 0.043353
-The maximum fit in NumPopulation 35 is 0.043353
-num MOM is t^(13.1313) and fit is 0.043353
-num DAD is t^(10.9922) and fit is 0.043353
-num KID is t^(6.64465) and fit is 0.043353
-
-Numeric GA Population 36
-t^(6.64465) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 36 is 0.043353
-The maximum fit in NumPopulation 36 is 0.043353
-num MOM is t^(16) and fit is 0.043353
-num DAD is t^(23.8404) and fit is 0.043353
-num KID is t^(37.1236) and fit is 0.043353
-
-Numeric GA Population 37
-t^(37.1236) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 37 is 0.043353
-The maximum fit in NumPopulation 37 is 0.043353
-num MOM is t^(23.8404) and fit is 0.043353
-num DAD is t^(50) and fit is 0.043353
-num KID is t^(13.205) and fit is 0.043353
-
-Numeric GA Population 38
-t^(13.205) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 38 is 0.043353
-The maximum fit in NumPopulation 38 is 0.043353
-num MOM is t^(57) and fit is 0.043353
-num DAD is t^(9.56) and fit is 0.043353
-num KID is t^(9.4428) and fit is 0.043353
-
-Numeric GA Population 39
-t^(9.4428) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 39 is 0.043353
-The maximum fit in NumPopulation 39 is 0.043353
-num MOM is t^(9.56) and fit is 0.043353
-num DAD is t^(23.8404) and fit is 0.043353
-num KID is t^(18.0446) and fit is 0.043353
-
-Numeric GA Population 40
-t^(18.0446) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 40 is 0.043353
-The maximum fit in NumPopulation 40 is 0.043353
-num MOM is t^(50) and fit is 0.043353
-num DAD is t^(18.0446) and fit is 0.043353
-num KID is t^(11.8458) and fit is 0.043353
-
-Numeric GA Population 41
-t^(11.8458) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 41 is 0.043353
-The maximum fit in NumPopulation 41 is 0.043353
-num MOM is t^(23.8404) and fit is 0.043353
-num DAD is t^(57) and fit is 0.043353
-num KID is t^(22.5313) and fit is 0.043353
-
-Numeric GA Population 42
-t^(22.5313) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 42 is 0.043353
-The maximum fit in NumPopulation 42 is 0.043353
-num MOM is t^(14.0992) and fit is 0.043353
-num DAD is t^(50) and fit is 0.043353
-num KID is t^(30.0744) and fit is 0.043353
-
-Numeric GA Population 43
-t^(30.0744) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 43 is 0.043353
-The maximum fit in NumPopulation 43 is 0.043353
-num MOM is t^(10.9922) and fit is 0.043353
-num DAD is t^(9.56) and fit is 0.043353
-num KID is t^(15.2656) and fit is 0.043353
-
-Numeric GA Population 44
-t^(15.2656) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 44 is 0.043353
-The maximum fit in NumPopulation 44 is 0.043353
-num MOM is t^(14.0992) and fit is 0.043353
-num DAD is t^(23.8404) and fit is 0.043353
-num KID is t^(25.2683) and fit is 0.043353
-
-Numeric GA Population 45
-t^(25.2683) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 45 is 0.043353
-The maximum fit in NumPopulation 45 is 0.043353
-num MOM is t^(57) and fit is 0.043353
-num DAD is t^(50) and fit is 0.043353
-num KID is t^(31.65) and fit is 0.043353
-
-Numeric GA Population 46
-t^(31.65) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 46 is 0.043353
-The maximum fit in NumPopulation 46 is 0.043353
-num MOM is t^(50) and fit is 0.043353
-num DAD is t^(14.0992) and fit is 0.043353
-num KID is t^(43.2415) and fit is 0.043353
-
-Numeric GA Population 47
-t^(43.2415) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 47 is 0.043353
-The maximum fit in NumPopulation 47 is 0.043353
-num MOM is t^(50) and fit is 0.043353
-num DAD is t^(57) and fit is 0.043353
-num KID is t^(69.58) and fit is 0.043353
-
-Numeric GA Population 48
-t^(69.58) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 48 is 0.043353
-The maximum fit in NumPopulation 48 is 0.043353
-num MOM is t^(14.0992) and fit is 0.043353
-num DAD is t^(69.58) and fit is 0.043353
-num KID is t^(11.911) and fit is 0.043353
-
-Numeric GA Population 49
-t^(11.911) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 49 is 0.043353
-The maximum fit in NumPopulation 49 is 0.043353
-num MOM is t^(23.8404) and fit is 0.043353
-num DAD is t^(10.9922) and fit is 0.043353
-num KID is t^(2.76661) and fit is 0.043353
-
-Numeric GA Population 50
-t^(2.76661) and fit 0.043353
-t^(9.56) and fit 0.043353
-t^(45.18) and fit 0.043353
-t^(14.0992) and fit 0.043353
-t^(23.8404) and fit 0.043353
-t^(50) and fit 0.043353
-t^(10.9922) and fit 0.043353
-t^(16) and fit 0.043353
-t^(57) and fit 0.043353
-t^(57) and fit 0.043353
-
-The minimum fit in NumPopulation 50 is 0.043353
-The maximum fit in NumPopulation 50 is 0.043353
-num MOM is t^(2.76661) and fit is 0.043353
-num DAD is t^(9.56) and fit is 0.043353
-num KID is t^(9.75584) and fit is 0.043353
-numGA optimization failed, ending the loop
-------------NUMERIC GA STARTED-------------
- Ind t+37
-The initial ind fit is 0.0879814
-New ind is t+63
-New ind is t-3
-New ind is t-27
-New ind is t+69
-New ind is t-65
-New ind is t+43
-New ind is t-88
-New ind is t-37
-New ind is t-63
-New ind is t-81
-
-Numeric GA Population 1
-t+63 and fit 0.318048
-t-3 and fit 0.0416404
-t-27 and fit 0.031641
-t+69 and fit 0.80196
-t-65 and fit 0.0229246
-t+43 and fit 0.105611
-t-88 and fit 0.0196485
-t-37 and fit 0.028763
-t-63 and fit 0.0232619
-t-81 and fit 0.0205419
-
-The minimum fit in NumPopulation 1 is 0.0196485
-The maximum fit in NumPopulation 1 is 0.80196
-
-Optimum coefficients found after 1 loops, final ind is t+69 and fit = 0.80196
-------------NUMERIC GA STARTED-------------
- Ind t
-No numeric GA optimization needed for the t
-------------NUMERIC GA STARTED-------------
- Ind t^t
-No numeric GA optimization needed for the t^t
-------------NUMERIC GA STARTED-------------
- Ind t^(2)
-No numeric GA optimization needed for the t^(2)
-------------NUMERIC GA STARTED-------------
- Ind t
-No numeric GA optimization needed for the t
-------------NUMERIC GA STARTED-------------
- Ind t^(2)
-No numeric GA optimization needed for the t^(2)
-------------NUMERIC GA STARTED-------------
- Ind t^(2)
-No numeric GA optimization needed for the t^(2)
-------------NUMERIC GA STARTED-------------
- Ind t
-No numeric GA optimization needed for the t
-
---------------------------THE SYMBOLIC GA STARTED--------------------------
-
-Stop point is 99.9% accuracy, loop limit is 1000
-
-current runtime is 28.136 seconds
-t and fit 0.043353
-t+71 and fit 1.62675
-2*t and fit 0.043353
-0.36573*t and fit 0.043353
-t+69 and fit 0.80196
-t^(2) and fit 0.043353
-t^t and fit 0.0439555
-t^(43.7803) and fit 0.043353
-t and fit 0.043353
-t+78 and fit 0.617474
-t and fit 0.043353
-t^(2.76661) and fit 0.043353
-t+69 and fit 0.80196
-t and fit 0.043353
-t^t and fit 0.0439555
-t^(2) and fit 0.043353
-t and fit 0.043353
-t^(2) and fit 0.043353
-t^(2) and fit 0.043353
-t and fit 0.043353
-
-The minimum fit in Population 0 is t^(43.7803) with fit 0.043353
-The maximum fit in Population 0 is t+71 with fit 1.62675
-MOM is t^(43.7803) and fit is 0.043353
-DAD is t^t and fit is 0.0439555
-cross node is 1
-------------NUMERIC GA STARTED-------------
- Ind (2)^t*t^t
-No numeric GA optimization needed for the (2)^t*t^t
-Optimimzed KID is (2)^t*t^t and fit is 0.0439555
-
-current runtime is 28.422 seconds
-t and fit 0.043353
-t+71 and fit 1.62675
-2*t and fit 0.043353
-0.36573*t and fit 0.043353
-t+69 and fit 0.80196
-t^(2) and fit 0.043353
-t^t and fit 0.0439555
-(2)^t*t^t and fit 0.0439555
-t and fit 0.043353
-t+78 and fit 0.617474
-t and fit 0.043353
-t^(2.76661) and fit 0.043353
-t+69 and fit 0.80196
-t and fit 0.043353
-t^t and fit 0.0439555
-t^(2) and fit 0.043353
-t and fit 0.043353
-t^(2) and fit 0.043353
-t^(2) and fit 0.043353
-t and fit 0.043353
-
-The minimum fit in Population 1 is t^(2.76661) with fit 0.043353
-The maximum fit in Population 1 is t+71 with fit 1.62675
-MOM is t^(2.76661) and fit is 0.043353
-DAD is t^t and fit is 0.0439555
-cross node is 1
-------------NUMERIC GA STARTED-------------
- Ind (2)^t*t^t
-No numeric GA optimization needed for the (2)^t*t^t
-Optimimzed KID is (2)^t*t^t and fit is 0.0439555
-
-current runtime is 28.718 seconds
-t and fit 0.043353
-t+71 and fit 1.62675
-2*t and fit 0.043353
-0.36573*t and fit 0.043353
-t+69 and fit 0.80196
-t^(2) and fit 0.043353
-t^t and fit 0.0439555
-(2)^t*t^t and fit 0.0439555
-t and fit 0.043353
-t+78 and fit 0.617474
-t and fit 0.043353
-(2)^t*t^t and fit 0.0439555
-t+69 and fit 0.80196
-t and fit 0.043353
-t^t and fit 0.0439555
-t^(2) and fit 0.043353
-t and fit 0.043353
-t^(2) and fit 0.043353
-t^(2) and fit 0.043353
-t and fit 0.043353
-
-The minimum fit in Population 2 is t^(2) with fit 0.043353
-The maximum fit in Population 2 is t+71 with fit 1.62675
-MOM is t+78 and fit is 0.617474
-DAD is 2*t and fit is 0.043353
-cross node is 1
-------------NUMERIC GA STARTED-------------
- Ind 3*t
-No numeric GA optimization needed for the 3*t
-Optimimzed KID is 3*t and fit is 0.043353
-
-current runtime is 29.014 seconds
-t and fit 0.043353
-t+71 and fit 1.62675
-2*t and fit 0.043353
-0.36573*t and fit 0.043353
-t+69 and fit 0.80196
-3*t and fit 0.043353
-t^t and fit 0.0439555
-(2)^t*t^t and fit 0.0439555
-t and fit 0.043353
-t+78 and fit 0.617474
-t and fit 0.043353
-(2)^t*t^t and fit 0.0439555
-t+69 and fit 0.80196
-t and fit 0.043353
-t^t and fit 0.0439555
-t^(2) and fit 0.043353
-t and fit 0.043353
-t^(2) and fit 0.043353
-t^(2) and fit 0.043353
-t and fit 0.043353
-
-The minimum fit in Population 3 is t^(2) with fit 0.043353
-The maximum fit in Population 3 is t+71 with fit 1.62675
-MOM is t^(2) and fit is 0.043353
-DAD is 2*t and fit is 0.043353
-cross node is 1
-------------NUMERIC GA STARTED-------------
- Ind 3*t
-No numeric GA optimization needed for the 3*t
-Optimimzed KID is 3*t and fit is 0.043353
-
-current runtime is 29.302 seconds
-t and fit 0.043353
-t+71 and fit 1.62675
-2*t and fit 0.043353
-0.36573*t and fit 0.043353
-t+69 and fit 0.80196
-3*t and fit 0.043353
-t^t and fit 0.0439555
-(2)^t*t^t and fit 0.0439555
-t and fit 0.043353
-t+78 and fit 0.617474
-t and fit 0.043353
-(2)^t*t^t and fit 0.0439555
-t+69 and fit 0.80196
-t and fit 0.043353
-t^t and fit 0.0439555
-3*t and fit 0.043353
-t and fit 0.043353
-t^(2) and fit 0.043353
-t^(2) and fit 0.043353
-t and fit 0.043353
-
-The minimum fit in Population 4 is t^(2) with fit 0.043353
-The maximum fit in Population 4 is t+71 with fit 1.62675
-MOM is 3*t and fit is 0.043353
-DAD is t^(2) and fit is 0.043353
-cross node is 1
-------------NUMERIC GA STARTED-------------
- Ind 2*t^(2)
-No numeric GA optimization needed for the 2*t^(2)
-Optimimzed KID is 2*t^(2) and fit is 0.043353
-
-current runtime is 29.611 seconds
-t and fit 0.043353
-t+71 and fit 1.62675
-2*t and fit 0.043353
-0.36573*t and fit 0.043353
-t+69 and fit 0.80196
-3*t and fit 0.043353
-t^t and fit 0.0439555
-(2)^t*t^t and fit 0.0439555
-t and fit 0.043353
-t+78 and fit 0.617474
-t and fit 0.043353
-(2)^t*t^t and fit 0.0439555
-t+69 and fit 0.80196
-t and fit 0.043353
-t^t and fit 0.0439555
-3*t and fit 0.043353
-t and fit 0.043353
-2*t^(2) and fit 0.043353
-t^(2) and fit 0.043353
-t and fit 0.043353
-
-The minimum fit in Population 5 is t^(2) with fit 0.043353
-The maximum fit in Population 5 is t+71 with fit 1.62675
-MOM is 0.36573*t and fit is 0.043353
-DAD is t+71 and fit is 1.62675
-cross node is 1
-------------NUMERIC GA STARTED-------------
- Ind 2*t+71
-The initial ind fit is 1.62676
-New ind is 2*t+73
-New ind is 2*t-4
-New ind is 2*t-26
-New ind is 2*t+75
-New ind is 2*t-65
-New ind is 2*t+36
-New ind is 2*t-14
-New ind is 2*t+56
-New ind is 2*t+36
-New ind is 2*t+82
-
-Numeric GA Population 1
-2*t+73 and fit 21.4076
-2*t-4 and fit 0.0410992
-2*t-26 and fit 0.0319608
-2*t+75 and fit 1.49016
-2*t-65 and fit 0.0229246
-2*t+36 and fit 0.0855999
-2*t-14 and fit 0.0363721
-2*t+56 and fit 0.186646
-2*t+36 and fit 0.0855999
-2*t+82 and fit 0.3467
-
-The minimum fit in NumPopulation 1 is 0.0229246
-The maximum fit in NumPopulation 1 is 21.4076
-
-Optimum coefficients found after 1 loops, final ind is 2*t+73 and fit = 21.4076
-Optimimzed KID is 2*t+73 and fit is 21.4076
-
-current runtime is 30.06 seconds
-t and fit 0.043353
-t+71 and fit 1.62675
-2*t and fit 0.043353
-0.36573*t and fit 0.043353
-t+69 and fit 0.80196
-3*t and fit 0.043353
-t^t and fit 0.0439555
-(2)^t*t^t and fit 0.0439555
-t and fit 0.043353
-t+78 and fit 0.617474
-t and fit 0.043353
-(2)^t*t^t and fit 0.0439555
-t+69 and fit 0.80196
-t and fit 0.043353
-t^t and fit 0.0439555
-3*t and fit 0.043353
-t and fit 0.043353
-2*t^(2) and fit 0.043353
-2*t+73 and fit 21.4076
-t and fit 0.043353
-
-The minimum fit in Population 6 is 2*t^(2) with fit 0.043353
-The maximum fit in Population 6 is 2*t+73 with fit 21.4076
-MOM is t+78 and fit is 0.617474
-DAD is t^t and fit is 0.0439555
-cross node is 1
-------------NUMERIC GA STARTED-------------
- Ind (2)^t*t^t
-No numeric GA optimization needed for the (2)^t*t^t
-Optimimzed KID is (2)^t*t^t and fit is 0.0439555
-
-current runtime is 30.352 seconds
-t and fit 0.043353
-t+71 and fit 1.62675
-2*t and fit 0.043353
-0.36573*t and fit 0.043353
-t+69 and fit 0.80196
-3*t and fit 0.043353
-t^t and fit 0.0439555
-(2)^t*t^t and fit 0.0439555
-t and fit 0.043353
-t+78 and fit 0.617474
-t and fit 0.043353
-(2)^t*t^t and fit 0.0439555
-t+69 and fit 0.80196
-t and fit 0.043353
-t^t and fit 0.0439555
-3*t and fit 0.043353
-t and fit 0.043353
-(2)^t*t^t and fit 0.0439555
-2*t+73 and fit 21.4076
-t and fit 0.043353
-
-The minimum fit in Population 7 is 0.36573*t with fit 0.043353
-The maximum fit in Population 7 is 2*t+73 with fit 21.4076
-MOM is t^t and fit is 0.0439555
-DAD is t^t and fit is 0.0439555
-cross node is 1
-------------NUMERIC GA STARTED-------------
- Ind (2)^t*t^t
-No numeric GA optimization needed for the (2)^t*t^t
-Optimimzed KID is (2)^t*t^t and fit is 0.0439555
-
-current runtime is 30.655 seconds
-t and fit 0.043353
-t+71 and fit 1.62675
-2*t and fit 0.043353
-(2)^t*t^t and fit 0.0439555
-t+69 and fit 0.80196
-3*t and fit 0.043353
-t^t and fit 0.0439555
-(2)^t*t^t and fit 0.0439555
-t and fit 0.043353
-t+78 and fit 0.617474
-t and fit 0.043353
-(2)^t*t^t and fit 0.0439555
-t+69 and fit 0.80196
-t and fit 0.043353
-t^t and fit 0.0439555
-3*t and fit 0.043353
-t and fit 0.043353
-(2)^t*t^t and fit 0.0439555
-2*t+73 and fit 21.4076
-t and fit 0.043353
-
-The minimum fit in Population 8 is t with fit 0.043353
-The maximum fit in Population 8 is 2*t+73 with fit 21.4076
-MOM is t+69 and fit is 0.80196
-DAD is (2)^t*t^t and fit is 0.0439555
-cross node is 1
-------------NUMERIC GA STARTED-------------
- Ind (3)^t*t^t
-No numeric GA optimization needed for the (3)^t*t^t
-Optimimzed KID is (3)^t*t^t and fit is 0.0439555
-
-current runtime is 31.016 seconds
-(3)^t*t^t and fit 0.0439555
-t+71 and fit 1.62675
-2*t and fit 0.043353
-(2)^t*t^t and fit 0.0439555
-t+69 and fit 0.80196
-3*t and fit 0.043353
-t^t and fit 0.0439555
-(2)^t*t^t and fit 0.0439555
-t and fit 0.043353
-t+78 and fit 0.617474
-t and fit 0.043353
-(2)^t*t^t and fit 0.0439555
-t+69 and fit 0.80196
-t and fit 0.043353
-t^t and fit 0.0439555
-3*t and fit 0.043353
-t and fit 0.043353
-(2)^t*t^t and fit 0.0439555
-2*t+73 and fit 21.4076
-t and fit 0.043353
-
-The minimum fit in Population 9 is t with fit 0.043353
-The maximum fit in Population 9 is 2*t+73 with fit 21.4076
-MOM is (2)^t*t^t and fit is 0.0439555
-DAD is 3*t and fit is 0.043353
-cross node is 1
-------------NUMERIC GA STARTED-------------
- Ind 4*t
-No numeric GA optimization needed for the 4*t
-Optimimzed KID is 4*t and fit is 0.043353
-
-current runtime is 31.373 seconds
-(3)^t*t^t and fit 0.0439555
-t+71 and fit 1.62675
-2*t and fit 0.043353
-(2)^t*t^t and fit 0.0439555
-t+69 and fit 0.80196
-3*t and fit 0.043353
-t^t and fit 0.0439555
-(2)^t*t^t and fit 0.0439555
-4*t and fit 0.043353
-t+78 and fit 0.617474
-t and fit 0.043353
-(2)^t*t^t and fit 0.0439555
-t+69 and fit 0.80196
-t and fit 0.043353
-t^t and fit 0.0439555
-3*t and fit 0.043353
-t and fit 0.043353
-(2)^t*t^t and fit 0.0439555
-2*t+73 and fit 21.4076
-t and fit 0.043353
-
-The minimum fit in Population 10 is t with fit 0.043353
-The maximum fit in Population 10 is 2*t+73 with fit 21.4076
-MOM is t+69 and fit is 0.80196
-DAD is t+71 and fit is 1.62675
-cross node is 1
-------------NUMERIC GA STARTED-------------
- Ind 2*t+71
-The initial ind fit is 1.62676
-New ind is 2*t-34
-New ind is 2*t-56
-New ind is 2*t+24
-New ind is 2*t-13
-New ind is 2*t-28
-New ind is 2*t+80
-New ind is 2*t+58
-New ind is 2*t+55
-New ind is 2*t-64
-New ind is 2*t-76
-
-Numeric GA Population 1
-2*t-34 and fit 0.0295699
-2*t-56 and fit 0.0245247
-2*t+24 and fit 0.0646121
-2*t-13 and fit 0.0367953
-2*t-28 and fit 0.0313275
-2*t+80 and fit 0.444067
-2*t+58 and fit 0.211628
-2*t+55 and fit 0.176244
-2*t-64 and fit 0.023092
-2*t-76 and fit 0.0212315
-
-The minimum fit in NumPopulation 1 is 0.0212315
-The maximum fit in NumPopulation 1 is 0.444067
-num MOM is 2*t+58 and fit is 0.211628
-num DAD is 2*t-64 and fit is 0.023092
-num KID is 2*t-37.88 and fit is 0.0285346
-
-Numeric GA Population 2
-2*t-34 and fit 0.0295699
-2*t-56 and fit 0.0245247
-2*t+24 and fit 0.0646121
-2*t-13 and fit 0.0367953
-2*t-28 and fit 0.0313275
-2*t+80 and fit 0.444067
-2*t+58 and fit 0.211628
-2*t+55 and fit 0.176244
-2*t-64 and fit 0.023092
-2*t-37.88 and fit 0.0285346
-
-The minimum fit in NumPopulation 2 is 0.023092
-The maximum fit in NumPopulation 2 is 0.444067
-num MOM is 2*t-28 and fit is 0.0313275
-num DAD is 2*t-34 and fit is 0.0295699
-num KID is 2*t-40.98 and fit is 0.0277582
-
-Numeric GA Population 3
-2*t-34 and fit 0.0295699
-2*t-56 and fit 0.0245247
-2*t+24 and fit 0.0646121
-2*t-13 and fit 0.0367953
-2*t-28 and fit 0.0313275
-2*t+80 and fit 0.444067
-2*t+58 and fit 0.211628
-2*t+55 and fit 0.176244
-2*t-40.98 and fit 0.0277582
-2*t-37.88 and fit 0.0285346
-
-The minimum fit in NumPopulation 3 is 0.0245247
-The maximum fit in NumPopulation 3 is 0.444067
-num MOM is 2*t+24 and fit is 0.0646121
-num DAD is 2*t+58 and fit is 0.211628
-num KID is 2*t+13.82 and fit is 0.0534869
-
-Numeric GA Population 4
-2*t-34 and fit 0.0295699
-2*t+13.82 and fit 0.0534869
-2*t+24 and fit 0.0646121
-2*t-13 and fit 0.0367953
-2*t-28 and fit 0.0313275
-2*t+80 and fit 0.444067
-2*t+58 and fit 0.211628
-2*t+55 and fit 0.176244
-2*t-40.98 and fit 0.0277582
-2*t-37.88 and fit 0.0285346
-
-The minimum fit in NumPopulation 4 is 0.0277582
-The maximum fit in NumPopulation 4 is 0.444067
-num MOM is 2*t+58 and fit is 0.211628
-num DAD is 2*t+13.82 and fit is 0.0534869
-num KID is 2*t+53.3938 and fit is 0.161763
-
-Numeric GA Population 5
-2*t-34 and fit 0.0295699
-2*t+13.82 and fit 0.0534869
-2*t+24 and fit 0.0646121
-2*t-13 and fit 0.0367953
-2*t-28 and fit 0.0313275
-2*t+80 and fit 0.444067
-2*t+58 and fit 0.211628
-2*t+55 and fit 0.176244
-2*t+53.3938 and fit 0.161763
-2*t-37.88 and fit 0.0285346
-
-The minimum fit in NumPopulation 5 is 0.0285346
-The maximum fit in NumPopulation 5 is 0.444067
-num MOM is 2*t-34 and fit is 0.0295699
-num DAD is 2*t+24 and fit is 0.0646121
-num KID is 2*t-23.42 and fit is 0.0328165
-
-Numeric GA Population 6
+1.12363*t and fit 0.0553742
+0.574703*t and fit 0.055374
+0.567848*t and fit 0.055374
+0.82365*t and fit 0.0553741
+1.06346*t and fit 0.0553742
+1.55239*t and fit 0.0553744
+1.23263*t and fit 0.0553742
+0.634572*t and fit 0.055374
+0.750156*t and fit 0.0553741
+0.638444*t and fit 0.0553741
+
+The minimum fit in NumPopulation 50 is 0.055374
+The maximum fit in NumPopulation 50 is 0.0553744
+num MOM is 1.55239*t and fit is 0.0553744
+num DAD is 0.574703*t and fit is 0.055374
+num KID is 0.672389*t and fit is 0.0553741
