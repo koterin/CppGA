@@ -589,10 +589,13 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 			fout << "num KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
 
 			//Replacing the worst element of the population with the KID
-			if (numPop[mind].fit < KID.fit)
-			{
-				numPop[mind] = KID;
-			}
+
+			numPop[mind] = KID;
+
+			//if (numPop[mind].fit < KID.fit)
+			//{
+			//	numPop[mind] = KID;
+			//}
 
 			outputInd = numPop[maxd];
 			
@@ -689,7 +692,32 @@ Individ StakingCrossover(Individ MOM, Individ DAD, int nodeCross)
 		newKID.push_back(MOM.genes[i]);
 	}
 
-	for (int i = 0; i < DAD.genes.size(); i++)
+	Gene transferGene;
+	transferGene = DAD.genes[0];
+	int dec = rand() % 4 + 1;
+
+	switch (dec)
+	{
+	case 1: 
+		transferGene.oper = 1;
+		break;
+	case 2:
+		transferGene.oper = 2;
+		break;
+	case 3:
+		transferGene.oper = 3;
+		break;
+	case 4:
+		transferGene.oper = 4;
+		break;
+	case 5:
+		transferGene.oper = 5;
+		break;
+	}
+
+	newKID.push_back(transferGene);
+
+	for (int i = 1; i < DAD.genes.size(); i++)
 	{
 		newKID.push_back(DAD.genes[i]);
 	}
@@ -789,18 +817,31 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 
 		//KID
 		Individ KID = MOM;
-		//KID = OnePointCrossover(MOM, DAD, nodeCross);
-		KID = StakingCrossover(MOM, DAD, nodeCross);
+		int boolIm = rand() % 2;
+
+		if (boolIm == 0)
+		{
+			KID = OnePointCrossover(MOM, DAD, nodeCross);
+		}
+		else if (boolIm == 1)
+		{
+			KID = StakingCrossover(MOM, DAD, nodeCross);
+		}
+
+
 		fout << "KID is " << KID.ind << std::endl;
 		KID.CalcFit(ExpData, t);
 		KID = numGA(KID, ExpData, t, foutname);
 		KID.pop = f + 2;
 		fout << "Optimimzed KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
+
 		//Replacing the worst element of the population with the KID
-		if (popul.inds[mind].fit < KID.fit)
-		{
-			popul.inds[mind] = KID;
-		}
+		popul.inds[mind] = KID;
+
+		//if (popul.inds[mind].fit < KID.fit)
+		//{
+		//	popul.inds[mind] = KID;
+		//}
 
 		outputInd = popul.inds[maxd];
 	};
