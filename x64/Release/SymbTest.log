@@ -15,18 +15,24 @@ C:\Users\Katerina\source\repos\CppGA\symbolic\integrate.h(146,32): warning C4101
 C:\Users\Katerina\source\repos\CppGA\symbolic\integrate.h(156,32): warning C4101: 'se': unreferenced local variable
 C:\Users\Katerina\source\repos\CppGA\symbolic\integrate.h(166,32): warning C4101: 'se': unreferenced local variable
 C:\Users\Katerina\source\repos\CppGA\symbolic\solve.h(74,33): warning C4101: 'se': unreferenced local variable
-C:\Users\Katerina\source\repos\CppGA\Source.cpp(389,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Katerina\source\repos\CppGA\Source.cpp(740,9): warning C4101: 'coef1': unreferenced local variable
-C:\Users\Katerina\source\repos\CppGA\Source.cpp(740,16): warning C4101: 'coef2': unreferenced local variable
-C:\Users\Katerina\source\repos\CppGA\Source.cpp(855,17): warning C4326: return type of 'main' should be 'int' instead of 'void'
-C:\Users\Katerina\source\repos\CppGA\Source.cpp(857,15): warning C4101: 'start': unreferenced local variable
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(365,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(701,33): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(702,33): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(719,54): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(732,33): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(733,33): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(777,9): warning C4101: 'coef1': unreferenced local variable
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(777,16): warning C4101: 'coef2': unreferenced local variable
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(910,17): warning C4326: return type of 'main' should be 'int' instead of 'void'
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(914,7): warning C4551: function call missing argument list
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(912,15): warning C4101: 'start': unreferenced local variable
 C:\Users\Katerina\source\repos\CppGA\matrix.h(121,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\Katerina\source\repos\CppGA\matrix.h(120): message : while compiling class template member function 'Matrix<Symbolic>::Matrix(const Vector<T> &)'
           with
           [
               T=Symbolic
           ]
-C:\Users\Katerina\source\repos\CppGA\symbolic\symbolic.h(752): message : see reference to function template instantiation 'Matrix<Symbolic>::Matrix(const Vector<T> &)' being compiled
+C:\Users\Katerina\source\repos\CppGA\symbolic\symbolic.h(764): message : see reference to function template instantiation 'Matrix<Symbolic>::Matrix(const Vector<T> &)' being compiled
           with
           [
               T=Symbolic
@@ -38,7 +44,7 @@ C:\Users\Katerina\source\repos\CppGA\vector.h(253): message : while compiling cl
           [
               T=Symbolic
           ]
-C:\Users\Katerina\source\repos\CppGA\symbolic\symbolic.h(733): message : see reference to function template instantiation 'T Vector<T>::operator |(const Vector<T> &) const' being compiled
+C:\Users\Katerina\source\repos\CppGA\symbolic\symbolic.h(745): message : see reference to function template instantiation 'T Vector<T>::operator |(const Vector<T> &) const' being compiled
           with
           [
               T=Symbolic
@@ -71,7 +77,7 @@ C:\Users\Katerina\source\repos\CppGA\matrix.h(120): message : while compiling cl
           [
               T=Symbolic
           ]
-C:\Users\Katerina\source\repos\CppGA\symbolic\symbolic.h(752): message : see reference to function template instantiation 'Matrix<Symbolic>::Matrix(const Vector<T> &)' being compiled
+C:\Users\Katerina\source\repos\CppGA\symbolic\symbolic.h(764): message : see reference to function template instantiation 'Matrix<Symbolic>::Matrix(const Vector<T> &)' being compiled
           with
           [
               T=Symbolic
@@ -130,8 +136,9 @@ C:\Users\Katerina\source\repos\CppGA\matrix.h(359): message : see reference to f
               T=Symbolic
           ]
   Generating code
-  1 of 2350 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(631): warning C4715: 'MomDadChoice': not all control paths return a value
+  2 of 2341 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    11 functions had inline decision re-evaluated but remain unchanged
+    17 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   SymbTest.vcxproj -> C:\Users\Katerina\source\repos\CppGA\x64\Release\CppGA.exe

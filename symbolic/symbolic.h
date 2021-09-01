@@ -697,22 +697,34 @@ Symbolic::operator int(void) const
 
 Symbolic::operator double(void) const
 {
- if(type() == typeid(Numeric) &&
-    Number<void>(*this).numerictype() == typeid(double))
-  return CastPtr<const Number<double> >(*this)->n;
- if(type() == typeid(Numeric) &&
-    Number<void>(*this).numerictype() == typeid(int))
-  return double(CastPtr<const Number<int> >(*this)->n);
- if(type() == typeid(Numeric) &&
-    Number<void>(*this).numerictype() == typeid(Rational<Number<void> >))
- {
-  CastPtr<const Number<Rational<Number<void> > > > n(*this);
-  Symbolic num = n->n.num();
-  Symbolic den = n->n.den();
-  return double(num)/double(den);
- }
- cerr << "Attempted to cast " << *this << " to double failed." << endl;
- throw SymbolicError(SymbolicError::NotDouble);
+    try
+    {
+        if (type() == typeid(Numeric) && (Number<void>(*this).numerictype() == typeid(double)))
+            return CastPtr<const Number<double> >(*this)->n;
+
+        if (type() == typeid(Numeric) && (Number<void>(*this).numerictype() == typeid(int)))
+            return double(CastPtr<const Number<int> >(*this)->n);
+
+        if (type() == typeid(Numeric) && (Number<void>(*this).numerictype() == typeid(Rational<Number<void> >)))
+        {
+            CastPtr<const Number<Rational<Number<void> > > > n(*this);
+            Symbolic num = n->n.num();
+            Symbolic den = n->n.den();
+            return double(num) / double(den);
+        }
+
+        else
+        {
+            throw SymbolicError(SymbolicError::NotDouble);
+        }
+        //cerr << "Attempted to cast " << *this << " to double failed." << endl;
+    }
+    catch (SymbolicError)
+    {
+        //std::cout << "Attempted to cast " << *this << " to double failed." << endl;
+        return 0.12345;
+    }
+
  return 0.0;
 }
 
