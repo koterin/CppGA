@@ -4,6 +4,7 @@
 #include <fstream> //for files
 #include "symbolicc++.h" //for symbolic
 #include <ctime> //for runtime calculations
+#include <iomanip>      // std::setprecision
 
 class Gene {
 
@@ -27,24 +28,26 @@ public:
 	double fit; //Value of the fitness function for the individual
 
 	//Function for calculation the fitness func for the individual
-	void CalcFit(vector<struct data> ExpData, Symbolic t) {
+	void CalcFit(vector<struct data> ExpData, Symbolic t, std::string foutname) {
 
 		struct data buf;
-		double res = 0.0; //ind current v
+		double velocity = 0.0; //ind current v
 		double dev = 0.0; //Devitation ind current v from expdata v
-		double devf = 0.0; //Sum devitation
-		auto iter = ExpData.begin();
+		double devSUM = 0.0; //Sum devitation
 
-		while (iter != ExpData.end())
+		std::ofstream fout;
+		fout.open(foutname, std::ios_base::app);
+		
+		for (int i = 0; i < ExpData.size(); i++)
 		{
-			buf = *iter;
-			res = ind[t == buf.t];
-			dev = pow((res - buf.v),2);
-			devf += dev;
-			++iter;
+			buf = ExpData[i];
+			velocity = ind[t == buf.t];
+			fout << "VELOCITY IS " << velocity << std::endl;
+			dev = pow((velocity - buf.v), 2);
+			devSUM += dev;
 		}
 
-		fit = (1 / (1 + sqrt(devf))) * 100;
+		fit = (1 / (1 + sqrt(devSUM))) * 100;
 		return;
 	}
 };
@@ -75,7 +78,7 @@ public:
 		//Cycle for sequential creating individuals
 		for (int i = 0; i < numInd; i++)
 		{
-			int dist = rand() % 10 +1;
+			int dist = rand() % 9 +1;
 
 			//Creating individuals with the operands decided by the probability distribution
 			//(weights can be adjusted according to the problem)
@@ -101,25 +104,6 @@ public:
 
 			if (dist == 2)
 			{
-				z = y - x;
-
-				indZero.ind = z;
-				indZero.pop = 1;
-
-				genZero.elem = y;
-				genZero.oper = 1;
-				indZero.genes.clear();
-				indZero.genes.push_back(genZero);
-
-				genZero.elem = x;
-				genZero.oper = 2;
-				indZero.genes.push_back(genZero);
-				inds.push_back(indZero);
-
-			}
-
-			if (dist == 3)
-			{
 				z = y * x;
 
 				indZero.ind = z;
@@ -137,7 +121,7 @@ public:
 
 			}
 
-			if (dist == 4)
+			if (dist == 3)
 			{
 				z = y / x;
 
@@ -156,7 +140,7 @@ public:
 
 			}
 
-			if (dist == 5)
+			if (dist == 4)
 			{
 				z = pow(y, x);
 
@@ -175,7 +159,7 @@ public:
 
 			}
 
-			if (dist == 6)
+			if (dist == 5)
 			{
 				coeff = double(rand() % 100) + 1.0;
 				z = y ^ coeff;
@@ -195,7 +179,7 @@ public:
 
 			}
 			
-			if (dist == 7)
+			if (dist == 6)
 			{
 				coeff = double(rand() % 100) + 1.0;
 				z = y * coeff;
@@ -215,7 +199,7 @@ public:
 
 			}
 
-			if (dist == 8)
+			if (dist == 7)
 			{
 				coeff = double(rand() % 100) + 1.0;
 				z = y + coeff;
@@ -235,7 +219,7 @@ public:
 
 			}
 
-			if (dist == 9)
+			if (dist == 8)
 			{
 				coeff = double(rand() % 100) + 1.0;
 				z = y - coeff;
@@ -255,7 +239,7 @@ public:
 
 			}
 
-			if (dist == 10)
+			if (dist == 9)
 			{
 				coeff = double(rand() % 100) + 1.0;
 				z = y / coeff;
@@ -322,13 +306,13 @@ vector<struct data> SetData(std::string fileroute, int len)
 	ExpData.clear();
 	ExpData.reserve(len);
 	struct data curdata;
+	int i = 0;
 	double num1, num2;
 
 	std::ofstream datain;
 	datain.open("Data\\expdata.txt");
 	std::string currentLine;
 	int totalLen = 0;
-	int i = 0;
 	
 	//Counting the number of lines in the input file
 	while (!datafile.eof())
@@ -371,14 +355,6 @@ vector<struct data> SetData(std::string fileroute, int len)
 	datain.close();
 	return(ExpData);
 };
-
-//NOT WRITTEN YET
-void OutputPlot()
-{
-	//creates file with current ExpData
-	//and best function results from the calculated individual
-	//MathCAD makes one plot with both of them to compare
-}
 
 //Function for creating new individual from the genes given
 //WARNING! Input genes vector MUST BE SORTED and organized the way it should be in the output Individual
@@ -497,7 +473,7 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 	else if (dec > 0)
 	{
 		fout << "The initial ind fit is " << inputInd.fit << std::endl;
-		double multCoef = 2; //Condition: if multCoef * current_fit < initial_fit then GA stops
+		double multCoef = 1.5; //Condition: if multCoef * current_fit < initial_fit then GA stops
 
 		for (int i = 0; i < numPop.size(); i++)
 		{
@@ -507,7 +483,7 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 
 		//MAIN GA LOOP
 
-		int limit = 50; //manual limit for GA loops
+		int limit = 30; //manual limit for GA loops
 		int mind, maxd;
 		double coef1, coef2;
 
@@ -515,13 +491,13 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 
 			mind = 0;
 			maxd = 0;
-			numPop[0].CalcFit(ExpData, t);
+			numPop[mind].CalcFit(ExpData, t, foutname); //for the min calc later
 
 			//Displaying current population
 			fout << "\nNumeric GA Population " << f + 1 << std::endl;
 			for (int g = 0; g < numPop.size(); g++)
 			{
-				numPop[g].CalcFit(ExpData, t);
+				numPop[g].CalcFit(ExpData, t, foutname);
 				fout << numPop[g].ind << " and fit " << numPop[g].fit << std::endl;
 				//Founding minimum
 				if (numPop[g].fit < numPop[mind].fit)
@@ -584,19 +560,12 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 			}
 			
 			KID = IndFromGenes(KID.genes);
-			KID.CalcFit(ExpData, t);
+			KID.CalcFit(ExpData, t, foutname);
 			
 			fout << "num KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
 
 			//Replacing the worst element of the population with the KID
-
 			numPop[mind] = KID;
-
-			//if (numPop[mind].fit < KID.fit)
-			//{
-			//	numPop[mind] = KID;
-			//}
-
 			outputInd = numPop[maxd];
 			
 		};
@@ -631,7 +600,7 @@ vector<int> MomDadChoice(Population popul)
 	//DAD
 	int numDAD = rand() % (popul.inds.size() - 1);
 
-	if (numDAD == numMOM)
+	if (numDAD == numMOM) //Checking if DAD is the same as MOM
 	{
 		while (numDAD == numMOM)
 		{
@@ -641,11 +610,13 @@ vector<int> MomDadChoice(Population popul)
 
 	Individ DAD = popul.inds[numDAD];
 	
-	if (DAD.genes.size() < (double(nodeCross) + 1))
+	//if ((DAD.genes.size() < nodeCross) ||
+	//	(((MOM.genes.size() - 1) - nodeCross) != (DAD.genes.size() -(DAD.genes.size() - nodeCross))))
+	if (DAD.genes.size() < nodeCross)
 	{
 		nums = MomDadChoice(popul);
 
-		if (DAD.genes.size() < (double(nodeCross) + 1))
+		if (DAD.genes.size() < nodeCross)
 		{
 			return(nums);
 		}
@@ -665,13 +636,14 @@ Individ OnePointCrossover(Individ MOM, Individ DAD, int nodeCross)
 	vector<Gene> newKID;
 	newKID.clear();
 
-	for (int i = 0; i < DAD.genes.size(); i++)
+	for (int i = 0; i < MOM.genes.size(); i++)
 	{
 		if (i < nodeCross)
 		{
 			newKID.push_back(MOM.genes[i]);
 		}
-		else if (i >= nodeCross)
+		
+		if (i >= nodeCross)
 		{
 			newKID.push_back(DAD.genes[i]);
 		}
@@ -686,40 +658,107 @@ Individ StakingCrossover(Individ MOM, Individ DAD, int nodeCross)
 	Individ KID;
 	vector<Gene> newKID;
 	newKID.clear();
+	Gene bufGene;
 
 	for (int i = 0; i < nodeCross; i++)
 	{
 		newKID.push_back(MOM.genes[i]);
 	}
 
-	Gene transferGene;
-	transferGene = DAD.genes[0];
-	int dec = rand() % 4 + 1;
+	bufGene = DAD.genes[0];
+	int boolR = rand() % 6 + 1;
 
-	switch (dec)
+	switch (boolR)
 	{
-	case 1: 
-		transferGene.oper = 1;
-		break;
+	case 1:
+		bufGene.oper = 1;
 	case 2:
-		transferGene.oper = 2;
-		break;
+		bufGene.oper = 2;
 	case 3:
-		transferGene.oper = 3;
-		break;
+		bufGene.oper = 3;
 	case 4:
-		transferGene.oper = 4;
-		break;
+		bufGene.oper = 4;
 	case 5:
-		transferGene.oper = 5;
-		break;
+		bufGene.oper = 5;
 	}
 
-	newKID.push_back(transferGene);
+	newKID.push_back(bufGene);
 
 	for (int i = 1; i < DAD.genes.size(); i++)
 	{
 		newKID.push_back(DAD.genes[i]);
+	}
+
+	KID = IndFromGenes(newKID);
+	return(KID);
+}
+
+Individ RandPlusCrossover(Individ MOM, Individ DAD)
+{
+	Individ KID;
+	vector<Gene> newKID;
+	newKID.clear();
+	int countMOM = MOM.genes.size();
+	int countDAD = DAD.genes.size();
+
+	int countLimit = countMOM;
+	if (countMOM < countDAD)
+	{
+		countLimit = countDAD;
+	}
+
+	for (int i = 0; i < countLimit; i++)
+	{
+		if (i < countMOM)
+		{
+			newKID.push_back(MOM.genes[i]);
+		}
+
+		if (i < countDAD)
+		{
+			newKID.push_back(DAD.genes[(double(countDAD) - 1) - i]);
+		}
+	}
+
+	KID = IndFromGenes(newKID);
+	return(KID);
+}
+
+Individ MixCrossover(Individ MOM, Individ DAD)
+{
+	Individ KID;
+	vector<Gene> newKID;
+	newKID.clear();
+	int countMOM = MOM.genes.size();
+	int countDAD = DAD.genes.size();
+
+	int countLimit = countMOM;
+	if (countMOM < countDAD)
+	{
+		countLimit = countDAD;
+	}
+
+	for (int i = 0; i < countLimit; i++)
+	{
+		if ((i < countMOM) && (i % 2 == 0))
+		{
+			newKID.push_back(MOM.genes[i]);
+		}
+
+		if ((i >= countMOM) && (i % 2 == 0))
+		{
+			newKID.push_back(DAD.genes[i]);
+		}
+
+		if ((i < countDAD) && (i % 2 == 1))
+		{
+			newKID.push_back(DAD.genes[i]);
+		}
+		if ((i >= countDAD) && (i % 2 == 1))
+		{
+			newKID.push_back(MOM.genes[i]);
+		}
+
 	}
 
 	KID = IndFromGenes(newKID);
@@ -753,13 +792,13 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 		
 		mind = 0;
 		maxd = 0;
-		popul.inds[0].CalcFit(ExpData, t);
+		popul.inds[0].CalcFit(ExpData, t, foutname);
 
 		//Displaying current population
 		std::cout << "\nsymbGA Population " << f + 1 << std::endl;
 		for (int g = 0; g < popul.inds.size(); g++)
 		{
-			popul.inds[g].CalcFit(ExpData, t);
+			popul.inds[g].CalcFit(ExpData, t, foutname);
 			fout << popul.inds[g].ind << " and fit " << popul.inds[g].fit << std::endl;
 			//Founding minimum
 			if (popul.inds[g].fit < popul.inds[mind].fit)
@@ -817,36 +856,52 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 
 		//KID
 		Individ KID = MOM;
-		int boolIm = rand() % 2;
 
-		if (boolIm == 0)
+		auto bufMOM = MOM.ind->clone();
+		auto bufDAD = DAD.ind->clone();
+
+		if ((typeid(*bufMOM) == typeid(*bufDAD)) || (abs(1 - (MOM.fit / DAD.fit)) < 0.05))
 		{
-			KID = OnePointCrossover(MOM, DAD, nodeCross);
+			double boolCross = 1 / (double(rand() % 100) + 1); //Particular crossover probability
+			std::cout << "Crossover decision is " << boolCross << std::endl;
+
+			if (boolCross >= 0.8)
+			{
+				fout << "RandPlusCrossover" << std::endl;
+				KID = RandPlusCrossover(MOM, DAD);
+			}
+			if ((boolCross > 0) && (boolCross < 0.2))
+			{
+				fout << "StakingCrossover" << std::endl;
+				KID = StakingCrossover(MOM, DAD, nodeCross);
+			}
+			if ((boolCross >= 0.2) && (boolCross < 0.8))
+			{
+				fout << "OnePointCrossover" << std::endl;
+				KID = OnePointCrossover(MOM, DAD, nodeCross);
+			}
 		}
-		else if (boolIm == 1)
+		else
 		{
-			KID = StakingCrossover(MOM, DAD, nodeCross);
+			fout << "MixCrossover" << std::endl;
+			KID = MixCrossover(MOM, DAD);
 		}
 
+		bufMOM->unreference(bufMOM);
+		bufDAD->unreference(bufDAD);
 
 		fout << "KID is " << KID.ind << std::endl;
-		KID.CalcFit(ExpData, t);
+		KID.CalcFit(ExpData, t, foutname);
 		KID = numGA(KID, ExpData, t, foutname);
 		KID.pop = f + 2;
 		fout << "Optimimzed KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
-
 		//Replacing the worst element of the population with the KID
 		popul.inds[mind] = KID;
-
-		//if (popul.inds[mind].fit < KID.fit)
-		//{
-		//	popul.inds[mind] = KID;
-		//}
-
 		outputInd = popul.inds[maxd];
 	};
 
-	fout << "GA optimization failed, ending the loop" << std::endl;
+	std::cout << "symbGA optimization failed, ending the loop" << std::endl;
+	fout << "symbGA optimization failed, ending the loop" << std::endl;
 	fout.close();
 
 	return(outputInd);
@@ -856,14 +911,15 @@ void main(void) {
 
 	std::clock_t start;
 	unsigned int startime = clock();
+	std::fixed;
 	
 	Symbolic v("v"); //V - velocity
 	Symbolic t("t"); //t - time
 	v = t; //v depending on t
 	int k = 1; //Individual serial number
-	int numInd = 20; //number of individuals in the population
+	int numInd = 10; //number of individuals in the population
 	int numCoef = 0; //number of coefficients in the origin individual
-	int len = 1000; //number of lines in ExpData to read
+	int len = 500; //number of lines in ExpData to read
 	Individ outputInd; //Buffer for Individ class
 	vector<struct data> ExpData; //Vector of experimental data
 	ExpData.clear();
@@ -907,7 +963,7 @@ void main(void) {
 	//Fitness function calculations for the 1st gen
 	for (int i = 0; i < numInd; i++)
 	{
-		popul.inds.at(i).CalcFit(ExpData, t); //t - the agrument which should be substituted
+		popul.inds.at(i).CalcFit(ExpData, t, foutname); //t - the agrument which should be substituted
 		popul.inds.at(i) = numGA(popul.inds.at(i), ExpData, t, foutname);
 	}
 
