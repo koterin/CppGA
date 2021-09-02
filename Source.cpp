@@ -605,7 +605,38 @@ vector<int> MomDadChoice(Population popul)
 	nums.push_back(numDAD);
 	nums.push_back(nodeCross);
 	return(nums);
+}
 
+vector<int> SmartMomDadChoice(Population popul, int f)
+{
+	vector<int> nums;
+	nums.clear();
+	nums.reserve(3);
+
+	int numMOM = 0;
+
+	//MOM
+	while ((popul.inds[numMOM].genes.size() == 1) || (popul.inds[numMOM].pop == f + 1))
+	{
+		numMOM = rand() % popul.inds.size();
+	}
+	Individ MOM = popul.inds[numMOM];
+
+	int nodeCross = (rand() % (MOM.genes.size() - 1)) + 1; //always excluding the 1st gene
+
+	//DAD
+	int numDAD = rand() % popul.inds.size();
+
+	while (numDAD == numMOM) //Checking if DAD is the same as MOM
+	{
+		numDAD = rand() % popul.inds.size();
+	}
+	Individ DAD = popul.inds[numDAD];
+
+	nums.push_back(numMOM);
+	nums.push_back(numDAD);
+	nums.push_back(nodeCross);
+	return(nums);
 }
 
 //Individ OnePointCrossover(Population popul, Individ MOM, Individ DAD, int nodeCross)
@@ -705,6 +736,26 @@ Individ RandPlusCrossover(Individ MOM, Individ DAD)
 		countLimit = countDAD;
 	}
 
+	Gene bufGene;
+	bufGene = DAD.genes[0];
+	int boolR = rand() % 5 + 1;
+
+	switch (boolR)
+	{
+	case 1:
+		bufGene.oper = 1;
+	case 2:
+		bufGene.oper = 2;
+	case 3:
+		bufGene.oper = 3;
+	case 4:
+		bufGene.oper = 4;
+	case 5:
+		bufGene.oper = 5;
+	}
+
+	DAD.genes[0] = bufGene;
+
 	for (int i = 0; i < countLimit; i++)
 	{
 		if (i < countMOM)
@@ -763,12 +814,88 @@ Individ MixCrossover(Individ MOM, Individ DAD)
 	return(KID);
 }
 
+Population UpgradePopulation(Population popul, int f, std::string foutname, vector<struct data> ExpData, Symbolic t)
+{
+	std::ofstream fout;
+	fout.open(foutname, std::ios_base::app);
+	fout << "\nCONVERSION REACHED, UPGRADE POPULATION" << std::endl;
+
+	Population newPopulation;
+	int oldPopCount = 1;
+	newPopulation = popul;
+	int i = 0;
+
+	while (oldPopCount != 0)
+	{
+		i++;
+		oldPopCount = 0;
+
+		int numMOM = 0;
+		int numDAD = 0;
+		int nodeCross = 0;
+		vector<int> nums;
+		nums.resize(3);
+		nums = SmartMomDadChoice(newPopulation, f);
+		numMOM = nums[0];
+		numDAD = nums[1];
+		nodeCross = nums[2];
+
+		Individ MOM = newPopulation.inds[numMOM];
+		Individ DAD = newPopulation.inds[numDAD];
+		fout << "MOM is " << MOM.ind << " and fit is " << MOM.fit << std::endl;
+		fout << "DAD is " << DAD.ind << " and fit is " << DAD.fit << std::endl;
+		fout << "cross node is " << nodeCross << std::endl;
+
+		//Crossing
+		if ((MOM.pop <= f + 2) && (DAD.pop <= f + 2))
+		{
+			MOM = RandPlusCrossover(MOM, DAD);
+		}
+		else
+		{
+			MOM = MixCrossover(MOM, DAD);
+		}
+		fout << "NEW MOM is " << MOM.ind << std::endl;
+		MOM.CalcFit(ExpData, t, foutname);
+		MOM = numGA(MOM, ExpData, t, foutname);
+		MOM.pop = f + 2 + i;
+		newPopulation.inds[numMOM] = MOM;
+		fout << "Optimimzed momKID is " << MOM.ind << " and fit is " << MOM.fit << std::endl;
+
+		DAD = MixCrossover(MOM, DAD);
+		fout << "NEW DAD is " << DAD.ind << std::endl;
+		DAD.CalcFit(ExpData, t, foutname);
+		DAD = numGA(DAD, ExpData, t, foutname);
+		DAD.pop = f + 2 + i;
+		newPopulation.inds[numDAD] = DAD;
+		fout << "Optimimzed dadKID is " << DAD.ind << " and fit is " << DAD.fit << std::endl;
+
+		fout << "\nUpgrade Population " << i + 1 << std::endl;
+		oldPopCount = 0;
+		for (int j = 0; j < newPopulation.inds.size(); j++)
+		{
+			fout << newPopulation.inds[j].ind << std::endl;
+
+			if (newPopulation.inds[j].pop <= f + 2)
+			{
+				oldPopCount++;
+			}
+		}
+
+		fout << "current oldPopCount is " << oldPopCount << std::endl;
+	}
+
+	fout.close();
+	return newPopulation;
+}
+
 //Function for GA symbolic optimization (main)
 Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsigned int startime,
 	std::string foutname, std::string fitfilename)
 {
 	Individ outputInd;
 	double stopPoint = 99.9;
+	double stopFit = 0.01; //1%
 	
 	//MAIN GA LOOP
 	int limit = 1000; //manual limit for GA loops
@@ -781,8 +908,6 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 
 	std::ofstream fitfile;
 	fitfile.open(fitfilename, std::ios_base::app);
-
-	std::setprecision(9);
 
 	std::cout << "\n--------------------------THE SYMBOLIC GA STARTED--------------------------\n" << std::endl;
 	fout << "\n--------------------------THE SYMBOLIC GA STARTED--------------------------\n" << std::endl;
@@ -799,6 +924,8 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 		maxd = 0;
 		fitAVG = 0.0;
 		popul.inds[0].CalcFit(ExpData, t, foutname);
+
+		std::setprecision(9);
 
 		//Displaying current population
 		std::cout << "\nsymbGA Population " << f + 1 << std::endl;
@@ -834,7 +961,7 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 		fout << "The maximum fit in Population " << f << " is " <<
 			popul.inds[maxd].ind << " with fit " << popul.inds[maxd].fit << std::endl;
 
-		//Checking if the current minimum fit is the desired one
+		//Checking if the current maximum fit is the desired one
 		if (popul.inds[maxd].fit > stopPoint)
 		{
 			std::cout << "\n---------------FINAL---------------" <<
@@ -868,40 +995,8 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 		//KID
 		Individ KID = MOM;
 
-		auto bufMOM = MOM.ind->clone();
-		auto bufDAD = DAD.ind->clone();
-
-
-
-		if (abs(1 - (MOM.fit / DAD.fit)) < 0.05)
-		{
-			double boolCross = (1 / (double(rand() % 10) + 1)); //Particular crossover probability
-
-			if ((boolCross >= 0.2) && (boolCross <= 0.45))
-			{
-				fout << "RandPlusCrossover" << std::endl;
-				KID = RandPlusCrossover(MOM, DAD);
-			}
-			if ((boolCross > 0.15) && (boolCross < 0.2))
-			{
-				fout << "StakingCrossover" << std::endl;
-				KID = StakingCrossover(MOM, DAD, nodeCross);
-			}
-			else
-			{
-				fout << "StakingCrossover" << std::endl;
-				KID = MixCrossover(MOM, DAD);
-			}
-		}
-		else
-		{
-			fout << "OnePointCrossover" << std::endl;
-			KID = MixCrossover(MOM, DAD);
-		}
-
-		bufMOM->unreference(bufMOM);
-		bufDAD->unreference(bufDAD);
-
+		fout << "OnePointCrossover" << std::endl;
+		KID = MixCrossover(MOM, DAD);
 		fout << "KID is " << KID.ind << std::endl;
 		KID.CalcFit(ExpData, t, foutname);
 		KID = numGA(KID, ExpData, t, foutname);
@@ -910,6 +1005,16 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 		//Replacing the worst element of the population with the KID
 		popul.inds[mind] = KID;
 		outputInd = popul.inds[maxd];
+
+		std::cout << "Current upgrade rate is " <<
+			(abs(1 - (popul.inds[maxd].fit / popul.inds[mind].fit))) << std::endl;
+
+		//Checking if the population is already converged
+		if (abs(1 - (popul.inds[maxd].fit / popul.inds[mind].fit)) < 0.01)
+		{
+			std::cout << "UPGARDE ME!" << std::endl;
+			popul = UpgradePopulation(popul, f, foutname, ExpData, t);
+		}
 	};
 
 	std::cout << "symbGA optimization failed, ending the loop" << std::endl;
