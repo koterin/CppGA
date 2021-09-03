@@ -404,6 +404,55 @@ Individ IndFromGenes(vector<Gene> genes)
 	return(outputInd);
 }
 
+Individ Mutation(Individ KID)
+{
+	Individ newKID;
+	newKID = KID;
+
+	int m = 100;
+	double arg_st = 0.5;
+
+	for (int i = 0; i < newKID.genes.size(); i++)
+	{
+		auto buf = newKID.genes[i].elem->clone();
+
+		if ((typeid(*buf) == typeid(Number<double>)) || (typeid(*buf) == typeid(Number<int>)))
+		{
+			double nmax = newKID.genes[i].elem - 0.5 * newKID.genes[i].elem;
+			double nmin = newKID.genes[i].elem + 0.5 * newKID.genes[i].elem;
+			double dx = fabs(nmax - nmin);
+			double m_ver = 0.0;
+
+			for (int j = 0; j < m; j++)
+			{
+				double randNum = (rand() % 100 + 1) / double(100);
+
+				double a = 0.0;
+				if (randNum < (1 / double(m)))
+				{
+					a = 1.0;
+					m_ver = m_ver + a * pow(arg_st, j + 1);
+				}
+			}
+
+			int boolNum;
+			boolNum = rand() % 2;
+			if (boolNum == 0)
+			{
+				newKID.genes[i].elem += 0.5 * dx * m_ver;
+			}
+			else
+			{
+				newKID.genes[i].elem += - 0.5 * dx * m_ver;
+			}
+		}
+
+		buf->unreference(buf);
+	}
+
+	return(newKID);
+}
+
 //Function for GA coefficient optimization
 Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::string foutname)
 {
@@ -416,6 +465,9 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 
 	std::ofstream fout;
 	fout.open(foutname, std::ios_base::app);
+
+	std::ofstream fitfile;
+	fitfile.open("Data\\FitfileNUM.txt");
 
 	numPop.clear();
 	numPop.resize(GAsize);
@@ -472,6 +524,7 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 	else if (dec > 0)
 	{
 		fout << "The initial ind fit is " << inputInd.fit << std::endl;
+		double fitAVG = 0.0;
 		
 		for (int i = 0; i < numPop.size(); i++)
 		{
@@ -490,6 +543,7 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 			mind = 0;
 			maxd = 0;
 			numPop[mind].CalcFit(ExpData, t, foutname); //for the min calc later
+			fitAVG = 0.0;
 
 			//Displaying current population
 			fout << "\nNumeric GA Population " << f + 1 << std::endl;
@@ -508,18 +562,22 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 				{
 					maxd = g;
 				}
+				fitAVG += numPop[g].fit;
 			}
+			fitAVG = fitAVG / numPop.size();
+			fitfile << f + 1 << " " << numPop[mind].fit << " " << fitAVG << " " << numPop[maxd].fit << std::endl;
 
 			fout << "\nThe minimum fit in NumPopulation " << f + 1 << " is " << numPop[mind].fit << std::endl;
 			fout << "The maximum fit in NumPopulation " << f + 1<< " is " << numPop[maxd].fit << std::endl;
 
 			//Checking if the current population is converged
-			if (abs(1 - (numPop[maxd].fit / numPop[mind].fit)) < 0.05)
+			if (abs(1 - (numPop[maxd].fit / numPop[mind].fit)) < 0.01)
 			{
 				fout << "\nOptimum coefficients found after " << f + 1 << " loops, final ind is "
 					<< numPop[maxd].ind << " and fit = " << numPop[maxd].fit << std::endl;
 				outputInd = numPop[maxd];
 				fout.close();
+				fitfile.close();
 				return(outputInd);
 			}
 
@@ -562,6 +620,13 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 			
 			fout << "num KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
 
+			double randProb = 0.0;
+			randProb = (rand() % 100) / double(100);
+			if (randProb < 0.9)
+			{
+				KID = Mutation(KID);
+			}
+
 			//Replacing the worst element of the population with the KID
 			numPop[mind] = KID;
 			outputInd = numPop[maxd];
@@ -572,6 +637,7 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 	std::cout << "numGA optimization failed, ending the loop" << std::endl;
 	fout << "numGA optimization failed, ending the loop" << std::endl;
 	fout.close();
+	fitfile.close();
 	return(outputInd);
 }
 
@@ -928,7 +994,7 @@ void main(void) {
 	
 	Symbolic v("v"); //V - velocity
 	Symbolic t("t"); //t - time
-	v = t; //v depending on t
+	v = t*50; //v depending on t
 	int k = 1; //Individual serial number
 	int numInd = 15; //number of individuals in the population
 	int numCoef = 0; //number of coefficients in the origin individual
