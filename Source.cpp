@@ -409,7 +409,7 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 {
 	Individ outputInd;
 	vector<Individ> numPop; //Population for numeric GA
-	int GAsize = 10; //number of inds in GA
+	int GAsize = 20; //number of inds in GA
 	double resCoef = 0.0;
 	int bol = 0;
 	int dec = 0; //decision - is there any genes to optimize?
@@ -544,7 +544,7 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 
 			//KID
 			coef1 = (rand() % 100) / double(100);
-			coef2 = (rand() % 100) / double(100);
+			//coef2 = (rand() % 100) / double(100);
 			Individ KID = MOM;
 			
 			for (int q = 0; q < MOM.genes.size(); q++)
@@ -552,7 +552,7 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 				auto buf = KID.genes[q].elem->clone();
 				if (typeid(*buf) == typeid(Number<double>))
 				{
-					KID.genes[q].elem = coef1 * MOM.genes[q].elem + coef2 * DAD.genes[q].elem;
+					KID.genes[q].elem = coef1 * MOM.genes[q].elem + (1 - coef1) * DAD.genes[q].elem;
 				}
 				buf->unreference(buf);
 			}
@@ -930,7 +930,7 @@ void main(void) {
 	Symbolic t("t"); //t - time
 	v = t; //v depending on t
 	int k = 1; //Individual serial number
-	int numInd = 10; //number of individuals in the population
+	int numInd = 15; //number of individuals in the population
 	int numCoef = 0; //number of coefficients in the origin individual
 	int len = 500; //number of lines in ExpData to read
 	Individ outputInd; //Buffer for Individ class

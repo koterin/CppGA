@@ -16,6 +16,7 @@ C:\Users\Katerina\source\repos\CppGA\symbolic\integrate.h(156,32): warning C4101
 C:\Users\Katerina\source\repos\CppGA\symbolic\integrate.h(166,32): warning C4101: 'se': unreferenced local variable
 C:\Users\Katerina\source\repos\CppGA\symbolic\solve.h(74,33): warning C4101: 'se': unreferenced local variable
 C:\Users\Katerina\source\repos\CppGA\Source.cpp(364,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(486,17): warning C4101: 'coef2': unreferenced local variable
 C:\Users\Katerina\source\repos\CppGA\Source.cpp(699,33): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\Katerina\source\repos\CppGA\Source.cpp(700,33): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\Katerina\source\repos\CppGA\Source.cpp(717,54): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
@@ -137,8 +138,8 @@ C:\Users\Katerina\source\repos\CppGA\matrix.h(359): message : see reference to f
               T=Symbolic
           ]
   Generating code
-  51 of 2340 functions ( 2.2%) were compiled, the rest were copied from previous compilation.
+  4 of 2340 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    27 functions had inline decision re-evaluated but remain unchanged
+    12 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   SymbTest.vcxproj -> C:\Users\Katerina\source\repos\CppGA\x64\Release\CppGA.exe
