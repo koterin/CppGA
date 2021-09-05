@@ -4,7 +4,8 @@
 #include <fstream> //for files
 #include "symbolicc++.h" //for symbolic
 #include <ctime> //for runtime calculations
-#include <iomanip>      // std::setprecision
+#include <list>
+#include <iterator>
 
 class Gene {
 
@@ -51,6 +52,199 @@ public:
 	}
 };
 
+//Checking if input y is already a complex formula
+vector<Gene> GeneDecomposition(Symbolic y)
+{
+	vector<Gene> bufGenes, newGenes;
+	bufGenes.clear();
+	newGenes.clear();
+
+	Gene outputGene;
+
+	list <Symbolic> bufList;
+	bufList.clear();
+
+	auto bufY = y->clone();
+
+	if (typeid(*bufY) == typeid(Sum))
+	{
+		std::cout << "It's a sum " << (*((Sum*)(bufY))).summands << std::endl;
+		bufList = (*((Sum*)(bufY))).summands;
+		auto iter = bufList.begin();
+		int oper = 1;
+
+		for (int i = 0; i < bufList.size(); i++)
+		{
+			auto bufNum = Symbolic(*iter)->clone();
+			if ((typeid(*bufNum) == typeid(Number<double>)) || (typeid(*bufNum) == typeid(Number<int>)))
+			{
+				std::cout << *iter << " is a num" << std::endl;
+				outputGene.elem = *iter;
+				outputGene.oper = oper;
+				bufGenes.push_back(outputGene);
+			}
+			if (typeid(*bufNum) == typeid(Symbol))
+			{
+				std::cout << *iter << " is a symb" << std::endl;
+				outputGene.elem = *iter;
+				outputGene.oper = oper;
+				bufGenes.push_back(outputGene);
+			}
+			else if ((typeid(*bufNum) != typeid(Number<double>)) && (typeid(*bufNum) != typeid(Number<int>))
+				&& (typeid(*bufNum) != typeid(Symbol)))
+			{
+				std::cout << *iter << " is a complex function" << std::endl;
+				newGenes.clear();
+				newGenes = GeneDecomposition(*iter);
+				newGenes[0].oper = oper;
+				for (int j = 0; j < newGenes.size(); j++)
+				{
+					bufGenes.push_back(newGenes[j]);
+				}
+			}
+
+			iter++;
+			bufNum->unreference(bufNum);
+		}	
+	}
+
+	if (typeid(*bufY) == typeid(Product))
+	{
+		std::cout << "It's a profuct " << (*((Product*)(bufY))).factors << std::endl;
+		bufList = (*((Product*)(bufY))).factors;
+		auto iter = bufList.begin();
+		int oper = 3;
+
+		for (int i = 0; i < bufList.size(); i++)
+		{
+			auto bufNum = Symbolic(*iter)->clone();
+			if ((typeid(*bufNum) == typeid(Number<double>)) || (typeid(*bufNum) == typeid(Number<int>)))
+			{
+				std::cout << *iter << " is a num" << std::endl;
+				outputGene.elem = *iter;
+				outputGene.oper = oper;
+				bufGenes.push_back(outputGene);
+			}
+			if (typeid(*bufNum) == typeid(Symbol))
+			{
+				std::cout << *iter << " is a symb" << std::endl;
+				outputGene.elem = *iter;
+				outputGene.oper = oper;
+				bufGenes.push_back(outputGene);
+			}
+			else if ((typeid(*bufNum) != typeid(Number<double>)) && (typeid(*bufNum) != typeid(Number<int>))
+				&& (typeid(*bufNum) != typeid(Symbol)))
+			{
+				std::cout << *iter << " is a complex function" << std::endl;
+				newGenes.clear();
+				newGenes = GeneDecomposition(*iter);
+				newGenes[0].oper = oper;
+				for (int j = 0; j < newGenes.size(); j++)
+				{
+					bufGenes.push_back(newGenes[j]);
+				}
+			}
+
+			iter++;
+			bufNum->unreference(bufNum);
+		}
+	}
+
+	if (typeid(*bufY) == typeid(Power))
+	{
+		std::cout << "It's a power " << (*((Symbol*)(&(*((Power*)(bufY)))))).parameters << std::endl;
+		bufList = (*((Symbol*)(&(*((Power*)(bufY)))))).parameters;
+		auto iter = bufList.begin();
+		int oper = 5;
+
+		for (int i = 0; i < bufList.size(); i++)
+		{
+			auto bufNum = Symbolic(*iter)->clone();
+			if ((typeid(*bufNum) == typeid(Number<double>)) || (typeid(*bufNum) == typeid(Number<int>)))
+			{
+				std::cout << *iter << " is a num" << std::endl;
+				outputGene.elem = *iter;
+				outputGene.oper = oper;
+				bufGenes.push_back(outputGene);
+			}
+			if (typeid(*bufNum) == typeid(Symbol))
+			{
+				std::cout << *iter << " is a symb" << std::endl;
+				outputGene.elem = *iter;
+				outputGene.oper = oper;
+				bufGenes.push_back(outputGene);
+			}
+			else if ((typeid(*bufNum) != typeid(Number<double>)) && (typeid(*bufNum) != typeid(Number<int>))
+				&& (typeid(*bufNum) != typeid(Symbol)))
+			{
+				std::cout << *iter << " is a complex function" << std::endl;
+				newGenes.clear();
+				newGenes = GeneDecomposition(*iter);
+				newGenes[0].oper = oper;
+				for (int j = 0; j < newGenes.size(); j++)
+				{
+					bufGenes.push_back(newGenes[j]);
+				}
+			}
+
+			iter++;
+			bufNum->unreference(bufNum);
+		}
+	}
+
+	bufY->unreference(bufY);
+	return (bufGenes);
+}
+
+//Function for creating new individual from the genes given
+//WARNING! Input genes vector MUST BE SORTED and organized the way it should be in the output Individual
+Individ IndFromGenes(vector<Gene> genes)
+{
+	Individ outputInd;
+	outputInd.ind = "";
+	int vsize = genes.size();
+	outputInd.genes.resize(vsize);
+
+	//For the 1st element
+	outputInd.genes[0] = genes[0];
+	outputInd.ind = genes[0].elem;
+
+	for (int i = 1; i < vsize; i++)
+	{
+		if (genes[i].oper == 1)
+		{
+			outputInd.ind = (outputInd.ind) + genes[i].elem;
+			outputInd.genes[i] = genes[i];
+		}
+
+		if (genes[i].oper == 2)
+		{
+			outputInd.ind = (outputInd.ind) - genes[i].elem;
+			outputInd.genes[i] = genes[i];
+		}
+
+		if (genes[i].oper == 3)
+		{
+			outputInd.ind = (outputInd.ind) * genes[i].elem;
+			outputInd.genes[i] = genes[i];
+		}
+
+		if (genes[i].oper == 4)
+		{
+			outputInd.ind = (outputInd.ind) / genes[i].elem;
+			outputInd.genes[i] = genes[i];
+		}
+
+		if (genes[i].oper == 5)
+		{
+			outputInd.ind = pow((outputInd.ind), genes[i].elem);
+			outputInd.genes[i] = genes[i];
+		}
+	}
+
+	return(outputInd);
+}
+
 class Population {
 private:
 	Individ indZero;
@@ -70,14 +264,27 @@ public:
 		inds.clear();
 		inds.reserve(numInd);
 		indZero.genes.clear();
-		indZero.genes.reserve(2);
 		std::ofstream fout;
 		fout.open(foutname, std::ios_base::app);
+		vector<Gene> startGenes;
+		startGenes = GeneDecomposition(y);
+		std::cout << "Start genes are [ ";
+		for (int k = 0; k < startGenes.size(); k++)
+		{
+			std::cout << startGenes[k].elem << " ";
+		}
+		std::cout << "]" << std::endl;
+		Individ sampleind;
+		sampleind = IndFromGenes(startGenes);
+		std::cout << "An ind from them is " << sampleind.ind << "\n";
+
 
 		//Cycle for sequential creating individuals
 		for (int i = 0; i < numInd; i++)
 		{
-			int dist = rand() % 9 +1;
+			int dist = rand() % 9 + 1;
+			indZero.genes.clear();
+			indZero.genes = startGenes;
 
 			//Creating individuals with the operands decided by the probability distribution
 			//(weights can be adjusted according to the problem)
@@ -88,11 +295,6 @@ public:
 
 				indZero.ind = z; //initialization of y as an individual
 				indZero.pop = 1; //Ind population - 1st
-
-				genZero.elem = y; //setting the 1st gene as the imput y
-				genZero.oper = 1;
-				indZero.genes.clear();
-				indZero.genes.push_back(genZero);
 
 				genZero.elem = x; //setting the 2nd gene as the operation inititated - "+ x"
 				genZero.oper = 1;
@@ -108,11 +310,6 @@ public:
 				indZero.ind = z;
 				indZero.pop = 1;
 
-				genZero.elem = y;
-				genZero.oper = 1;
-				indZero.genes.clear();
-				indZero.genes.push_back(genZero);
-
 				genZero.elem = x;
 				genZero.oper = 3;
 				indZero.genes.push_back(genZero);
@@ -127,11 +324,6 @@ public:
 				indZero.ind = z;
 				indZero.pop = 1;
 
-				genZero.elem = y;
-				genZero.oper = 1;
-				indZero.genes.clear();
-				indZero.genes.push_back(genZero);
-
 				genZero.elem = x;
 				genZero.oper = 4;
 				indZero.genes.push_back(genZero);
@@ -145,11 +337,6 @@ public:
 
 				indZero.ind = z;
 				indZero.pop = 1;
-
-				genZero.elem = y;
-				genZero.oper = 1;
-				indZero.genes.clear();
-				indZero.genes.push_back(genZero);
 
 				genZero.elem = x;
 				genZero.oper = 5;
@@ -166,11 +353,6 @@ public:
 				indZero.ind = z;
 				indZero.pop = 1;
 
-				genZero.elem = y;
-				genZero.oper = 1;
-				indZero.genes.clear();
-				indZero.genes.push_back(genZero);
-
 				genZero.elem = coeff;
 				genZero.oper = 5;
 				indZero.genes.push_back(genZero);
@@ -185,11 +367,6 @@ public:
 
 				indZero.ind = z;
 				indZero.pop = 1;
-
-				genZero.elem = y;
-				genZero.oper = 1;
-				indZero.genes.clear();
-				indZero.genes.push_back(genZero);
 
 				genZero.elem = coeff;
 				genZero.oper = 3;
@@ -206,11 +383,6 @@ public:
 				indZero.ind = z;
 				indZero.pop = 1;
 
-				genZero.elem = y;
-				genZero.oper = 1;
-				indZero.genes.clear();
-				indZero.genes.push_back(genZero);
-
 				genZero.elem = coeff;
 				genZero.oper = 1;
 				indZero.genes.push_back(genZero);
@@ -225,11 +397,6 @@ public:
 
 				indZero.ind = z;
 				indZero.pop = 1;
-
-				genZero.elem = y;
-				genZero.oper = 1;
-				indZero.genes.clear();
-				indZero.genes.push_back(genZero);
 
 				genZero.elem = coeff;
 				genZero.oper = 2;
@@ -246,11 +413,6 @@ public:
 				indZero.ind = z;
 				indZero.pop = 1;
 
-				genZero.elem = y;
-				genZero.oper = 1;
-				indZero.genes.clear();
-				indZero.genes.push_back(genZero);
-
 				genZero.elem = coeff;
 				genZero.oper = 4;
 				indZero.genes.push_back(genZero);
@@ -265,7 +427,7 @@ public:
 
 		for (int i = 0; i < numInd; i++)
 		{
-			outputInd = inds.at(i);
+			outputInd = inds[i];
 			//If one of the inds in the 1st population is zero
 			auto buf = outputInd.ind->clone();
 			if ((typeid(*buf) == typeid(Number<double>)) || (typeid(*buf) == typeid(Number<int>)))
@@ -275,7 +437,7 @@ public:
 				outputGene.oper = 1;
 				outputInd.genes.clear();
 				outputInd.genes.push_back(outputGene);
-				inds.at(i) = outputInd;
+				inds[i] = outputInd;
 			}
 			buf->unreference(buf);
 
@@ -354,55 +516,6 @@ vector<struct data> SetData(std::string fileroute, int len)
 	datain.close();
 	return(ExpData);
 };
-
-//Function for creating new individual from the genes given
-//WARNING! Input genes vector MUST BE SORTED and organized the way it should be in the output Individual
-Individ IndFromGenes(vector<Gene> genes)
-{
-	Individ outputInd;
-	outputInd.ind = "";
-	int vsize = genes.size();
-	outputInd.genes.resize(vsize);
-
-	//For the 1st element
-	outputInd.genes[0] = genes[0];
-	outputInd.ind = genes[0].elem;
-
-	for (int i = 1; i < vsize; i++)
-	{
-		if (genes[i].oper == 1)
-		{
-			outputInd.ind = (outputInd.ind) + genes[i].elem;
-			outputInd.genes[i] = genes[i];
-		}
-
-		if (genes[i].oper == 2)
-		{
-			outputInd.ind = (outputInd.ind) - genes[i].elem;
-			outputInd.genes[i] = genes[i];
-		}
-
-		if (genes[i].oper == 3)
-		{
-			outputInd.ind = (outputInd.ind) * genes[i].elem;
-			outputInd.genes[i] = genes[i];
-		}
-
-		if (genes[i].oper == 4)
-		{
-			outputInd.ind = (outputInd.ind) / genes[i].elem;
-			outputInd.genes[i] = genes[i];
-		}
-
-		if (genes[i].oper == 5)
-		{
-			outputInd.ind = pow((outputInd.ind), genes[i].elem);
-			outputInd.genes[i] = genes[i];
-		}
-	}
-
-	return(outputInd);
-}
 
 Individ Mutation(Individ KID)
 {
@@ -994,11 +1107,11 @@ void main(void) {
 	
 	Symbolic v("v"); //V - velocity
 	Symbolic t("t"); //t - time
-	v = t*50; //v depending on t
+	v = t+50; //v depending on t
 	int k = 1; //Individual serial number
-	int numInd = 15; //number of individuals in the population
+	int numInd = 5; //number of individuals in the population
 	int numCoef = 0; //number of coefficients in the origin individual
-	int len = 500; //number of lines in ExpData to read
+	int len = 200; //number of lines in ExpData to read
 	Individ outputInd; //Buffer for Individ class
 	vector<struct data> ExpData; //Vector of experimental data
 	ExpData.clear();
