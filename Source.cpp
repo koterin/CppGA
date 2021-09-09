@@ -53,7 +53,7 @@ public:
 };
 
 //Checking if input y is already a complex formula
-vector<Gene> GeneDecomposition(Symbolic y)
+vector<Gene> InputGeneDecomposition(Symbolic y)
 {
 	vector<Gene> bufGenes, newGenes;
 	bufGenes.clear();
@@ -68,7 +68,6 @@ vector<Gene> GeneDecomposition(Symbolic y)
 
 	if (typeid(*bufY) == typeid(Sum))
 	{
-		std::cout << "It's a sum " << (*((Sum*)(bufY))).summands << std::endl;
 		bufList = (*((Sum*)(bufY))).summands;
 		auto iter = bufList.begin();
 		int oper = 1;
@@ -78,14 +77,12 @@ vector<Gene> GeneDecomposition(Symbolic y)
 			auto bufNum = Symbolic(*iter)->clone();
 			if ((typeid(*bufNum) == typeid(Number<double>)) || (typeid(*bufNum) == typeid(Number<int>)))
 			{
-				std::cout << *iter << " is a num" << std::endl;
 				outputGene.elem = *iter;
 				outputGene.oper = oper;
 				bufGenes.push_back(outputGene);
 			}
 			if (typeid(*bufNum) == typeid(Symbol))
 			{
-				std::cout << *iter << " is a symb" << std::endl;
 				outputGene.elem = *iter;
 				outputGene.oper = oper;
 				bufGenes.push_back(outputGene);
@@ -93,9 +90,8 @@ vector<Gene> GeneDecomposition(Symbolic y)
 			else if ((typeid(*bufNum) != typeid(Number<double>)) && (typeid(*bufNum) != typeid(Number<int>))
 				&& (typeid(*bufNum) != typeid(Symbol)))
 			{
-				std::cout << *iter << " is a complex function" << std::endl;
 				newGenes.clear();
-				newGenes = GeneDecomposition(*iter);
+				newGenes = InputGeneDecomposition(*iter);
 				newGenes[0].oper = oper;
 				for (int j = 0; j < newGenes.size(); j++)
 				{
@@ -110,7 +106,6 @@ vector<Gene> GeneDecomposition(Symbolic y)
 
 	if (typeid(*bufY) == typeid(Product))
 	{
-		std::cout << "It's a profuct " << (*((Product*)(bufY))).factors << std::endl;
 		bufList = (*((Product*)(bufY))).factors;
 		auto iter = bufList.begin();
 		int oper = 3;
@@ -120,14 +115,12 @@ vector<Gene> GeneDecomposition(Symbolic y)
 			auto bufNum = Symbolic(*iter)->clone();
 			if ((typeid(*bufNum) == typeid(Number<double>)) || (typeid(*bufNum) == typeid(Number<int>)))
 			{
-				std::cout << *iter << " is a num" << std::endl;
 				outputGene.elem = *iter;
 				outputGene.oper = oper;
 				bufGenes.push_back(outputGene);
 			}
 			if (typeid(*bufNum) == typeid(Symbol))
 			{
-				std::cout << *iter << " is a symb" << std::endl;
 				outputGene.elem = *iter;
 				outputGene.oper = oper;
 				bufGenes.push_back(outputGene);
@@ -135,9 +128,8 @@ vector<Gene> GeneDecomposition(Symbolic y)
 			else if ((typeid(*bufNum) != typeid(Number<double>)) && (typeid(*bufNum) != typeid(Number<int>))
 				&& (typeid(*bufNum) != typeid(Symbol)))
 			{
-				std::cout << *iter << " is a complex function" << std::endl;
 				newGenes.clear();
-				newGenes = GeneDecomposition(*iter);
+				newGenes = InputGeneDecomposition(*iter);
 				newGenes[0].oper = oper;
 				for (int j = 0; j < newGenes.size(); j++)
 				{
@@ -152,7 +144,6 @@ vector<Gene> GeneDecomposition(Symbolic y)
 
 	if (typeid(*bufY) == typeid(Power))
 	{
-		std::cout << "It's a power " << (*((Symbol*)(&(*((Power*)(bufY)))))).parameters << std::endl;
 		bufList = (*((Symbol*)(&(*((Power*)(bufY)))))).parameters;
 		auto iter = bufList.begin();
 		int oper = 5;
@@ -162,14 +153,12 @@ vector<Gene> GeneDecomposition(Symbolic y)
 			auto bufNum = Symbolic(*iter)->clone();
 			if ((typeid(*bufNum) == typeid(Number<double>)) || (typeid(*bufNum) == typeid(Number<int>)))
 			{
-				std::cout << *iter << " is a num" << std::endl;
 				outputGene.elem = *iter;
 				outputGene.oper = oper;
 				bufGenes.push_back(outputGene);
 			}
 			if (typeid(*bufNum) == typeid(Symbol))
 			{
-				std::cout << *iter << " is a symb" << std::endl;
 				outputGene.elem = *iter;
 				outputGene.oper = oper;
 				bufGenes.push_back(outputGene);
@@ -177,9 +166,8 @@ vector<Gene> GeneDecomposition(Symbolic y)
 			else if ((typeid(*bufNum) != typeid(Number<double>)) && (typeid(*bufNum) != typeid(Number<int>))
 				&& (typeid(*bufNum) != typeid(Symbol)))
 			{
-				std::cout << *iter << " is a complex function" << std::endl;
 				newGenes.clear();
-				newGenes = GeneDecomposition(*iter);
+				newGenes = InputGeneDecomposition(*iter);
 				newGenes[0].oper = oper;
 				for (int j = 0; j < newGenes.size(); j++)
 				{
@@ -261,23 +249,16 @@ public:
 		//srand(time(0)); //turning on the random distribution
 		Symbolic z = y; //temporary variable for creating individuals
 		double coeff = 0.0; //random coefficient for 1st pop dreation
+
 		inds.clear();
 		inds.reserve(numInd);
 		indZero.genes.clear();
+
 		std::ofstream fout;
 		fout.open(foutname, std::ios_base::app);
-		vector<Gene> startGenes;
-		startGenes = GeneDecomposition(y);
-		std::cout << "Start genes are [ ";
-		for (int k = 0; k < startGenes.size(); k++)
-		{
-			std::cout << startGenes[k].elem << " ";
-		}
-		std::cout << "]" << std::endl;
-		Individ sampleind;
-		sampleind = IndFromGenes(startGenes);
-		std::cout << "An ind from them is " << sampleind.ind << "\n";
 
+		vector<Gene> startGenes;
+		startGenes = InputGeneDecomposition(y);
 
 		//Cycle for sequential creating individuals
 		for (int i = 0; i < numInd; i++)
@@ -489,7 +470,7 @@ vector<struct data> SetData(std::string fileroute, int len)
 		return(ExpData);
 	}
 
-	std::cout << "Datafile is " << totalLen << " lines long, input frequiency will be "
+	std::cout << "\nDatafile is " << totalLen << " lines long, input frequiency will be "
 		<< freq << " lines" << std::endl;
 
 	datafile.seekg(std::ios_base::beg);
@@ -517,12 +498,12 @@ vector<struct data> SetData(std::string fileroute, int len)
 	return(ExpData);
 };
 
-Individ Mutation(Individ KID)
+Individ NumMutation(Individ KID)
 {
 	Individ newKID;
 	newKID = KID;
 
-	int m = 100;
+	int m = 10;
 	double arg_st = 0.5;
 
 	for (int i = 0; i < newKID.genes.size(); i++)
@@ -531,14 +512,14 @@ Individ Mutation(Individ KID)
 
 		if ((typeid(*buf) == typeid(Number<double>)) || (typeid(*buf) == typeid(Number<int>)))
 		{
-			double nmax = newKID.genes[i].elem - 0.5 * newKID.genes[i].elem;
-			double nmin = newKID.genes[i].elem + 0.5 * newKID.genes[i].elem;
-			double dx = fabs(nmax - nmin);
+			double nmax = newKID.genes[i].elem - 0.5 * newKID.genes[i].elem; //lower limit
+			double nmin = newKID.genes[i].elem + 0.5 * newKID.genes[i].elem; //upper limit
+			double dx = fabs(nmax - nmin); //limit line
 			double m_ver = 0.0;
 
 			for (int j = 0; j < m; j++)
 			{
-				double randNum = (rand() % 100 + 1) / double(100);
+				double randNum = (double(rand() % 100) + 1) / double(100);
 
 				double a = 0.0;
 				if (randNum < (1 / double(m)))
@@ -566,12 +547,58 @@ Individ Mutation(Individ KID)
 	return(newKID);
 }
 
+Individ SymbMutation(Individ KID, string foutname, Symbolic t)
+{
+	std::ofstream fout;
+	fout.open(foutname, std::ios_base::app);
+	int boolOper = rand() % 5 + 1;
+	Gene mutGene;
+
+	fout << "Mutation" << std::endl;
+	fout << "\nTHE KID WAS " << KID.ind;
+	if ((boolOper == 1) || (boolOper == 2))
+	{
+		mutGene.elem = t;
+		mutGene.oper = 3;
+		KID.genes.push_back(mutGene);
+		KID = IndFromGenes(KID.genes);
+		fout << "\nmult mutation";
+	}
+	if (boolOper == 3)
+	{
+		mutGene.elem = t;
+		mutGene.oper = 4;
+		KID.genes.push_back(mutGene);
+		KID = IndFromGenes(KID.genes);
+		fout << "\ndiv mutation";
+	}
+	if (boolOper == 4)
+	{
+		mutGene.elem = t;
+		mutGene.oper = 5;
+		KID.genes.push_back(mutGene);
+		KID = IndFromGenes(KID.genes);
+		fout << "\npow mutation";
+	}
+	if (boolOper == 5)
+	{
+		mutGene.elem = rand() % 10 + 1;
+		mutGene.oper = 5;
+		KID.genes.push_back(mutGene);
+		KID = IndFromGenes(KID.genes);
+		fout << "\nNum pow mutatuion ";
+	}
+
+	fout.close();
+	return(KID);
+}
+
 //Function for GA coefficient optimization
 Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::string foutname)
 {
 	Individ outputInd;
 	vector<Individ> numPop; //Population for numeric GA
-	int GAsize = 20; //number of inds in GA
+	int GAsize = 30; //number of inds in GA
 	double resCoef = 0.0;
 	int bol = 0;
 	int dec = 0; //decision - is there any genes to optimize?
@@ -647,7 +674,8 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 
 		//MAIN GA LOOP
 
-		int limit = 100; //manual limit for GA loops
+		int limit = dec*100; //manual limit for GA loops
+		std::cout << "NumGA limits = " << limit << std::endl;
 		int mind, maxd;
 		double coef1, coef2;
 
@@ -735,9 +763,9 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 
 			double randProb = 0.0;
 			randProb = (rand() % 100) / double(100);
-			if (randProb < 0.9)
+			if (randProb < 0.8)
 			{
-				KID = Mutation(KID);
+				KID = NumMutation(KID);
 			}
 
 			//Replacing the worst element of the population with the KID
@@ -942,6 +970,41 @@ Individ MixCrossover(Individ MOM, Individ DAD)
 	return(KID);
 }
 
+Individ ClassicCrossover(Individ MOM, Individ DAD)
+{
+	Individ KID;
+	vector<Gene> newKID;
+	newKID.clear();
+
+	int MOMpart = (rand() % (MOM.genes.size() - 1)) + 1; //size of MOM individual to be swapped
+	int DADpart = (rand() % (DAD.genes.size() - 1)) + 1; //size of DAD individual to be swapped
+
+	int MOMdiv = rand() % (MOM.genes.size() - MOMpart + 1); //Start gene for swap in MOM
+	int DADdiv = rand() % (DAD.genes.size() - DADpart + 1); //Start gene for swap in DAD
+
+	for (int i = 0; i < MOMdiv; i++)
+	{
+		newKID.push_back(MOM.genes[i]);
+	}
+
+	for (int i = 0; i < DADpart; i++)
+	{
+		newKID.push_back(DAD.genes[int(DADdiv + i)]);
+	}
+
+	if ((int(MOMdiv + MOMpart)) < MOM.genes.size())
+	{
+		for (int i = 0; i < (MOM.genes.size() - MOMdiv - MOMpart); i++)
+		{
+			newKID.push_back(MOM.genes[int(MOMdiv + MOMpart + i)]);
+		}
+	}
+
+	KID = IndFromGenes(newKID);
+	std::cout << "Final KID is " << KID.ind << std::endl;
+	return(KID);
+}
+
 //Function for GA symbolic optimization (main)
 Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsigned int startime,
 	std::string foutname, std::string fitfilename)
@@ -1047,39 +1110,14 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 		//KID
 		Individ KID = MOM;
 
-		auto bufMOM = MOM.ind->clone();
-		auto bufDAD = DAD.ind->clone();
+		fout << "ClassicCrossover" << std::endl;
+		KID = ClassicCrossover(MOM, DAD);
 
-
-
-		if (abs(1 - (MOM.fit / DAD.fit)) < 0.05)
+		double boolCross = (1 / (double(rand() % 10) + 1)); //Mutation probability
+		if (boolCross < 0.18)
 		{
-			double boolCross = (1 / (double(rand() % 10) + 1)); //Particular crossover probability
-
-			if ((boolCross >= 0.2) && (boolCross <= 0.45))
-			{
-				fout << "RandPlusCrossover" << std::endl;
-				KID = RandPlusCrossover(MOM, DAD);
-			}
-			if ((boolCross > 0.15) && (boolCross < 0.2))
-			{
-				fout << "StakingCrossover" << std::endl;
-				KID = StakingCrossover(MOM, DAD, nodeCross);
-			}
-			else
-			{
-				fout << "StakingCrossover" << std::endl;
-				KID = MixCrossover(MOM, DAD);
-			}
+			KID = SymbMutation(KID, foutname, t);
 		}
-		else
-		{
-			fout << "OnePointCrossover" << std::endl;
-			KID = MixCrossover(MOM, DAD);
-		}
-
-		bufMOM->unreference(bufMOM);
-		bufDAD->unreference(bufDAD);
 
 		fout << "KID is " << KID.ind << std::endl;
 		KID.CalcFit(ExpData, t, foutname);
@@ -1088,6 +1126,38 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 		fout << "Optimimzed KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
 		//Replacing the worst element of the population with the KID
 		popul.inds[mind] = KID;
+
+		fout << "2ndCrossover - Randplus" << std::endl;
+		Individ KID2;
+		if (numMOM == maxd)
+		{
+			KID2 = DAD;
+		}
+		else
+		{
+			KID2 = MOM;
+		}
+
+		KID2 = ClassicCrossover(MOM, DAD);
+		boolCross = (1 / (double(rand() % 10) + 1)); //Mutation probability
+		if (boolCross < 0.18)
+		{
+			KID = SymbMutation(KID, foutname, t);
+		}
+
+		std::cout << "2nd KID is " << KID2.ind << std::endl;
+		fout << "2nd KID is " << KID2.ind << std::endl;
+		KID2.CalcFit(ExpData, t, foutname);
+		KID2 = numGA(KID2, ExpData, t, foutname);
+		KID2.pop = f + 2;
+		fout << "Optimimzed 2ndKID is " << KID2.ind << " and fit is " << KID2.fit << std::endl;
+
+		int indexPop = rand() % popul.inds.size();
+		while ((indexPop == maxd) || (indexPop == mind))
+		{
+			indexPop = rand() % popul.inds.size();
+		}
+		popul.inds[indexPop] = KID2;
 		outputInd = popul.inds[maxd];
 	};
 
@@ -1107,9 +1177,9 @@ void main(void) {
 	
 	Symbolic v("v"); //V - velocity
 	Symbolic t("t"); //t - time
-	v = t+50; //v depending on t
+	v = -68671 * t + 84; //v depending on t
 	int k = 1; //Individual serial number
-	int numInd = 5; //number of individuals in the population
+	int numInd = 10; //number of individuals in the population
 	int numCoef = 0; //number of coefficients in the origin individual
 	int len = 200; //number of lines in ExpData to read
 	Individ outputInd; //Buffer for Individ class
