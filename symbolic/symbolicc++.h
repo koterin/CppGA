@@ -143,6 +143,9 @@ Symbolic operator^(int,const Symbolic &);
 Symbolic operator^(const Symbolic &,double);
 Symbolic operator^(double,const Symbolic &);
 Symbolic exp(const Symbolic &);
+//---------------------------
+Symbolic Hev(const Symbolic &);
+//---------------------------
 Symbolic sqrt(const Symbolic &);
 Symbolic factorial(const Symbolic &);
 Symbolic gamma(const Symbolic &);
@@ -406,7 +409,15 @@ Symbolic operator^(double d,const Symbolic &s)
 { return Power(Symbolic(d),s); }
 
 Symbolic exp(const Symbolic &s)
-{ return SymbolicConstant::e ^ s; }
+{ 
+	return SymbolicConstant::e ^ s; 
+}
+
+Symbolic Hev(const Symbolic &s)
+{
+	//return 1 / (1 + (SymbolicConstant::e ^ (-70 * s)));
+	return HEV(s);
+}
 
 Symbolic sqrt(const Symbolic &s)
 { return s ^ (Number<int>(1) / 2); }

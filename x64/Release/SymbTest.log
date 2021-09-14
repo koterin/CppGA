@@ -2,9 +2,9 @@
 C:\Users\Katerina\source\repos\CppGA\verylong.h(338,50): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\Katerina\source\repos\CppGA\verylong.h(417,33): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\Katerina\source\repos\CppGA\verylong.h(499,49): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Katerina\source\repos\CppGA\symbolic\sum.h(422,26): warning C4390: ';': empty controlled statement found; is this the intent?
-C:\Users\Katerina\source\repos\CppGA\symbolic\symmatrix.h(94,45): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Katerina\source\repos\CppGA\symbolic\symmatrix.h(96,53): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Katerina\source\repos\CppGA\symbolic\sum.h(433,26): warning C4390: ';': empty controlled statement found; is this the intent?
+C:\Users\Katerina\source\repos\CppGA\symbolic\symmatrix.h(95,45): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Katerina\source\repos\CppGA\symbolic\symmatrix.h(97,53): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\Katerina\source\repos\CppGA\symbolic\integrate.h(61,32): warning C4101: 'se': unreferenced local variable
 C:\Users\Katerina\source\repos\CppGA\symbolic\integrate.h(71,32): warning C4101: 'se': unreferenced local variable
 C:\Users\Katerina\source\repos\CppGA\symbolic\integrate.h(81,32): warning C4101: 'se': unreferenced local variable
@@ -15,25 +15,25 @@ C:\Users\Katerina\source\repos\CppGA\symbolic\integrate.h(146,32): warning C4101
 C:\Users\Katerina\source\repos\CppGA\symbolic\integrate.h(156,32): warning C4101: 'se': unreferenced local variable
 C:\Users\Katerina\source\repos\CppGA\symbolic\integrate.h(166,32): warning C4101: 'se': unreferenced local variable
 C:\Users\Katerina\source\repos\CppGA\symbolic\solve.h(74,33): warning C4101: 'se': unreferenced local variable
-C:\Users\Katerina\source\repos\CppGA\Source.cpp(193,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Katerina\source\repos\CppGA\Source.cpp(687,17): warning C4101: 'coef2': unreferenced local variable
-C:\Users\Katerina\source\repos\CppGA\Source.cpp(913,33): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Katerina\source\repos\CppGA\Source.cpp(914,33): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Katerina\source\repos\CppGA\Source.cpp(931,54): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
-C:\Users\Katerina\source\repos\CppGA\Source.cpp(944,33): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Katerina\source\repos\CppGA\Source.cpp(945,33): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Katerina\source\repos\CppGA\Source.cpp(1025,9): warning C4101: 'coef1': unreferenced local variable
-C:\Users\Katerina\source\repos\CppGA\Source.cpp(1025,16): warning C4101: 'coef2': unreferenced local variable
-C:\Users\Katerina\source\repos\CppGA\Source.cpp(1179,17): warning C4326: return type of 'main' should be 'int' instead of 'void'
-C:\Users\Katerina\source\repos\CppGA\Source.cpp(1183,7): warning C4551: function call missing argument list
-C:\Users\Katerina\source\repos\CppGA\Source.cpp(1181,15): warning C4101: 'start': unreferenced local variable
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(213,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(707,17): warning C4101: 'coef2': unreferenced local variable
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(933,33): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(934,33): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(951,54): warning C4244: 'argument': conversion from 'double' to 'const unsigned __int64', possible loss of data
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(964,33): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(965,33): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(1045,9): warning C4101: 'coef1': unreferenced local variable
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(1045,16): warning C4101: 'coef2': unreferenced local variable
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(1199,17): warning C4326: return type of 'main' should be 'int' instead of 'void'
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(1203,7): warning C4551: function call missing argument list
+C:\Users\Katerina\source\repos\CppGA\Source.cpp(1201,15): warning C4101: 'start': unreferenced local variable
 C:\Users\Katerina\source\repos\CppGA\matrix.h(121,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\Katerina\source\repos\CppGA\matrix.h(120): message : while compiling class template member function 'Matrix<Symbolic>::Matrix(const Vector<T> &)'
           with
           [
               T=Symbolic
           ]
-C:\Users\Katerina\source\repos\CppGA\symbolic\symbolic.h(764): message : see reference to function template instantiation 'Matrix<Symbolic>::Matrix(const Vector<T> &)' being compiled
+C:\Users\Katerina\source\repos\CppGA\symbolic\symbolic.h(796): message : see reference to function template instantiation 'Matrix<Symbolic>::Matrix(const Vector<T> &)' being compiled
           with
           [
               T=Symbolic
@@ -45,12 +45,12 @@ C:\Users\Katerina\source\repos\CppGA\vector.h(253): message : while compiling cl
           [
               T=Symbolic
           ]
-C:\Users\Katerina\source\repos\CppGA\symbolic\symbolic.h(745): message : see reference to function template instantiation 'T Vector<T>::operator |(const Vector<T> &) const' being compiled
+C:\Users\Katerina\source\repos\CppGA\symbolic\symbolic.h(777): message : see reference to function template instantiation 'T Vector<T>::operator |(const Vector<T> &) const' being compiled
           with
           [
               T=Symbolic
           ]
-C:\Users\Katerina\source\repos\CppGA\symbolic\symbolic.h(470): message : see reference to class template instantiation 'Vector<T>' being compiled
+C:\Users\Katerina\source\repos\CppGA\symbolic\symbolic.h(500): message : see reference to class template instantiation 'Vector<T>' being compiled
           with
           [
               T=Symbolic
@@ -59,7 +59,7 @@ C:\Users\Katerina\source\repos\CppGA\matrix.h(514,1): warning C4267: '=': conver
 C:\Users\Katerina\source\repos\CppGA\matrix.h(500): message : while compiling class template member function 'std::ostream &Matrix<Symbolic>::output(std::ostream &) const'
 C:\Users\Katerina\source\repos\CppGA\matrix.h(540): message : see reference to function template instantiation 'std::ostream &Matrix<Symbolic>::output(std::ostream &) const' being compiled
 C:\Users\Katerina\source\repos\CppGA\matrix.h(124): message : while compiling class template member function 'Matrix<Symbolic>::Matrix(const Matrix<Symbolic> &)'
-C:\Users\Katerina\source\repos\CppGA\symbolic\symmatrix.h(81): message : see reference to function template instantiation 'Matrix<Symbolic>::Matrix(const Matrix<Symbolic> &)' being compiled
+C:\Users\Katerina\source\repos\CppGA\symbolic\symmatrix.h(82): message : see reference to function template instantiation 'Matrix<Symbolic>::Matrix(const Matrix<Symbolic> &)' being compiled
 C:\Users\Katerina\source\repos\CppGA\matrix.h(523,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\Katerina\source\repos\CppGA\matrix.h(530,1): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\Katerina\source\repos\CppGA\vector.h(124,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
@@ -78,7 +78,7 @@ C:\Users\Katerina\source\repos\CppGA\matrix.h(120): message : while compiling cl
           [
               T=Symbolic
           ]
-C:\Users\Katerina\source\repos\CppGA\symbolic\symbolic.h(764): message : see reference to function template instantiation 'Matrix<Symbolic>::Matrix(const Vector<T> &)' being compiled
+C:\Users\Katerina\source\repos\CppGA\symbolic\symbolic.h(796): message : see reference to function template instantiation 'Matrix<Symbolic>::Matrix(const Vector<T> &)' being compiled
           with
           [
               T=Symbolic
@@ -137,8 +137,8 @@ C:\Users\Katerina\source\repos\CppGA\matrix.h(359): message : see reference to f
               T=Symbolic
           ]
   Generating code
-  1 of 2338 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+  4 of 2349 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    13 functions had inline decision re-evaluated but remain unchanged
+    12 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   SymbTest.vcxproj -> C:\Users\Katerina\source\repos\CppGA\x64\Release\CppGA.exe

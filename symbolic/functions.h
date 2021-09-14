@@ -50,13 +50,26 @@ class Kronecker;
 class DirectSum;
 class Hadamard;
 class Gamma;
-
+//---------
+class HEV;
+//---------
 #endif
 #endif
 
 #ifdef  SYMBOLIC_DECLARE
 #ifndef SYMBOLIC_CPLUSPLUS_FUNCTIONS_DECLARE
 #define SYMBOLIC_CPLUSPLUS_FUNCTIONS_DECLARE
+
+class HEV : public Symbol
+{
+public: HEV(const Symbolic&);
+
+		Symbolic df(const Symbolic&) const;
+		Simplified simplify() const;
+		Symbolic subst(const Symbolic &x, const Symbolic &y, int &n) const;
+		Symbolic subst_num(const Symbolic& x, Symbolic* y, int &n) const;
+		Cloning *clone() const { return Cloning::clone(*this); }
+};
 
 class Sin: public Symbol
 {
@@ -128,6 +141,7 @@ class Power: public Symbol
          Simplified simplify() const;
          Expanded expand() const;
          Symbolic subst(const Symbolic &x,const Symbolic &y,int &n) const;
+		 Symbolic subst_num(const Symbolic& x, Symbolic* y, int &n) const;
          Symbolic df(const Symbolic&) const;
          Symbolic integrate(const Symbolic&) const;
          PatternMatches match_parts(const Symbolic &s, const list<Symbolic>&) const;
@@ -292,6 +306,53 @@ class Gamma: public Symbol
 #define SYMBOLIC_CPLUSPLUS_FUNCTIONS_DEFINE
 #define SYMBOLIC_CPLUSPLUS_FUNCTIONS
 
+//////////////////////////////////////
+// Implementation of HEV            //
+//////////////////////////////////////
+
+HEV::HEV(const Symbolic &s) : Symbol(Symbol("Hev")[s]) {}
+
+Symbolic HEV::df(const Symbolic &s) const
+{
+	return 70 * exp(-70 * s)*(1 / ((1 + exp(-70 * s))*(1 + exp(-70 * s)))) * parameters.front().df(s);
+}
+Simplified HEV::simplify() const
+{
+	const Symbolic &b = parameters.front().simplify();
+	if ((b.type() == typeid(Numeric)) && (Number<void>(b).numerictype() == typeid(double)))
+	{
+		double bd = CastPtr<const Number<double> >(b)->n;
+		if (bd > 0)
+		{
+			return Number<int>(1);
+		}
+		else
+		{
+			return Number<int>(0);
+		}
+	}
+	if ((b.type() == typeid(Numeric)) && (Number<void>(b).numerictype() == typeid(int)))
+	{
+		double bd = CastPtr<const Number<int> >(b)->n;
+		if (bd > 0)
+		{
+			return Number<int>(1);
+		}
+		else
+		{
+			return Number<int>(0);
+		}
+	}
+	return *this;
+}
+Symbolic HEV::subst(const Symbolic &x, const Symbolic &y, int &n) const
+{
+	return Symbol::subst(x, y, n);
+}
+Symbolic HEV::subst_num(const Symbolic& x, Symbolic* y, int &n) const
+{
+	return Symbol::subst_num(x, y, n);
+}
 //////////////////////////////////////
 // Implementation of Sin            //
 //////////////////////////////////////
@@ -611,7 +672,7 @@ Expanded Power::expand() const
   return Power(b,n);
 
  // a^(b+c) == a^b a^c  when b and c commute
- if(n.type() == typeid(Sum))
+ /*if(n.type() == typeid(Sum))
  {
   CastPtr<const Sum> s(*n);
   Product p;
@@ -622,7 +683,7 @@ Expanded Power::expand() const
   for(k=s->summands.begin();k!=s->summands.end();++k)
    p.factors.push_back(Power(b,*k));
   return p;
- }
+ }*/
 
  // (a*b)^c == a^c b^c  when a and b commute
  if(b.type() == typeid(Product))
@@ -682,6 +743,10 @@ Symbolic Power::subst(const Symbolic &x,const Symbolic &y,int &n) const
   }
  }
  return Symbol::subst(x,y,n);
+}
+Symbolic Power::subst_num(const Symbolic& x, Symbolic* y, int &n) const
+{
+	return Symbol::subst_num(x, y, n);
 }
 
 // d/ds (a^b) = d/ds exp(b ln(a))

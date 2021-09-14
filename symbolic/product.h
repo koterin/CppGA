@@ -26,6 +26,9 @@
 #include <algorithm>
 #include <list>
 #include <vector>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 using namespace std;
 
 #ifdef  SYMBOLIC_FORWARD
@@ -54,6 +57,7 @@ class Product: public CloningSymbolicInterface
 
          void print(ostream&) const;
          Symbolic subst(const Symbolic&,const Symbolic&,int &n) const;
+		 Symbolic subst_num(const Symbolic& x, Symbolic* y, int &n) const;
          Simplified simplify() const;
          int compare(const Symbolic&) const;
          Symbolic df(const Symbolic&) const;
@@ -393,7 +397,15 @@ Symbolic Product::subst(const Symbolic &x,const Symbolic &y,int &n) const
   p.factors.push_back(i->subst(x,y,n));
  return p;
 }
-
+Symbolic Product::subst_num(const Symbolic& x, Symbolic* y, int &n) const
+{
+	Product p;
+	for (list<Symbolic>::const_iterator i = factors.begin(); i != factors.end(); ++i)
+	{
+		 p.factors.push_back(i->subst_num(*i, y, n));
+	}		
+	return p;
+}
 Simplified Product::simplify() const
 {
  list<Symbolic>::const_iterator i;

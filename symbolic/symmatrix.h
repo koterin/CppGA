@@ -53,6 +53,7 @@ class SymbolicMatrix
 
          void print(ostream&) const;
          Symbolic subst(const Symbolic&,const Symbolic&,int &n) const;
+		 Symbolic subst_num(const Symbolic& x, Symbolic* y, int &n) const;
          Simplified simplify() const;
          int compare(const Symbolic&) const;
          Symbolic df(const Symbolic&) const;
@@ -156,7 +157,10 @@ Symbolic SymbolicMatrix::subst(const Symbolic &x,
 
  return m;
 }
-
+Symbolic SymbolicMatrix::subst_num(const Symbolic& x, Symbolic* y, int &n) const
+{
+	return x;
+}
 Simplified SymbolicMatrix::simplify() const
 {
  // single element matrix -> number

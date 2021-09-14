@@ -51,6 +51,7 @@ class Sum: public CloningSymbolicInterface
 
          void print(ostream&) const;
          Symbolic subst(const Symbolic&,const Symbolic&,int &n) const;
+		 Symbolic subst_num(const Symbolic& x, Symbolic* y, int &n) const;
          Simplified simplify() const;
          int compare(const Symbolic&) const;
          Symbolic df(const Symbolic&) const;
@@ -143,12 +144,22 @@ Symbolic Sum::subst(const Symbolic &x,const Symbolic &y,int &n) const
  // sum does not contain expression for substitution
  // try to substitute in each summand
  Sum s;
- for(list<Symbolic>::const_iterator i=summands.begin();i!=summands.end();
-     ++i)
-  s.summands.push_back(i->subst(x,y,n));
+ for(list<Symbolic>::const_iterator i=summands.begin();i!=summands.end();++i)
+	 {
+          s.summands.push_back(i->subst(x,y,n));
+	 }
  return s;
 }
 
+Symbolic Sum::subst_num(const Symbolic& x, Symbolic* y, int &n) const
+{
+	Sum s;
+	for (list<Symbolic>::const_iterator i = summands.begin(); i != summands.end(); ++i)
+	{
+		s.summands.push_back(i->subst_num(*i, y, n));
+	}
+	return s;
+}
 Simplified Sum::simplify() const
 {
  list<Symbolic>::const_iterator i;

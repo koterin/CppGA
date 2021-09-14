@@ -51,6 +51,7 @@ class Equation: public CloningSymbolicInterface
 
          void print(ostream&) const;
          Symbolic subst(const Symbolic&,const Symbolic&,int &n) const;
+		 Symbolic subst_num(const Symbolic& x, Symbolic* y, int &n) const;
          Simplified simplify() const;
          int compare(const Symbolic&) const;
          Symbolic df(const Symbolic&) const;
@@ -94,8 +95,13 @@ void Equation::print(ostream &o) const
 { o << lhs << " == " << rhs; }
 
 Symbolic Equation::subst(const Symbolic &x,const Symbolic &y,int &n) const
-{ return Equation(lhs.subst(x,y,n),rhs.subst(x,y,n)); }
-
+{ 
+	return Equation(lhs.subst(x,y,n),rhs.subst(x,y,n)); 
+}
+Symbolic Equation::subst_num(const Symbolic& x, Symbolic* y, int &n) const
+{
+	return x;
+}
 Simplified Equation::simplify() const
 { return Equation(lhs.simplify(),rhs.simplify()); }
 
