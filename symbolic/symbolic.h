@@ -45,18 +45,22 @@ class SymbolicProxy;
 #ifdef  SYMBOLIC_DECLARE
 #ifndef SYMBOLIC_CPLUSPLUS_SYMBOLIC_DECLARE
 #define SYMBOLIC_CPLUSPLUS_SYMBOLIC_DECLARE
-
+// Базовый класс для символьных операций
 class SymbolicInterface
 {
  public: int simplified, expanded;
+		 // Конструкторы
          SymbolicInterface();
          SymbolicInterface(const SymbolicInterface&);
+		 // Виртуальный деструктор
          virtual ~SymbolicInterface();
-
+		 // Виртуальные функции
          virtual void print(ostream&) const = 0;
          virtual const type_info &type() const;
-         virtual Symbolic subst(const Symbolic&,
-                                const Symbolic&,int &n) const = 0;
+         virtual Symbolic subst(const Symbolic&,const Symbolic&,int &n) const = 0;
+		 //Дополнение к библиотеке
+		 virtual Symbolic subst_num(const Symbolic&, Symbolic*, int &n) const = 0;
+		 //
          virtual Simplified simplify() const = 0;
          virtual int compare(const Symbolic&) const = 0;
          virtual Symbolic df(const Symbolic&) const = 0;
@@ -77,18 +81,21 @@ class CloningSymbolicInterface : public SymbolicInterface, public Cloning
  public: CloningSymbolicInterface();
          CloningSymbolicInterface(const CloningSymbolicInterface &);
 };
-
+// Класс обертка для SymbolicInterface 
 class SymbolicProxy: public SymbolicInterface,
                      public CastPtr<CloningSymbolicInterface>
 {
- public: SymbolicProxy(const CloningSymbolicInterface&);
+ public: 
+	     // Конструкторы класса
+	     SymbolicProxy(const CloningSymbolicInterface&);
          SymbolicProxy(const SymbolicProxy&);
          SymbolicProxy(const Number<void>&);
          SymbolicProxy();
-
+		 // Методы класса
          void print(ostream&) const;
          const type_info &type() const;
          Symbolic subst(const Symbolic&,const Symbolic&,int &n) const;
+		 Symbolic subst_num(const Symbolic&, Symbolic*, int &n) const;
          Simplified simplify() const;
          int compare(const Symbolic&) const;
          Symbolic df(const Symbolic&) const;
@@ -99,7 +106,7 @@ class SymbolicProxy: public SymbolicInterface,
          PatternMatches match(const Symbolic&, const list<Symbolic>&) const;
          PatternMatches match_parts(const Symbolic&,
                                       const list<Symbolic>&) const;
-
+		 // Перегрузка оператора присваивания 
          SymbolicProxy &operator=(const CloningSymbolicInterface&);
          SymbolicProxy &operator=(const SymbolicProxy&);
 };
@@ -158,16 +165,15 @@ class Symbolic: public SymbolicProxy
          Symbolic &operator()(int,int);
          const Symbolic &operator()(int) const;
          const Symbolic &operator()(int,int) const;
-         Symbolic subst(const Symbolic&,
-                        const Symbolic&,int &n=subst_count) const;
-         Symbolic subst(const Symbolic&,
-                        const int&,int &n=subst_count) const;
-         Symbolic subst(const Symbolic&,
-                        const double&,int &n=subst_count) const;
+         Symbolic subst(const Symbolic&,const Symbolic&,int &n=subst_count) const;
+         Symbolic subst(const Symbolic&,const int&,int &n=subst_count) const;
+         Symbolic subst(const Symbolic&,const double&,int &n=subst_count) const;
+		 Symbolic subst_num(const Symbolic& x, Symbolic* y, int &n) const;
+		 Symbolic upr();
+
          Symbolic subst(const Equation&,int &n=subst_count) const;
          Symbolic subst(const Equations&,int &n=subst_count) const;
-         Symbolic subst_all(const Symbolic&,
-                            const Symbolic&,int &n=subst_count) const;
+         Symbolic subst_all(const Symbolic&,const Symbolic&,int &n=subst_count) const;
          Symbolic subst_all(const Equation&,int &n=subst_count) const;
          Symbolic subst_all(const Equations&,int &n=subst_count) const;
          Symbolic coeff(const Symbolic&) const;
@@ -213,15 +219,22 @@ class Symbolic: public SymbolicProxy
 ///////////////////////////////////////////////////
 
 SymbolicInterface::SymbolicInterface()
-{ simplified = expanded = 0; }
+{ 
+simplified = expanded = 0; 
+}
 
 SymbolicInterface::SymbolicInterface(const SymbolicInterface &s)
-{ simplified = s.simplified; expanded = s.expanded; }
+{ 
+simplified = s.simplified; 
+expanded = s.expanded; 
+}
 
 SymbolicInterface::~SymbolicInterface() {}
 
 const type_info &SymbolicInterface::type() const
-{ return typeid(*this); }
+{ 
+return typeid(*this); 
+}
 
 
 ///////////////////////////////////////////////////
@@ -256,9 +269,15 @@ void SymbolicProxy::print(ostream &o) const
 const type_info &SymbolicProxy::type() const
 { return (*this)->type(); }
 
-Symbolic SymbolicProxy::subst(const Symbolic &x,
-                              const Symbolic &y,int &n) const
-{ return (*this)->subst(x,y,n); }
+Symbolic SymbolicProxy::subst(const Symbolic &x,const Symbolic &y,int &n) const
+{ 
+return (*this)->subst(x,y,n); 
+}
+Symbolic SymbolicProxy::subst_num(const Symbolic& x, Symbolic* y, int &n) const
+{
+	return (*this)->subst_num(x, y, n);
+}
+
 
 Simplified SymbolicProxy::simplify() const
 {
@@ -419,13 +438,24 @@ Symbolic::~Symbolic() {}
 
 SymbolicProxy &Symbolic::operator=(const CloningSymbolicInterface &s)
 {
-// cout << "*** " << &s << " " ; /*s.print(cout);*/ cout << endl;
+//cout << "*** " << s << " " ; /*s.print(cout)*/; cout << endl;
 #if 1
- if(auto_expand)
-  SymbolicProxy::operator=(s.expand().simplify());
- else
+	if (auto_expand)
+	{
+		SymbolicProxy::operator=(s.expand().simplify());
+	}
+	else
+	{
+		if (simplified)
+		{
+			SymbolicProxy::operator=(s.simplify());
+		}
+		else
+		{
+			SymbolicProxy::operator=(s);
+		}
+	}
 #endif
-  SymbolicProxy::operator=(s.simplify());
  return *this;
 }
 
@@ -476,8 +506,10 @@ Symbolic Symbolic::operator[](const Symbolic &p) const
 Symbolic Symbolic::operator[](const list<Symbolic> &l) const
 {
  Symbolic result(*this);
- for(list<Symbolic>::const_iterator i=l.begin();i!=l.end();++i)
-  result = result[*i];
+ for (list<Symbolic>::const_iterator i = l.begin(); i != l.end(); ++i)
+ {
+	 result = result[*i];
+ }
  return result;
 }
 
@@ -568,7 +600,19 @@ Symbolic Symbolic::subst(const Symbolic &x,const int &j,int &n) const
 { return subst(x,Number<int>(j),n); }
 
 Symbolic Symbolic::subst(const Symbolic &x,const double &d,int &n) const
-{ return subst(x,Number<double>(d),n); }
+{ 
+	return subst(x,Number<double>(d),n); 
+}
+Symbolic Symbolic::subst_num(const Symbolic& x, Symbolic* y, int &n) const
+{
+	return SymbolicProxy::subst_num(x, y, n);
+}
+
+Symbolic Symbolic::upr()
+{
+	SymbolicProxy::operator=((*this).expand().simplify());
+	return *this;
+}
 
 Symbolic Symbolic::subst(const Equation &e,int &n) const
 {
@@ -697,34 +741,22 @@ Symbolic::operator int(void) const
 
 Symbolic::operator double(void) const
 {
-    try
-    {
-        if (type() == typeid(Numeric) && (Number<void>(*this).numerictype() == typeid(double)))
-            return CastPtr<const Number<double> >(*this)->n;
-
-        if (type() == typeid(Numeric) && (Number<void>(*this).numerictype() == typeid(int)))
-            return double(CastPtr<const Number<int> >(*this)->n);
-
-        if (type() == typeid(Numeric) && (Number<void>(*this).numerictype() == typeid(Rational<Number<void> >)))
-        {
-            CastPtr<const Number<Rational<Number<void> > > > n(*this);
-            Symbolic num = n->n.num();
-            Symbolic den = n->n.den();
-            return double(num) / double(den);
-        }
-
-        else
-        {
-            throw SymbolicError(SymbolicError::NotDouble);
-        }
-        //cerr << "Attempted to cast " << *this << " to double failed." << endl;
-    }
-    catch (SymbolicError)
-    {
-        //std::cout << "Attempted to cast " << *this << " to double failed." << endl;
-        return 0.12345;
-    }
-
+ if(type() == typeid(Numeric) &&
+    Number<void>(*this).numerictype() == typeid(double))
+  return CastPtr<const Number<double> >(*this)->n;
+ if(type() == typeid(Numeric) &&
+    Number<void>(*this).numerictype() == typeid(int))
+  return double(CastPtr<const Number<int> >(*this)->n);
+ if(type() == typeid(Numeric) &&
+    Number<void>(*this).numerictype() == typeid(Rational<Number<void> >))
+ {
+  CastPtr<const Number<Rational<Number<void> > > > n(*this);
+  Symbolic num = n->n.num();
+  Symbolic den = n->n.den();
+  return double(num)/double(den);
+ }
+ cerr << "Attempted to cast " << *this << " to double failed." << endl;
+ throw SymbolicError(SymbolicError::NotDouble);
  return 0.0;
 }
 

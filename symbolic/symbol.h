@@ -53,6 +53,7 @@ class Symbol: public CloningSymbolicInterface
 
          void print(ostream&) const;
          Symbolic subst(const Symbolic&,const Symbolic&,int &n) const;
+		 Symbolic subst_num(const Symbolic& x, Symbolic* y, int &n) const;
          Simplified simplify() const;
          int compare(const Symbolic&) const;
          Symbolic df(const Symbolic&) const;
@@ -142,15 +143,36 @@ Symbolic Symbol::subst(const Symbolic &x,const Symbolic &y,int &n) const
  s->simplified = s->expanded = 0;
  return *s;
 }
-
+Symbolic Symbol::subst_num(const Symbolic& x, Symbolic* y, int &n) const
+{
+	auto x1 = x->clone();
+	if (typeid(*x1) == typeid(Symbol))
+	{
+		x1->unreference(x1);
+		return x;
+	}
+	x1->unreference(x1);
+	list<Symbolic>::iterator i;
+	// make a copy of *this
+	CastPtr<Symbol> s(*this);
+	for (i = s->parameters.begin(); i != s->parameters.end(); ++i)
+	{
+        *i = i->subst_num(x, y, n);
+	}		
+	// reset the simplified and expanded flags
+	// since substitution may have changed this
+	s->simplified = s->expanded = 0;
+	return *s;
+}
 Simplified Symbol::simplify() const
 {
  list<Symbolic>::iterator i;
  // make a copy of *this
  CastPtr<Symbol> sym(*this);
-
  for(i=sym->parameters.begin();i!=sym->parameters.end();++i)
-  *i = i->simplify();
+	 {
+         *i = i->simplify();
+	 }
 
  return *sym;
 }

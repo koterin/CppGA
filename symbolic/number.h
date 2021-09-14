@@ -62,6 +62,7 @@ class Numeric: public CloningSymbolicInterface
          static pair<Number<void>,Number<void> >
              match(const Numeric&,const Numeric&);
          Symbolic subst(const Symbolic&,const Symbolic&,int &n) const;
+		 Symbolic subst_num(const Symbolic& x, Symbolic* y, int &n) const;
          int compare(const Symbolic&) const;
          Symbolic df(const Symbolic&) const;
          Symbolic integrate(const Symbolic&) const;
@@ -314,7 +315,12 @@ Symbolic Numeric::subst(const Symbolic &x,const Symbolic &y,int &n) const
  if(*this == x) { ++n; return y; }
  return *this;
 }
-
+Symbolic Numeric::subst_num(const Symbolic& x, Symbolic* y, int &n) const
+{
+	n++;
+	return y[n-1];
+	
+}
 int Numeric::compare(const Symbolic &s) const
 {
  if(s.type() != type()) return 0;

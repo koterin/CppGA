@@ -32,9 +32,10 @@ public:
 	void CalcFit(vector<struct data> ExpData, Symbolic t, std::string foutname) {
 
 		struct data buf;
-		double velocity = 0.0; //ind current v
+		//double velocity = 0.0; //ind current v
 		double dev = 0.0; //Devitation ind current v from expdata v
 		double devSUM = 0.0; //Sum devitation
+		Symbolic velocity;
 
 		std::ofstream fout;
 		fout.open(foutname, std::ios_base::app);
@@ -42,9 +43,28 @@ public:
 		for (int i = 0; i < ExpData.size(); i++)
 		{
 			buf = ExpData[i];
+
+			velocity.auto_expand = 0;
+			velocity.simplified = 0;
 			velocity = ind[t == buf.t]; //Поставить очень большую скорость при компклексном результате BACKLOG
-			dev = pow((velocity - buf.v), 2);
-			devSUM += dev;
+			velocity.upr();
+
+			auto yy = velocity->clone();
+			//Если текущий yy - не число (например, комплексное число), то считаем efr как бесконечно большое число
+			if ((typeid(*(yy)) != typeid(Number<double>)) && (typeid(*(yy)) != typeid(Number<int>)))
+			{
+				dev = 1e+50; //тоже можно заменить на efr +=
+				devSUM += dev;
+			}
+			else
+			{
+				dev = pow((double(velocity) - buf.v), 2);
+				devSUM += dev;
+			}
+			yy->unreference(yy);
+			velocity.auto_expand = 1;
+			velocity.simplified = 1;
+
 		}
 
 		fit = (1 / (1 + sqrt(devSUM))) * 100;
@@ -1186,9 +1206,9 @@ void main(void) {
 	Symbolic t("t"); //t - time
 	v = (((((-3.6056)*(t^2) + 0.0936266*t + 2.4859)^(-2.98122)) + 1.19091)^((-0.881819)*t));
 	int k = 1; //Individual serial number
-	int numInd = 20; //number of individuals in the population
+	int numInd = 10; //number of individuals in the population
 	int numCoef = 0; //number of coefficients in the origin individual
-	int len = 200; //number of lines in ExpData to read
+	int len = 100; //number of lines in ExpData to read
 	Individ outputInd; //Buffer for Individ class
 	vector<struct data> ExpData; //Vector of experimental data
 	ExpData.clear();
