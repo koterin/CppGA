@@ -53,7 +53,7 @@ public:
 			//Если текущий yy - не число (например, комплексное число), то считаем efr как бесконечно большое число
 			if ((typeid(*(yy)) != typeid(Number<double>)) && (typeid(*(yy)) != typeid(Number<int>)))
 			{
-				dev = 1e+50; //тоже можно заменить на efr +=
+				dev = 1e+20; //тоже можно заменить на efr +=
 				devSUM += dev;
 			}
 			else
@@ -249,7 +249,6 @@ Individ IndFromGenes(vector<Gene> genes)
 			outputInd.genes[i] = genes[i];
 		}
 	}
-
 	return(outputInd);
 }
 
@@ -309,7 +308,7 @@ public:
 
 			}
 
-			if (dist == 2)
+			if ((dist == 2) || (dist == 3))
 			{
 				z = y * x;
 
