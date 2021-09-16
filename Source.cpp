@@ -288,7 +288,7 @@ public:
 		//Cycle for sequential creating individuals
 		for (int i = 0; i < numInd; i++)
 		{
-			int dist = rand() % 9 + 1;
+			int dist = rand() % 7 + 1;
 			indZero.genes.clear();
 			indZero.genes = startGenes;
 
@@ -309,7 +309,7 @@ public:
 
 			}
 
-			if ((dist == 2) || (dist == 3))
+			if (dist == 2)
 			{
 				z = y * x;
 
@@ -323,7 +323,7 @@ public:
 
 			}
 
-			if (dist == 4)
+			if (dist == 3)
 			{
 				z = y / x;
 
@@ -337,7 +337,7 @@ public:
 
 			}
 
-			if (dist == 5)
+			if (dist == 4)
 			{
 				z = pow(y, x);
 
@@ -351,9 +351,9 @@ public:
 
 			}
 
-			if ((dist == 6) || (dist == 7))
+			if (dist == 5)
 			{
-				coeff = (double(rand() % 100) + 1.0) / (double(rand() % 10 + 1.0));
+				coeff = (double(rand() % 12) + 1.0) / (double(rand() % 10 + 1.0));
 				z = y ^ coeff;
 
 				indZero.ind = z;
@@ -366,9 +366,9 @@ public:
 
 			}
 			
-			if (dist == 8)
+			if (dist == 6)
 			{
-				coeff = double(rand() % 100) + 1.0;
+				coeff = (double(rand() % 12) + 1.0) / (double(rand() % 10 + 1.0));
 				z = y * coeff;
 
 				indZero.ind = z;
@@ -381,9 +381,9 @@ public:
 
 			}
 
-			if (dist == 9)
+			if (dist == 7)
 			{
-				coeff = double(rand() % 100) + 1.0;
+				coeff = (double(rand() % 12) + 1.0) / (double(rand() % 10 + 1.0));
 				int coeffBool = rand() % 2;
 				if (coeffBool == 0)
 				{
@@ -579,12 +579,12 @@ Individ SymbMutation(Individ KID, string foutname, Symbolic t)
 {
 	std::ofstream fout;
 	fout.open(foutname, std::ios_base::app);
-	int boolOper = rand() % 5 + 1;
+	int boolOper = rand() % 4 + 1;
 	Gene mutGene;
 
 	fout << "Mutation" << std::endl;
 	fout << "\nTHE KID WAS " << KID.ind;
-	if ((boolOper == 1) || (boolOper == 2))
+	if (boolOper == 1)
 	{
 		mutGene.elem = t;
 		mutGene.oper = 3;
@@ -592,7 +592,7 @@ Individ SymbMutation(Individ KID, string foutname, Symbolic t)
 		KID = IndFromGenes(KID.genes);
 		fout << "\nmult mutation";
 	}
-	if (boolOper == 3)
+	if (boolOper == 2)
 	{
 		mutGene.elem = t;
 		mutGene.oper = 4;
@@ -600,7 +600,7 @@ Individ SymbMutation(Individ KID, string foutname, Symbolic t)
 		KID = IndFromGenes(KID.genes);
 		fout << "\ndiv mutation";
 	}
-	if (boolOper == 4)
+	if (boolOper == 3)
 	{
 		mutGene.elem = t;
 		mutGene.oper = 5;
@@ -608,13 +608,18 @@ Individ SymbMutation(Individ KID, string foutname, Symbolic t)
 		KID = IndFromGenes(KID.genes);
 		fout << "\npow mutation";
 	}
-	if (boolOper == 5)
+	if (boolOper == 4)
 	{
-		mutGene.elem = (rand() % 10 + 1) / (rand() % 100 + 1);
+		mutGene.elem = double((rand() % 12 + 1) / (rand() % 10 + 1));
 		mutGene.oper = 5;
 		KID.genes.push_back(mutGene);
 		KID = IndFromGenes(KID.genes);
 		fout << "\nNum pow mutatuion ";
+	}
+
+	while (KID.genes.size() <= 1)
+	{
+		KID = SymbMutation(KID, foutname, t);
 	}
 
 	fout.close();
@@ -718,6 +723,11 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 			for (int g = 0; g < numPop.size(); g++)
 			{
 				numPop[g].CalcFit(ExpData, t, foutname);
+				//Checking if there are <1 size inds
+				if (numPop[g].genes.size() <= 1)
+				{
+					numPop[g].fit = 1e-20;
+				}
 				fout << numPop[g].ind << " and fit " << numPop[g].fit << std::endl;
 				//Founding minimum
 				if (numPop[g].fit < numPop[mind].fit)
@@ -785,7 +795,7 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 			}
 			
 			double randProb = (rand() % 100) / double(100);
-			if (randProb < 0.5)
+			if (randProb < 0.4)
 			{
 				KID = NumMutation(KID);
 			}
@@ -1032,6 +1042,18 @@ Individ ClassicCrossover(Individ MOM, Individ DAD)
 	return(KID);
 }
 
+Individ ZeroIndTermination(Individ IndZero, Symbolic t)
+{
+	Gene plusGene;
+	plusGene.elem = t;
+	plusGene.oper = 3;
+
+	IndZero.genes.push_back(plusGene);
+	IndZero = IndFromGenes(IndZero.genes);
+
+	return(IndZero);
+}
+
 //Function for GA symbolic optimization (main)
 Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsigned int startime,
 	std::string foutname, std::string fitfilename)
@@ -1044,6 +1066,9 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 	int mind, maxd;
 	double coef1, coef2;
 	double fitAVG = 0.0;
+	Gene bufGene;
+	bufGene.elem = t;
+	bufGene.oper = 3;
 
 	std::ofstream fout;
 	fout.open(foutname, std::ios_base::app);
@@ -1071,7 +1096,15 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 		std::cout << "\nsymbGA Population " << f + 1 << std::endl;
 		for (int g = 0; g < popul.inds.size(); g++)
 		{
+			//Checking if there are <1 size inds
+			while (popul.inds[g].genes.size() <= 1)
+			{
+				popul.inds[g] = ZeroIndTermination(popul.inds[g], t);
+			}
+
 			popul.inds[g].CalcFit(ExpData, t, foutname);
+			//Checking if there are <1 size inds
+			
 			fout << popul.inds[g].ind << " and fit " << popul.inds[g].fit << std::endl;
 			//Founding minimum
 			if (popul.inds[g].fit < popul.inds[mind].fit)
@@ -1136,12 +1169,28 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 		Individ KID = MOM;
 
 		fout << "ClassicCrossover" << std::endl;
-		KID = ClassicCrossover(MOM, DAD);
 
-		double boolCross = (1 / (double(rand() % 10) + 1)); //Mutation probability
-		if (boolCross < 0.18)
+		int numAmount = 11;
+		while (numAmount > 10) //Limiting the amount of numerical coefficients up to 10
 		{
-			KID = SymbMutation(KID, foutname, t);
+			numAmount = 0;
+			KID = ClassicCrossover(MOM, DAD);
+
+			double boolCross = (1 / (double(rand() % 10) + 1)); //Mutation probability
+			if (boolCross < 0.18)
+			{
+				KID = SymbMutation(KID, foutname, t);
+			}
+
+			for (int i = 0; i < KID.genes.size(); i++) //Numerical genes search
+			{
+				auto buf = KID.genes[i].elem->clone();
+				if ((typeid(*buf) == typeid(Number<double>)) || (typeid(*buf) == typeid(Number<int>)))
+				{
+					numAmount += 1;
+				}
+				buf->unreference(buf);
+			}
 		}
 
 		fout << "KID is " << KID.ind << std::endl;
@@ -1152,7 +1201,18 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 		KID.pop = f + 2;
 		fout << "Optimimzed KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
 		//Replacing the worst element of the population with the KID
+
 		popul.inds[mind] = KID;
+
+		//if (KID.fit > popul.inds[mind].fit)
+		//{
+		//	popul.inds[mind] = KID;
+		//}
+		//else
+		//{
+		//	fout << "This KID's fit is worse than minimum, skipping that individual" << std::endl;
+		//}
+
 
 		//fout << "2ndCrossover - Randplus" << std::endl;
 		//Individ KID2;
@@ -1204,9 +1264,10 @@ void main(void) {
 	
 	Symbolic v("v"); //V - velocity
 	Symbolic t("t"); //t - time
-	v = (((((-3.6056)*(t^2) + 0.0936266*t + 2.4859)^(-2.98122)) + 1.19091)^((-0.881819)*t));
+	//v = (6.39 * (t^(5.54)) + 1)^(-1.45);
+	v = t + 1;
 	int k = 1; //Individual serial number
-	int numInd = 10; //number of individuals in the population
+	int numInd = 12; //number of individuals in the population
 	int numCoef = 0; //number of coefficients in the origin individual
 	int len = 100; //number of lines in ExpData to read
 	Individ outputInd; //Buffer for Individ class
