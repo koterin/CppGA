@@ -66,8 +66,17 @@ public:
 			velocity.simplified = 1;
 
 		}
+		
+		//Checking if devSUM is too small so we won't get zeros in fits
+		if (devSUM < 1e-10)
+		{
+			fit = 1e-20;
+		}
 
-		fit = (1 / (1 + sqrt(devSUM))) * 100;
+		else
+		{	
+			fit = (1 / (1 + sqrt(devSUM))) * 100;
+		}
 		return;
 	}
 };
