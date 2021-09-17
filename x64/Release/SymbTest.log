@@ -137,8 +137,8 @@ C:\Users\Katerina\source\repos\CppGA\matrix.h(359): message : see reference to f
               T=Symbolic
           ]
   Generating code
-  4 of 2350 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  1 of 2350 functions (<0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    12 functions had inline decision re-evaluated but remain unchanged
+    13 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   SymbTest.vcxproj -> C:\Users\Katerina\source\repos\CppGA\x64\Release\CppGA.exe

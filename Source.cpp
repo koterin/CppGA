@@ -598,6 +598,7 @@ Individ SymbMutation(Individ KID, string foutname, Symbolic t)
 		mutGene.oper = 3;
 		KID.genes.push_back(mutGene);
 		KID = IndFromGenes(KID.genes);
+		KID.genes = InputGeneDecomposition(KID.ind);
 		fout << "\nmult mutation";
 	}
 	if (boolOper == 2)
@@ -606,6 +607,7 @@ Individ SymbMutation(Individ KID, string foutname, Symbolic t)
 		mutGene.oper = 4;
 		KID.genes.push_back(mutGene);
 		KID = IndFromGenes(KID.genes);
+		KID.genes = InputGeneDecomposition(KID.ind);
 		fout << "\ndiv mutation";
 	}
 	if (boolOper == 3)
@@ -614,6 +616,7 @@ Individ SymbMutation(Individ KID, string foutname, Symbolic t)
 		mutGene.oper = 5;
 		KID.genes.push_back(mutGene);
 		KID = IndFromGenes(KID.genes);
+		KID.genes = InputGeneDecomposition(KID.ind);
 		fout << "\npow mutation";
 	}
 	if (boolOper == 4)
@@ -622,6 +625,7 @@ Individ SymbMutation(Individ KID, string foutname, Symbolic t)
 		mutGene.oper = 5;
 		KID.genes.push_back(mutGene);
 		KID = IndFromGenes(KID.genes);
+		KID.genes = InputGeneDecomposition(KID.ind);
 		fout << "\nNum pow mutatuion ";
 	}
 
@@ -1183,6 +1187,7 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 		{
 			numAmount = 0;
 			KID = ClassicCrossover(MOM, DAD);
+			KID.genes = InputGeneDecomposition(KID.ind);
 
 			double boolCross = (1 / (double(rand() % 10) + 1)); //Mutation probability
 			if (boolCross < 0.18)
@@ -1203,23 +1208,22 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 
 		fout << "KID is " << KID.ind << std::endl;
 
-		KID.genes = InputGeneDecomposition(KID.ind);
 		KID.CalcFit(ExpData, t, foutname);
 		KID = numGA(KID, ExpData, t, foutname);
 		KID.pop = f + 2;
 		fout << "Optimimzed KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
 		//Replacing the worst element of the population with the KID
 
-		popul.inds[mind] = KID;
+		//popul.inds[mind] = KID;
 
-		//if (KID.fit > popul.inds[mind].fit)
-		//{
-		//	popul.inds[mind] = KID;
-		//}
-		//else
-		//{
-		//	fout << "This KID's fit is worse than minimum, skipping that individual" << std::endl;
-		//}
+		if (KID.fit > popul.inds[mind].fit)
+		{
+			popul.inds[mind] = KID;
+		}
+		else
+		{
+			fout << "This KID's fit is worse than minimum, skipping that individual" << std::endl;
+		}
 
 
 		//fout << "2ndCrossover - Randplus" << std::endl;
