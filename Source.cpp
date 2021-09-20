@@ -267,7 +267,15 @@ Individ ZeroIndTermination(Individ IndZero, Symbolic t)
 
 	bufInd = IndZero;
 	std::cout << "\nbufInd is " << bufInd.ind << std::endl;
+	std::cout << "previous genes length is " << bufInd.genes.size() << std::endl;
+
+	if (bufInd.genes.size() == 0)
+	{
+		bufInd.genes.push_back(plusGene);
+	}
+
 	bufInd.genes.push_back(plusGene);
+	std::cout << "Now genes size is " << bufInd.genes.size() << std::endl;
 	
 	for (int i = 0; i < bufInd.genes.size(); i++)
 	{
@@ -275,7 +283,7 @@ Individ ZeroIndTermination(Individ IndZero, Symbolic t)
 	}
 
 	bufInd = IndFromGenes(bufInd.genes);
-	std::cout << "ind after function " << bufInd.ind << std::endl;
+	std::cout << "ind after IndFromGenes " << bufInd.ind << std::endl;
 	bufInd.genes = InputGeneDecomposition(bufInd.ind);
 
 	return(bufInd);
@@ -295,15 +303,14 @@ public:
 	void CreatePop(Symbolic y, Symbolic x, int numInd, std::string foutname)
 	{
 		//srand(time(0)); //turning on the random distribution
-		Symbolic z = y; //temporary variable for creating individuals
 		double coeff = 0.0; //random coefficient for 1st pop dreation
 
 		inds.clear();
 		inds.reserve(numInd);
-		indZero.genes.clear();
 
 		std::ofstream fout;
 		fout.open(foutname, std::ios_base::app);
+
 		vector<Gene> startGenes;
 		startGenes = InputGeneDecomposition(y);
 		std::cout << "Final input is [ ";
@@ -313,8 +320,11 @@ public:
 		}
 		std::cout << " ]" << std::endl;
 
+		//1st element of the Population should be the input individual
+		indZero.genes = startGenes;
+		inds.push_back(indZero);
 		//Cycle for sequential creating individuals
-		for (int i = 0; i < numInd; i++)
+		for (int i = 1; i < numInd; i++)
 		{
 			int dist = rand() % 7 + 1;
 			indZero.genes.clear();
@@ -325,88 +335,52 @@ public:
 
 			if (dist == 1)
 			{
-				z = y + x;
-
-				indZero.ind = z; //initialization of y as an individual
-				indZero.pop = 1; //Ind population - 1st
-
 				genZero.elem = x; //setting the 2nd gene as the operation inititated - "+ x"
 				genZero.oper = 1;
 				indZero.genes.push_back(genZero);
 				inds.push_back(indZero); //Putting new individual in the vector of the Population
-
 			}
 
-			if ((dist == 2) || (dist == 3))
+			if (dist == 2)
 			{
-				z = y * x;
-
-				indZero.ind = z;
-				indZero.pop = 1;
-
 				genZero.elem = x;
 				genZero.oper = 3;
 				indZero.genes.push_back(genZero);
 				inds.push_back(indZero);
-
 			}
 
 			if (dist == 3)
 			{
-				z = y / x;
-
-				indZero.ind = z;
-				indZero.pop = 1;
-
 				genZero.elem = x;
 				genZero.oper = 4;
 				indZero.genes.push_back(genZero);
 				inds.push_back(indZero);
-
 			}
 
 			if (dist == 4)
 			{
-				z = pow(y, x);
-
-				indZero.ind = z;
-				indZero.pop = 1;
-
 				genZero.elem = x;
 				genZero.oper = 5;
 				indZero.genes.push_back(genZero);
 				inds.push_back(indZero);
-
 			}
 
 			if (dist == 5)
 			{
 				coeff = (double(rand() % 12) + 1.0) / (double(rand() % 10 + 1.0));
-				z = y ^ coeff;
-
-				indZero.ind = z;
-				indZero.pop = 1;
-
 				genZero.elem = coeff;
 				genZero.oper = 5;
 				indZero.genes.push_back(genZero);
 				inds.push_back(indZero);
-
 			}
 			
 			if (dist == 6)
 			{
 				coeff = (double(rand() % 12) + 1.0) / (double(rand() % 10 + 1.0));
-				z = y * coeff;
-
-				indZero.ind = z;
-				indZero.pop = 1;
-
 				genZero.elem = coeff;
 				genZero.oper = 3;
 				indZero.genes.push_back(genZero);
 				inds.push_back(indZero);
-
 			}
 
 			if (dist == 7)
@@ -417,17 +391,10 @@ public:
 				{
 					coeff = -coeff;
 				}
-
-				z = y + coeff;
-
-				indZero.ind = z;
-				indZero.pop = 1;
-
 				genZero.elem = coeff;
 				genZero.oper = 1;
 				indZero.genes.push_back(genZero);
 				inds.push_back(indZero);
-
 			}
 		}
 
@@ -437,29 +404,17 @@ public:
 
 		for (int i = 0; i < numInd; i++)
 		{
-			outputInd = inds[i];
-			//If one of the inds in the 1st population is zero
-			auto buf = outputInd.ind->clone();
-			if ((typeid(*buf) == typeid(Number<double>)) || (typeid(*buf) == typeid(Number<int>)))
+			inds[i] = IndFromGenes(inds[i].genes);
+			inds[i].genes = InputGeneDecomposition(inds[i].ind);
+
+			//If one of the inds in the 1st population is a number
+			while (inds[i].genes.size() <= 1)
 			{
-				outputInd.ind = y;
-				outputGene.elem = y;
-				outputGene.oper = 1;
-				outputInd.genes.clear();
-				outputInd.genes.push_back(outputGene);
-				inds[i] = outputInd;
+				inds[i] = ZeroIndTermination(inds[i], x);
 			}
-			buf->unreference(buf);
-
-			outputInd.genes = InputGeneDecomposition(outputInd.ind);
-
-			while (outputInd.genes.size() <= 1)
-			{
-				outputInd = ZeroIndTermination(outputInd, x);
-			}
-
-			fout << outputInd.ind;
-			std::cout << outputInd.ind;
+			
+			fout << inds[i].ind;
+			std::cout << inds[i].ind;
 
 			if (i != (numInd - 1))
 			{
@@ -619,47 +574,35 @@ Individ SymbMutation(Individ KID, string foutname, Symbolic t)
 
 	fout << "Mutation" << std::endl;
 	fout << "\nTHE KID WAS " << KID.ind;
+
 	if (boolOper == 1)
 	{
 		mutGene.elem = t;
 		mutGene.oper = 3;
-		KID.genes.push_back(mutGene);
-		KID = IndFromGenes(KID.genes);
-		KID.genes = InputGeneDecomposition(KID.ind);
 		fout << "\nmult mutation";
 	}
 	if (boolOper == 2)
 	{
 		mutGene.elem = t;
 		mutGene.oper = 4;
-		KID.genes.push_back(mutGene);
-		KID = IndFromGenes(KID.genes);
-		KID.genes = InputGeneDecomposition(KID.ind);
 		fout << "\ndiv mutation";
 	}
 	if (boolOper == 3)
 	{
 		mutGene.elem = t;
 		mutGene.oper = 5;
-		KID.genes.push_back(mutGene);
-		KID = IndFromGenes(KID.genes);
-		KID.genes = InputGeneDecomposition(KID.ind);
 		fout << "\npow mutation";
 	}
 	if (boolOper == 4)
 	{
 		mutGene.elem = double((rand() % 12 + 1) / (rand() % 10 + 1));
 		mutGene.oper = 5;
-		KID.genes.push_back(mutGene);
-		KID = IndFromGenes(KID.genes);
-		KID.genes = InputGeneDecomposition(KID.ind);
 		fout << "\nNum pow mutatuion ";
 	}
 
-	if (KID.genes.size() <= 1)
-	{
-		KID = ZeroIndTermination(KID, KID.ind);
-	}
+	KID.genes.push_back(mutGene);
+	KID = IndFromGenes(KID.genes);
+	KID.genes = InputGeneDecomposition(KID.ind);
 
 	fout.close();
 	return(KID);
@@ -737,22 +680,22 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 	//Found numeric genes
 	else if (dec > 0)
 	{
-		numPop[0].CalcFit(ExpData, t);
-		fout << "The initial ind fit is " << numPop[0].fit << std::endl;
-		double fitAVG = 0.0;
-		
 		//Preparing the Population
 		for (int i = 0; i < numPop.size(); i++)
 		{
 			numPop[i] = IndFromGenes(numPop[i].genes);
 			fout << "New ind is " << numPop[i].ind << std::endl;
-			numPop[i].genes = InputGeneDecomposition(numPop[i].ind);
 			numPop[i].CalcFit(ExpData, t);
-			if (numPop[i].genes.size() <= 1)
+			auto buf = numPop[i].ind->clone();
+			if ((typeid(*buf) == typeid(Number<double>)) || (typeid(*buf) == typeid(Number<int>)))
 			{
-				numPop[i].fit = 1e-20;
+				numPop[i].fit = 0;
 			}
+			buf->unreference(buf);
 		}
+
+		fout << "The initial ind fit is " << numPop[0].fit << std::endl;
+		double fitAVG = 0.0;
 
 		//MAIN GA LOOP
 
@@ -794,7 +737,7 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 			fout << "The maximum fit in NumPopulation " << f + 1 << " is " << numPop[maxd].fit << std::endl;
 
 			//Checking if the current population is converged
-			if (abs(1 - (numPop[maxd].fit / numPop[mind].fit)) < 0.01)
+			if (abs(1 - (numPop[maxd].fit / numPop[mind].fit)) < 0.005)
 			{
 				fout << "\nNumPop was converged" <<
 					"Optimum coefficients found after " << f + 1 << " loops, final ind is "
@@ -904,49 +847,6 @@ vector<int> MomDadChoice(Population popul)
 	return(nums);
 
 }
-
-//Individ OnePointCrossover(Population popul, Individ MOM, Individ DAD, int nodeCross)
-//{
-//	Individ KID;
-//	vector<Gene> newKID;
-//	newKID.clear();
-//
-//	vector<int> nums;
-//	nums.clear();
-//	nums.reserve(3);
-//	if ((MOM.genes.size() - nodeCross) > DAD.genes.size())
-//	{
-//		nums = MomDadChoice(popul);
-//
-//		if (DAD.genes.size() < nodeCross)
-//		{
-//			break;
-//		}
-//	}
-//	else
-//	{
-//		nums.push_back(numMOM);
-//		nums.push_back(numDAD);
-//		nums.push_back(nodeCross);
-//		return(nums);
-//	}
-//
-//	for (int i = 0; i < MOM.genes.size(); i++)
-//	{
-//		if (i < nodeCross)
-//		{
-//			newKID.push_back(MOM.genes[i]);
-//		}
-//		
-//		if (i >= nodeCross)
-//		{
-//			newKID.push_back(DAD.genes[i]);
-//		}
-//	}
-//
-//	KID = IndFromGenes(newKID);
-//	return(KID);
-//}
 
 Individ StakingCrossover(Individ MOM, Individ DAD, int nodeCross)
 {
@@ -1060,7 +960,7 @@ Individ MixCrossover(Individ MOM, Individ DAD)
 	return(KID);
 }
 
-Individ ClassicCrossover(Individ MOM, Individ DAD)
+Individ ClassicCrossover(Individ MOM, Individ DAD, Symbolic t)
 {
 	Individ KID;
 	vector<Gene> newKID;
@@ -1092,6 +992,12 @@ Individ ClassicCrossover(Individ MOM, Individ DAD)
 
 	KID = IndFromGenes(newKID);
 	KID.genes = InputGeneDecomposition(KID.ind);
+
+	while (KID.genes.size() <= 1)
+	{
+		KID = ZeroIndTermination(KID, t);
+	}
+
 	std::cout << "Final KID is " << KID.ind << std::endl;
 	return(KID);
 }
@@ -1133,13 +1039,12 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 		mind = 0;
 		maxd = 0;
 		fitAVG = 0.0;
-		popul.inds[0].CalcFit(ExpData, t);
 
 		//Displaying current population
 		std::cout << "\nsymbGA Population " << f + 1 << std::endl;
+		fout << "\nsymbGA Population " << f + 1 << std::endl;
 		for (int g = 0; g < popul.inds.size(); g++)
 		{
-			popul.inds[g].CalcFit(ExpData, t);	
 			fout << popul.inds[g].ind << " and fit " << popul.inds[g].fit << std::endl;
 			//Founding minimum
 			if (popul.inds[g].fit < popul.inds[mind].fit)
@@ -1159,26 +1064,27 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 		fitAVG = fitAVG / popul.inds.size();
 		fitfile << f + 1 << " " << popul.inds[mind].fit << " " << fitAVG << " " << popul.inds[maxd].fit << std::endl;
 
-		std::cout << "\nThe minimum fit in Population " << f << " is " <<
+		std::cout << "\nThe minimum fit in Population " << f + 1 << " is " <<
 			popul.inds[mind].ind << " with fit " << popul.inds[mind].fit << std::endl;
-		std::cout << "The maximum fit in Population " << f << " is " << 
+		std::cout << "The maximum fit in Population " << f + 1 << " is " << 
 			popul.inds[maxd].ind << " with fit " << popul.inds[maxd].fit << std::endl;
 
-		fout << "\nThe minimum fit in Population " << f << " is " <<
+		fout << "\nThe minimum fit in Population " << f + 1 << " is " <<
 			popul.inds[mind].ind << " with fit " << popul.inds[mind].fit << std::endl;
-		fout << "The maximum fit in Population " << f << " is " <<
+		fout << "The maximum fit in Population " << f + 1 << " is " <<
 			popul.inds[maxd].ind << " with fit " << popul.inds[maxd].fit << std::endl;
 
 		//Checking if the current minimum fit is the desired one
 		if (popul.inds[maxd].fit > stopPoint)
 		{
 			std::cout << "\n---------------FINAL---------------" <<
-				"Optimum coefficients found after " << f << " loops, final ind is "
+				"Optimum coefficients found after " << f + 1 << " loops, final ind is "
 				<< popul.inds[maxd].ind << " and fit = " << popul.inds[maxd].fit << std::endl;
 			fout << "\n---------------FINAL---------------" <<
-				"Optimum coefficients found after " << f << " loops, final ind is "
+				"Optimum coefficients found after " << f + 1 << " loops, final ind is "
 				<< popul.inds[maxd].ind << " and fit = " << popul.inds[maxd].fit << std::endl;
 			fout.close();
+			fitfile.close();
 			outputInd = popul.inds[maxd];
 			return(outputInd);
 		}
@@ -1198,18 +1104,17 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 		Individ DAD = popul.inds[numDAD];
 		fout << "MOM is " << MOM.ind << " and fit is " << MOM.fit << std::endl;
 		fout << "DAD is " << DAD.ind << " and fit is " << DAD.fit << std::endl;
-		fout << "cross node is " << nodeCross << std::endl;
+		//fout << "cross node is " << nodeCross << std::endl;
 
 		//KID
-		Individ KID = MOM;
+		Individ KID = MOM; //ѕодумать над простой инициализацией класса
 
 		fout << "ClassicCrossover" << std::endl;
-
 		int numAmount = 11;
 		while (numAmount > 10) //Limiting the amount of numerical coefficients up to 10
 		{
 			numAmount = 0;
-			KID = ClassicCrossover(MOM, DAD);
+			KID = ClassicCrossover(MOM, DAD, t);
 
 			double boolCross = (1 / (double(rand() % 10) + 1)); //Mutation probability
 			if (boolCross < 0.18)
@@ -1229,35 +1134,30 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 		}
 
 		fout << "KID is " << KID.ind << std::endl;
-		KID.CalcFit(ExpData, t);
 		KID = numGA(KID, ExpData, t, foutname);
 		KID.genes = InputGeneDecomposition(KID.ind);
 
 		if (KID.genes.size() <= 1)
 		{
-			fout << "KID is 1 gene long, extending it" << std::endl;
-			while (KID.genes.size() <= 1)
-			{
-				KID = ZeroIndTermination(KID, t);
-				fout << "now ind is " << KID.ind << std::endl;
-			}
-			KID.CalcFit(ExpData, t);
+			//KID.fit = 0;
+			fout << "KID is 1 gene long, fit = 0" << std::endl;
+			KID = ZeroIndTermination(KID, t);
+			fout << "now ind is " << KID.ind << std::endl;
 		}
-
-		KID.pop = f + 2;
+		KID.CalcFit(ExpData, t);
 		fout << "Optimimzed KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
 		//Replacing the worst element of the population with the KID
 
-		//popul.inds[mind] = KID;
+		popul.inds[mind] = KID;
 
-		if (KID.fit > popul.inds[mind].fit)
-		{
-			popul.inds[mind] = KID;
-		}
-		else
-		{
-			fout << "This KID's fit is worse than minimum, skipping that individual" << std::endl;
-		}
+		//if (KID.fit > popul.inds[mind].fit)
+		//{
+		//	popul.inds[mind] = KID;
+		//}
+		//else
+		//{
+		//	fout << "This KID's fit is worse than minimum, skipping that individual" << std::endl;
+		//}
 
 		f++;
 		outputInd = popul.inds[maxd];
@@ -1279,10 +1179,9 @@ void main(void) {
 	
 	Symbolic v("v"); //V - velocity
 	Symbolic t("t"); //t - time
-	v = (6.39 * (t^(5.54)) + 1)^(-1.45);
-	int k = 1; //Individual serial number
-	int numInd = 12; //number of individuals in the population
-	int numCoef = 0; //number of coefficients in the origin individual
+	//v = ((((t ^ (2.55411) + 0.262066) ^ (3.72572) + 0.417406) ^ (3.20187)) + 0.944046) ^ (-4.87936);
+	v = (((((((((t + 0.234378) ^ (5.0533)) * (t ^ (2.02288))) + t) ^ (5.87819)) * t) + t) ^ (1.76653)) + 1.01451) ^ (-0.618723);
+	int numInd = 20; //number of individuals in the population
 	int len = 100; //number of lines in ExpData to read
 	Individ outputInd; //Buffer for Individ class
 	vector<struct data> ExpData; //Vector of experimental data
@@ -1327,20 +1226,16 @@ void main(void) {
 	}
 
 	fout << "\nExperimental data file size is " << ExpData.size() << " lines" << std::endl;
-	
 	fout.close();
 
 	//Fitness function calculations for the 1st gen
 	for (int i = 0; i < numInd; i++)
 	{
-		popul.inds[i].genes = InputGeneDecomposition(popul.inds[i].ind);
 		popul.inds[i] = numGA(popul.inds[i], ExpData, t, foutname);
-		auto buf = popul.inds[i].ind->clone();
-		if ((typeid(*buf) == typeid(Number<double>)) || (typeid(*buf) == typeid(Number<int>)))
+		while (popul.inds[i].genes.size() <= 1)
 		{
 			popul.inds[i] = ZeroIndTermination(popul.inds[i], t);
 		}
-		buf->unreference(buf);
 		popul.inds[i].CalcFit(ExpData, t); //t - the agrument which should be substituted
 	}
 
