@@ -1,11 +1,11 @@
 .vs/
-Data/Output.xmcd
-Data/logs.txt
-Data/old70
+#Data/Output.xmcd
+#Data/logs.txt
+#Data/old70
 <<<<<<< HEAD
-Data/Nanind
+#Data/Nanind
 =======
 >>>>>>> ff5dd95b374b995e7e386057eaf8fbc1602633bb
-Data/FitfileNUM.txt
-Data/fitfile.txt
-Data/
+Data/**
+/Data
+/x64
