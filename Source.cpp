@@ -216,14 +216,13 @@ Individ IndFromGenes(vector<Gene> genes)
 {
 	Individ outputInd;
 	outputInd.ind = "";
-	int vsize = genes.size();
-	outputInd.genes.resize(vsize);
+	outputInd.genes.resize(genes.size());
 
 	//For the 1st element
 	outputInd.genes[0] = genes[0];
 	outputInd.ind = genes[0].elem;
 
-	for (int i = 1; i < vsize; i++)
+	for (int i = 1; i < genes.size(); i++)
 	{
 		if (genes[i].oper == 1)
 		{
@@ -266,7 +265,7 @@ Individ ZeroIndTermination(Individ IndZero, Symbolic t)
 	Individ bufInd;
 
 	bufInd = IndZero;
-	std::cout << "\nbufInd is " << bufInd.ind << std::endl;
+	std::cout << "\nZeroIndTermination, bufInd is " << bufInd.ind << std::endl;
 	std::cout << "previous genes length is " << bufInd.genes.size() << std::endl;
 
 	if (bufInd.genes.size() == 0)
@@ -289,6 +288,38 @@ Individ ZeroIndTermination(Individ IndZero, Symbolic t)
 	return(bufInd);
 }
 
+Individ ZeroMultIndCheck(Individ IndZero, vector<Symbolic> Variables)
+{
+	vector<int> varCount(Variables.size() - 1, 0);
+	
+	//Looking for abscent variables
+	for (int i = 0; i < IndZero.genes.size(); i++)
+	{
+		auto bufG = IndZero.genes[i].elem->clone();
+		if ((typeid(bufG) != typeid(Number<int>)) || (typeid(bufG) != typeid(Number<double>)))
+		{
+			for (int j = 1; j < Variables.size(); j++)
+			{
+				if (IndZero.genes[i].elem == Variables[j])
+				{
+					varCount[j]++;
+				}
+			}
+		}
+		bufG->unreference(bufG);
+	}
+
+	for (int i = 1; i < varCount.size(); i++)
+	{
+		if (varCount[i] == 0)
+		{
+			IndZero = ZeroIndTermination(IndZero, Variables[i]);
+		}
+	}
+
+	return(IndZero);
+}
+
 class Population {
 private:
 	Individ indZero;
@@ -300,7 +331,7 @@ public:
 	int pop; //number of the population
 
 	//Function for creating the first population
-	void CreatePop(Symbolic y, Symbolic x, int numInd, std::string foutname)
+	void CreatePop(vector<Symbolic> Variables, int numInd, std::string foutname)
 	{
 		//srand(time(0)); //turning on the random distribution
 		double coeff = 0.0; //random coefficient for 1st pop dreation
@@ -312,7 +343,7 @@ public:
 		fout.open(foutname, std::ios_base::app);
 
 		vector<Gene> startGenes;
-		startGenes = InputGeneDecomposition(y);
+		startGenes = InputGeneDecomposition(Variables[0]);
 		std::cout << "Final input is [ ";
 		for (int i = 0; i < startGenes.size(); i++)
 		{
@@ -329,13 +360,14 @@ public:
 			int dist = rand() % 7 + 1;
 			indZero.genes.clear();
 			indZero.genes = startGenes;
+			int varChoice = rand() % (Variables.size() - 1) + 1; //variable for addition
 
 			//Creating individuals with the operands decided by the probability distribution
 			//(weights can be adjusted according to the problem)
 
 			if (dist == 1)
 			{
-				genZero.elem = x; //setting the 2nd gene as the operation inititated - "+ x"
+				genZero.elem = Variables[varChoice]; //setting the 2nd gene as the operation inititated - "+ x"
 				genZero.oper = 1;
 				indZero.genes.push_back(genZero);
 				inds.push_back(indZero); //Putting new individual in the vector of the Population
@@ -343,7 +375,7 @@ public:
 
 			if (dist == 2)
 			{
-				genZero.elem = x;
+				genZero.elem = Variables[varChoice];
 				genZero.oper = 3;
 				indZero.genes.push_back(genZero);
 				inds.push_back(indZero);
@@ -351,7 +383,7 @@ public:
 
 			if (dist == 3)
 			{
-				genZero.elem = x;
+				genZero.elem = Variables[varChoice];
 				genZero.oper = 4;
 				indZero.genes.push_back(genZero);
 				inds.push_back(indZero);
@@ -359,7 +391,7 @@ public:
 
 			if (dist == 4)
 			{
-				genZero.elem = x;
+				genZero.elem = Variables[varChoice];
 				genZero.oper = 5;
 				indZero.genes.push_back(genZero);
 				inds.push_back(indZero);
@@ -404,13 +436,21 @@ public:
 
 		for (int i = 0; i < numInd; i++)
 		{
+			for (int j = 0; j < inds[i].genes.size(); j++)
+			{
+				std::cout << "\nCurrent gene is " << inds[i].genes[j].elem << " oper "
+					<< inds[i].genes[j].oper << std::endl;
+
+			}
+
 			inds[i] = IndFromGenes(inds[i].genes);
 			inds[i].genes = InputGeneDecomposition(inds[i].ind);
+			inds[i] = ZeroMultIndCheck(inds[i], Variables);
 
 			//If one of the inds in the 1st population is a number
-			while (inds[i].genes.size() <= 1)
+			while (inds[i].genes.size() <= (Variables.size() - 1))
 			{
-				inds[i] = ZeroIndTermination(inds[i], x);
+				inds[i] = ZeroMultIndCheck(inds[i], Variables);
 			}
 			
 			fout << inds[i].ind;
@@ -1180,11 +1220,19 @@ void main(void) {
 	
 	Symbolic v("v"); //V - velocity
 	Symbolic t("t"); //t - time
-	//v = ((((t ^ (2.55411) + 0.262066) ^ (3.72572) + 0.417406) ^ (3.20187)) + 0.944046) ^ (-4.87936);
-	//v = (((((((((t + 0.234378) ^ (5.0533)) * (t ^ (2.02288))) + t) ^ (5.87819)) * t) + t) ^ (1.76653)) + 1.01451) ^ (-0.618723);
-	v = t + 1;
+	Symbolic m("m"); //m - bullet mass
+	double mass = 0.02; //Mass of the bullet
+	//Area of the bullet; area of the fabric; impedance of the fabric; width of the layer; amount of layers
+
+	v = t + m + 1; //starting ind must contain all of the variables
 	int numInd = 20; //number of individuals in the population
 	int len = 100; //number of lines in ExpData to read
+
+	vector<Symbolic> Variables; //First variable must be the wanted one
+	Variables.push_back(v);
+	Variables.push_back(t);
+	Variables.push_back(m);
+
 	Individ outputInd; //Buffer for Individ class
 	vector<struct data> ExpData; //Vector of experimental data
 	ExpData.clear();
@@ -1204,7 +1252,7 @@ void main(void) {
 	fitfile.close();
 
 	Population popul;
-	popul.CreatePop(v, t, numInd, foutname); //Creating 1st population
+	popul.CreatePop(Variables, numInd, foutname); //Creating 1st population
 
 	//Insert here the path to the input data file
 	//WARNING! All the phrases must be deleted from the file
