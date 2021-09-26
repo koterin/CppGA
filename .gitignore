@@ -1,5 +1,5 @@
 $ cat .gitignore
 
 .vs/
-/Data
-/x64
+Data/
+x64/
