@@ -2,10 +2,6 @@
 #Data/Output.xmcd
 #Data/logs.txt
 #Data/old70
-<<<<<<< HEAD
-#Data/Nanind
-=======
->>>>>>> ff5dd95b374b995e7e386057eaf8fbc1602633bb
 Data/**
 /Data
 /x64
