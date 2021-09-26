@@ -613,7 +613,7 @@ Individ numGA(Individ inputInd, vector<struct data> ExpData, Symbolic t, std::st
 {
 	Individ outputInd;
 	vector<Individ> numPop; //Population for numeric GA
-	int GAsize = 20; //number of inds in GA
+	int GAsize = 40; //number of inds in GA
 	double resCoef = 0.0;
 	int bol = 0;
 	int dec = 0; //decision - is there any genes to optimize?
@@ -1150,6 +1150,7 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 
 		popul.inds[mind] = KID;
 
+		//Different logic: adding new ind to population only if it's better than the worst
 		//if (KID.fit > popul.inds[mind].fit)
 		//{
 		//	popul.inds[mind] = KID;
@@ -1180,7 +1181,8 @@ void main(void) {
 	Symbolic v("v"); //V - velocity
 	Symbolic t("t"); //t - time
 	//v = ((((t ^ (2.55411) + 0.262066) ^ (3.72572) + 0.417406) ^ (3.20187)) + 0.944046) ^ (-4.87936);
-	v = (((((((((t + 0.234378) ^ (5.0533)) * (t ^ (2.02288))) + t) ^ (5.87819)) * t) + t) ^ (1.76653)) + 1.01451) ^ (-0.618723);
+	//v = (((((((((t + 0.234378) ^ (5.0533)) * (t ^ (2.02288))) + t) ^ (5.87819)) * t) + t) ^ (1.76653)) + 1.01451) ^ (-0.618723);
+	v = t + 1;
 	int numInd = 20; //number of individuals in the population
 	int len = 100; //number of lines in ExpData to read
 	Individ outputInd; //Buffer for Individ class
