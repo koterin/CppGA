@@ -1,5 +1,5 @@
+$ cat .gitignore
+
 .vs/
-#Data/Output.xmcd
-#Data/logs.txt
-#Data/old70
-/Data/**
+/Data
+/x64
