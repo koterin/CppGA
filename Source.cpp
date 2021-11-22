@@ -37,9 +37,9 @@ public:
 		double devSUM = 0.0; //Sum devitation
 		Symbolic velocity;
 		
-		for (int f = 0; f < ExpData.size(); f++)
+		for (int f = 0; f < ExpData.size(); f++) //loops for files
 		{
-			for (int i = 0; i < ExpData[f].size(); i++)
+			for (int i = 0; i < ExpData[f].size(); i++) //loops for expdata lines
 			{
 				buf = ExpData[f][i];
 
@@ -55,7 +55,7 @@ public:
 				auto yy = velocity->clone();
 				if ((typeid(*(yy)) != typeid(Number<double>)) && (typeid(*(yy)) != typeid(Number<int>)))
 				{
-					dev = 1e+20; //тоже можно заменить на efr +=
+					dev = 1e+30;
 					devSUM += dev;
 				}
 				else
@@ -66,14 +66,13 @@ public:
 				yy->unreference(yy);
 				velocity.auto_expand = 1;
 				velocity.simplified = 1;
-
 			}
 		}
 
 		//Checking if devSUM is too small so we won't get zeros in fits
-		if (devSUM < 1e-10)
+		if (devSUM > 1e9)
 		{
-			fit = 1e-20;
+			fit = 0;
 		}
 
 		else
@@ -98,6 +97,7 @@ vector<Gene> InputGeneDecomposition(Symbolic y)
 	bufList.clear();
 
 	auto bufY = y->clone();
+	//SystemDiaDebug.Write(bufY);
 
 	if (typeid(*bufY) == typeid(Sum))
 	{
@@ -222,44 +222,60 @@ vector<Gene> InputGeneDecomposition(Symbolic y)
 Individ IndFromGenes(vector<Gene> genes)
 {
 	Individ outputInd;
-	outputInd.ind = "";
-	outputInd.genes.resize(genes.size());
+	int genNum = genes.size();
+	Gene bufGene = genes[0];
+	outputInd.ind = bufGene.elem;
 
+	//outputInd.genes.reserve(genNum);
 	//For the 1st element
-	outputInd.genes[0] = genes[0];
-	outputInd.ind = genes[0].elem;
+	outputInd.genes.push_back(bufGene);
+	//outputInd.ind = genes[0].elem;
 
-	for (int i = 1; i < genes.size(); i++)
+	for (int i = 1; i < genNum; i++)
 	{
+		auto buf = genes[i].elem->clone();
+		if (((typeid(*buf) == typeid(Number<double>)) || (typeid(*buf) == typeid(Number<int>)))
+			&& (double(genes[i].elem) > 100))
+		{
+			genes[i].elem = 99.9;
+		}
+
+		//So power won't be simplified
+		if ((typeid(*buf) == typeid(Number<int>)))
+		{
+			genes[i].elem = genes[i].elem - 0.01;
+		}
+
 		if (genes[i].oper == 1)
 		{
 			outputInd.ind = (outputInd.ind) + genes[i].elem;
-			outputInd.genes[i] = genes[i];
+			outputInd.genes.push_back(genes[i]);
 		}
 
 		if (genes[i].oper == 2)
 		{
 			outputInd.ind = (outputInd.ind) - genes[i].elem;
-			outputInd.genes[i] = genes[i];
+			outputInd.genes.push_back(genes[i]);
 		}
 
 		if (genes[i].oper == 3)
 		{
 			outputInd.ind = (outputInd.ind) * genes[i].elem;
-			outputInd.genes[i] = genes[i];
+			outputInd.genes.push_back(genes[i]);
 		}
 
 		if (genes[i].oper == 4)
 		{
 			outputInd.ind = (outputInd.ind) / genes[i].elem;
-			outputInd.genes[i] = genes[i];
+			outputInd.genes.push_back(genes[i]);
 		}
 
 		if (genes[i].oper == 5)
 		{
 			outputInd.ind = pow((outputInd.ind), genes[i].elem);
-			outputInd.genes[i] = genes[i];
+			outputInd.genes.push_back(genes[i]);
 		}
+		buf->unreference(buf);
 	}
 	return(outputInd);
 }
@@ -309,6 +325,7 @@ Individ SearchForAbscentVars(Individ IndZero, vector<Symbolic> Variables)
 		}
 	} 
 
+	//Checking if there're still abscent variables
 	for (int j = 1; j < Variables.size(); j++)
 	{
 		for (int i = 0; i < IndZero.genes.size(); i++)
@@ -468,83 +485,92 @@ public:
 };
 
 //Function for writing dataset from the file to the array
-vector<struct data> SetData(std::string fileroute, std::string exproute, int len)
+vector<vector<struct data>> SetData(vector<std::string> fileroutes, vector<std::string> exproutes, int len)
 {
-	std::ifstream datafile(fileroute);
-	vector<struct data> ExpData;
+	
+	vector<vector<struct data>> ExpData;
 	ExpData.clear();
-	ExpData.reserve(len);
 	struct data curdata;
 	double num1, num2;
 
-	std::string currentLine;
-	int totalLen = 0;
-	
-	//Counting the number of lines in the input file
-	while (!datafile.eof())
+	for (int f = 0; f < fileroutes.size(); f++)
 	{
-		getline(datafile, currentLine);
-		totalLen++;
-	}
+		std::ifstream datafile(fileroutes[f]);
+		std::string currentLine;
+		int totalLen = 0;
+		vector<struct data> bufData;
 
-	int freq = (totalLen / len); //number of lines which will be repeatedly skipped
-	if (freq < 1)
-	{
-		std::cout << "\nDesired length is bigger than the input file=" << std::endl;
-		return(ExpData);
-	}
-
-	std::cout << "\nDatafile is " << totalLen << " lines long, input frequiency will be "
-		<< freq << " lines" << std::endl;
-
-	datafile.seekg(std::ios_base::beg);
-
-	int i = 0;
-	while (i < totalLen)
-	{
-		if (i % freq == 0)
+		//Counting the number of lines in the input file
+		while (!datafile.eof())
 		{
-			datafile >> curdata.t >> curdata.v;
-			ExpData.push_back(curdata);
+			getline(datafile, currentLine);
+			totalLen++;
 		}
 
-		else
+		int freq = (totalLen / len); //number of lines which will be repeatedly skipped
+		if (freq < 1)
 		{
-			datafile >> num1 >> num2;
+			std::cout << "\nDesired length is bigger than the input file=" << std::endl;
+			return(ExpData);
 		}
 
-		i += 1;
-	}
+		std::cout << "\nDatafile " << f << " is " << totalLen << " lines long, input will be every "
+			<< freq << " lines" << std::endl;
 
-	ExpData.shrink_to_fit();
+		datafile.seekg(std::ios_base::beg);
+
+		int i = 0;
+		while (i < totalLen)
+		{
+			if (i % freq == 0)
+			{
+				datafile >> curdata.t >> curdata.v;
+				bufData.push_back(curdata);
+			}
+
+			else
+			{
+				datafile >> num1 >> num2;
+			}
+
+			i += 1;
+		}
+
+		ExpData.push_back(bufData);
+		bufData.clear();
+	}
 
 	double tMax, vMax;
-	tMax = ExpData[0].t;
-	vMax = ExpData[0].v;
-	for (int i = 1; i < ExpData.size(); i++)
+	tMax = ExpData[0][0].t;
+	vMax = ExpData[0][0].v;
+	for (int f = 0; f < fileroutes.size(); f++)
 	{
-		if (ExpData[i].t > tMax)
+		for (int i = 1; i < ExpData[f].size(); i++)
 		{
-			tMax = ExpData[i].t;
-		}
-		if (ExpData[i].v > vMax)
-		{
-			vMax = ExpData[i].v;
+			if (ExpData[f][i].t > tMax)
+			{
+				tMax = ExpData[f][i].t;
+			}
+			if (ExpData[f][i].v > vMax)
+			{
+				vMax = ExpData[f][i].v;
+			}
 		}
 	}
-
+	
 	std::ofstream expfile;
-	expfile.open(exproute, std::ios_base::app);
-
-	for (int i = 0; i < ExpData.size(); i++)
+	for (int f = 0; f < fileroutes.size(); f++)
 	{
-		ExpData[i].t = ExpData[i].t / tMax;
-		ExpData[i].v = ExpData[i].v / vMax;
-		expfile << ExpData[i].t << "	" << ExpData[i].v << std::endl;
+		expfile.open(exproutes[f]);
+		for (int i = 0; i < ExpData[f].size(); i++)
+		{
+			ExpData[f][i].t = ExpData[f][i].t / tMax;
+			ExpData[f][i].v = ExpData[f][i].v / vMax;
+			expfile << ExpData[f][i].t << "	" << ExpData[f][i].v << std::endl;
+		}
+		expfile.close();
 	}
 
-	datafile.close();
-	expfile.close();
 	return(ExpData);
 };
 
@@ -618,14 +644,12 @@ Individ SymbMutation(Individ KID, string foutname, vector<Symbolic> Variables)
 	{
 		int boolGene = rand() % (Variables.size() - 1) + 1;
 		mutGene.elem = Variables[boolGene];
-		mutGene.elem = Variables[boolGene];
 		mutGene.oper = 4;
 		fout << "\ndiv mutation";
 	}
 	if (boolOper == 3)
 	{
 		int boolGene = rand() % (Variables.size() - 1) + 1;
-		mutGene.elem = Variables[boolGene];
 		mutGene.elem = Variables[boolGene];
 		mutGene.oper = 5;
 		fout << "\npow mutation";
@@ -651,7 +675,7 @@ Individ numGA(Individ inputInd, vector<vector<struct data>> ExpData, Symbolic t,
 {
 	Individ outputInd;
 	vector<Individ> numPop; //Population for numeric GA
-	int GAsize = 20; //number of inds in GA
+	int GAsize = 30; //number of inds in GA
 	double resCoef = 0.0;
 	int bol = 0;
 	int dec = 0; //decision - "is there any genes to optimize?"
@@ -660,7 +684,7 @@ Individ numGA(Individ inputInd, vector<vector<struct data>> ExpData, Symbolic t,
 	fout.open(foutname, std::ios_base::app);
 
 	std::ofstream fitfile;
-	fitfile.open("Data\\b32\\FitfileNUM.txt");
+	fitfile.open("Data\\angles\\FitfileNUM.txt");
 
 	numPop.clear();
 	numPop.resize(GAsize);
@@ -737,7 +761,7 @@ Individ numGA(Individ inputInd, vector<vector<struct data>> ExpData, Symbolic t,
 
 		//MAIN GA LOOP
 
-		int limit = dec*100; //manual limit for GA loops
+		int limit = dec*500; //manual limit for GA loops
 		std::cout << "NumGA limits = " << limit << std::endl;
 		int mind, maxd;
 		double coef1, coef2;
@@ -775,7 +799,7 @@ Individ numGA(Individ inputInd, vector<vector<struct data>> ExpData, Symbolic t,
 			fout << "The maximum fit in NumPopulation " << f + 1 << " is " << numPop[maxd].fit << std::endl;
 
 			//Checking if the current population is converged
-			if (abs(1 - (numPop[maxd].fit / numPop[mind].fit)) < 0.005)
+			if ((numPop[maxd].fit == 0) || (abs(1 - (numPop[maxd].fit / numPop[mind].fit)) < 0.005))
 			{
 				fout << "\nNumPop was converged" <<
 					"Optimum coefficients found after " << f + 1 << " loops, final ind is "
@@ -818,7 +842,7 @@ Individ numGA(Individ inputInd, vector<vector<struct data>> ExpData, Symbolic t,
 			
 			//Numeric mutation
 			double randProb = (rand() % 100) / double(100);
-			if (randProb < 0.4)
+			if (randProb < 0.6)
 			{
 				KID = NumMutation(KID);
 				fout << "NumMutation" << std::endl;
@@ -915,8 +939,6 @@ Individ ClassicCrossover(Individ MOM, Individ DAD, Symbolic t, vector<Symbolic> 
 
 	KID = IndFromGenes(newKID);
 	KID.genes = InputGeneDecomposition(KID.ind);
-
-	KID = SearchForAbscentVars(KID, Variables);
 
 	std::cout << "Final KID is " << KID.ind << std::endl;
 	return(KID);
@@ -1027,39 +1049,30 @@ Individ symbGA(Population popul, vector<vector<struct data>> ExpData, Symbolic t
 		//KID
 		Individ KID = MOM; //Подумать над простой инициализацией класса
 
-		fout << "ClassicCrossover" << std::endl;
-		int numAmount = 5 * Variables.size() + 1;
-		while (numAmount > (5 * Variables.size())) //Limiting the amount of numerical coefficients
+		if (f == 11)
 		{
-			numAmount = 0;
-			KID = ClassicCrossover(MOM, DAD, t, Variables);
-
-			double boolCross = (1 / (double(rand() % 10) + 1)); //Mutation probability
-			if (boolCross < 0.18)
-			{
-				KID = SymbMutation(KID, foutname, Variables);
-			}
-
-			for (int i = 0; i < KID.genes.size(); i++) //Numerical genes search
-			{
-				auto buf = KID.genes[i].elem->clone();
-				if ((typeid(*buf) == typeid(Number<double>)) || (typeid(*buf) == typeid(Number<int>)))
-				{
-					numAmount += 1;
-				}
-				buf->unreference(buf);
-			}
+			int jj = 0;
 		}
 
+		fout << "ClassicCrossover" << std::endl;
+		int numAmount = ((Variables.size() - 1) * 7) + 1; //Checking if there're too many genes
+		while (numAmount > ((Variables.size() - 1) * 7))
+		{
+			KID = ClassicCrossover(MOM, DAD, t, Variables);
+			numAmount = KID.genes.size();
+		}
+
+		double boolCross = (1 / (double(rand() % 10) + 1)); //Mutation probability
+		if (boolCross < 0.18)
+		{
+			KID = SymbMutation(KID, foutname, Variables);
+		}
+
+		KID = SearchForAbscentVars(KID, Variables);
 		fout << "KID is " << KID.ind << std::endl;
 		KID = numGA(KID, ExpData, t, Variables, VarValues, foutname);
 		KID.genes = InputGeneDecomposition(KID.ind);
-
-		fout << "KID is not complete" << std::endl;
-		std::cout << "KID is not complete" << std::endl;
-		KID = SearchForAbscentVars(KID, Variables);
-		fout << "now ind is " << KID.ind << std::endl;
-		
+		KID = SearchForAbscentVars(KID, Variables);		
 		KID.CalcFit(ExpData, t, Variables, VarValues);
 		fout << "Optimimzed KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
 		//Replacing the worst element of the population with the KID
@@ -1084,28 +1097,31 @@ void main(void) {
 	unsigned int startime = clock();
 	std::fixed;
 
-	Symbolic v("v"); //V - velocity
-	Symbolic t("t"); //t - time
-	Symbolic vp("vp"); //vp - bullet velocity
-	Symbolic te("te"); //vp - bullet velocity
+	Symbolic v("v"); //angle
+	Symbolic t("t"); //h/d
+	Symbolic h("h"); //plate thickness
+	Symbolic te("te"); //te - test variable
 
-	v = t + vp + 1; //starting ind must contain all of the variables //I can't handle divisions. BLOCKER
-	int numInd = 5; //number of individuals in the population
-	int len = 100; //number of lines in ExpData to read
+	//v = ((h^(-4.65288))*(t^(2.70408))+5.86302*t)^(-0.0325524); //starting ind must contain all of the variables //I can't handle divisions. BLOCKER
+	//v = t*(-0.51*t+(((1.01+0.51*t)+t)^0.51))+h;
+	v = ((((1.4277*(t^(-0.333921))+1.18237)^(-3.1033))+h)^(-0.998601))*h;
+	int numInd = 15; //number of individuals in the population
+	int len = 10; //number of lines in ExpData to read
 
 	vector<Symbolic> Variables; //First variable must be the wanted one
 	Variables.push_back(v);
 	Variables.push_back(t);
-	Variables.push_back(vp);
+	Variables.push_back(h);
 
 	vector<vector<double>> VarValues; //Values of the parameters
 	vector<double> tValues;
-	vector<double> VpValues; //Values of the bullet speed
-	VpValues.push_back(600);
-	VpValues.push_back(700);
-	VpValues.push_back(800);
+	vector<double> hValues; //Values of the thickness
+	hValues.push_back(1);
+	hValues.push_back(0.5);
+	hValues.push_back(0.25);
+	hValues.push_back(0.1);
 	VarValues.push_back(tValues);
-	VarValues.push_back(VpValues);
+	VarValues.push_back(hValues);
 
 	Individ outputInd; //Buffer for Individ class
 	vector <vector<struct data>> ExpData; //vector of expdata vectors
@@ -1113,14 +1129,14 @@ void main(void) {
 
 	//Output file with all the logs
 	std::ofstream fout;
-	std::string foutname = "Data\\b32\\logs.txt";
+	std::string foutname = "Data\\angles\\logs.txt";
 	fout.open(foutname);
 	fout << "Program started\n";
 	fout.close();
 
 	//Output file for Fitness function
 	std::ofstream fitfile;
-	std::string fitfilename = "Data\\b32\\fitfile.txt";
+	std::string fitfilename = "Data\\angles\\fitfile.txt";
 	fitfile.open(fitfilename);
 	fitfile.close();
 
@@ -1130,28 +1146,24 @@ void main(void) {
 	//Insert here the path to the input data file
 	//WARNING! All the phrases must be deleted from the file
 	vector<std::string> datafiles;
-	datafiles.push_back("Data\\b32\\1.txt");
-	datafiles.push_back("Data\\b32\\2.txt");
-	datafiles.push_back("Data\\b32\\3.txt");
+	datafiles.push_back("Data\\angles\\1.txt");
+	datafiles.push_back("Data\\angles\\2.txt");
+	datafiles.push_back("Data\\angles\\3.txt");
+	datafiles.push_back("Data\\angles\\4.txt");
 	
 	vector<std::string> expNormFiles;
-	expNormFiles.push_back("Data\\b32\\1expNorm.txt");
-	expNormFiles.push_back("Data\\b32\\2expNorm.txt");
-	expNormFiles.push_back("Data\\b32\\3expNorm.txt");
+	expNormFiles.push_back("Data\\angles\\1expNorm.txt");
+	expNormFiles.push_back("Data\\angles\\2expNorm.txt");
+	expNormFiles.push_back("Data\\angles\\3expNorm.txt");
+	expNormFiles.push_back("Data\\angles\\4expNorm.txt");
 
 	vector<struct data> bufData;
 	fout.open(foutname, std::ios_base::app);
+
 	for (int f = 0; f < datafiles.size(); f++)
 	{
 		std::ifstream datafile(datafiles[f]);
-
-		if (datafile.is_open())
-		{
-			bufData = SetData(datafiles[f], expNormFiles[f], len);
-			ExpData.push_back(bufData);
-			datafile.close();
-		}
-		else
+		if (!datafile.is_open())
 		{
 			std::cout << "\nInput data file not found" << std::endl;
 			fout << "\nInput data file not found" << std::endl;
@@ -1160,6 +1172,8 @@ void main(void) {
 			return;
 		}
 	}
+
+	ExpData = SetData(datafiles, expNormFiles, len);
 	fout.close();
 
 	//Fitness function calculations for the 1st gen
