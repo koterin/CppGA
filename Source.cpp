@@ -1063,7 +1063,7 @@ Individ symbGA(Population popul, vector<vector<struct data>> ExpData, Symbolic t
 		}
 
 		double boolCross = (1 / (double(rand() % 10) + 1)); //Mutation probability
-		if (boolCross < 0.18)
+		if (boolCross < 0.4)
 		{
 			KID = SymbMutation(KID, foutname, Variables);
 		}
@@ -1104,7 +1104,8 @@ void main(void) {
 
 	//v = ((h^(-4.65288))*(t^(2.70408))+5.86302*t)^(-0.0325524); //starting ind must contain all of the variables //I can't handle divisions. BLOCKER
 	//v = t*(-0.51*t+(((1.01+0.51*t)+t)^0.51))+h;
-	v = ((((1.4277*(t^(-0.333921))+1.18237)^(-3.1033))+h)^(-0.998601))*h;
+	//v = ((((1.4*(t^(-0.3))+1.18)^(-3.1))+h)^(-0.9))*h;
+	v = (((((1.8*(t^(-0.67))+(0.93*t))^(1.2)+1.1)^(-2.05))+h)^(-0.9))*h;
 	int numInd = 15; //number of individuals in the population
 	int len = 10; //number of lines in ExpData to read
 
