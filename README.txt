@@ -1,20 +1,5 @@
-При добавлении ExpData.reserve(100000); в функцию чтения из файла время работы функции стабильно падает
-с ~1 секунды до 0.6 секунд в первые 4-5 раз; далее время сокращается до постоянного 0.5-0.7
+# C++ Genetic Algorithms
+AI-based experimental data approximation curve selection.
 
-После добавления других функций время упало до 0.114 секунд...
+This project lets you set some experimental data (in a form of two-dimensional graph) and select an approximation curve in a symbolic form - for example, for something like that
 
-А после внедрения фитнесс-функции (просто СКО!) возросло до 26 секунд
-
-При настройках:
-Размер эксп.данных - 1000
-Особей - 6
-Циклов ГА - 50
-Особей в ГА - 15
-Во второй особи даже до начала цикла удалось с изначального 2100 перейти на 60 fit
-(особь t+5, новая - t+71)
-
-При этом в другой особи - 0.2*t - с третьего же цикла произошло схождение к fit 2305.
-Итог - нужна мутация?
-
-добавить clone для typeid
-добавить после unreference - сохраняет память (функция razdel)
