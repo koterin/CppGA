@@ -40,7 +40,7 @@ This project includes the following logic:
 
 Just set all the neccesary input data and run the Source.cpp file:
 
-Go for one-variable formula selection in the source branch or multi-variable version in branch multi_symb.
+Go for one-variable formula selection in the **source** branch or multi-variable version in the **multi_symb** branch.
 You can add new input data file with lines like this
 ```
 datafiles.push_back("Data\\angles\\1.txt");
@@ -58,4 +58,4 @@ And their values:
 	hValues.push_back(0.25);
 	hValues.push_back(0.1);
 ```
-Mind that complicated calculation REALLY TAKE TIME. The one give in example was running for 2 hours on i510, the ones with multiple variables - for days
+Mind that complicated calculation REALLY TAKE TIME. The one given in example was running for 2 hours on i510, the ones with multiple variables - for days
