@@ -47,10 +47,9 @@ public:
 			velocity.upr();
 
 			auto yy = velocity->clone();
-			//Если текущий yy - не число (например, комплексное число), то считаем efr как бесконечно большое число
 			if ((typeid(*(yy)) != typeid(Number<double>)) && (typeid(*(yy)) != typeid(Number<int>)))
 			{
-				dev = 1e+20; //тоже можно заменить на efr +=
+				dev = 1e+20; //ГІГ®Г¦ГҐ Г¬Г®Г¦Г­Г® Г§Г Г¬ГҐГ­ГЁГІГј Г­Г  efr +=
 				devSUM += dev;
 			}
 			else
@@ -1107,7 +1106,7 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 		//fout << "cross node is " << nodeCross << std::endl;
 
 		//KID
-		Individ KID = MOM; //Подумать над простой инициализацией класса
+		Individ KID = MOM; //ГЏГ®Г¤ГіГ¬Г ГІГј Г­Г Г¤ ГЇГ°Г®Г±ГІГ®Г© ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГҐГ© ГЄГ«Г Г±Г±Г 
 
 		fout << "ClassicCrossover" << std::endl;
 		int numAmount = 11;
@@ -1180,8 +1179,6 @@ void main(void) {
 	
 	Symbolic v("v"); //V - velocity
 	Symbolic t("t"); //t - time
-	//v = ((((t ^ (2.55411) + 0.262066) ^ (3.72572) + 0.417406) ^ (3.20187)) + 0.944046) ^ (-4.87936);
-	//v = (((((((((t + 0.234378) ^ (5.0533)) * (t ^ (2.02288))) + t) ^ (5.87819)) * t) + t) ^ (1.76653)) + 1.01451) ^ (-0.618723);
 	v = t + 1;
 	int numInd = 20; //number of individuals in the population
 	int len = 100; //number of lines in ExpData to read
