@@ -16,15 +16,14 @@ public:
 
 struct data
 {
-	double v;
-	double t;
+	double y;
+	double x;
 };
 
 class Individ {
 
 public:
 	Symbolic ind; //one symbolic individual
-	int pop; //popluation where the individual was last modified or created
 	vector<Gene> genes; //genes of the individual
 	double fit; //Value of the fitness function for the individual
 
@@ -35,7 +34,7 @@ public:
 		struct data buf;
 		double dev = 0.0; //Devitation ind current v from expdata v
 		double devSUM = 0.0; //Sum devitation
-		Symbolic velocity;
+		Symbolic y;
 		
 		for (int f = 0; f < ExpData.size(); f++) //loops for files
 		{
@@ -43,29 +42,29 @@ public:
 			{
 				buf = ExpData[f][i];
 
-				velocity.auto_expand = 0;
-				velocity.simplified = 0;
-				velocity = ind[t == buf.t];
+				y.auto_expand = 0;
+				y.simplified = 0;
+				y = ind[t == buf.x];
 				for (int j = 2; j < Variables.size(); j++) //always from the 2: 0 - v(t), 1 - t.
 				{
-					velocity = velocity[Variables[j] == VarValues[j-1][f]];
+					y = y[Variables[j] == VarValues[j-1][f]];
 				}
-				velocity.upr();
+				y.upr();
 
-				auto yy = velocity->clone();
-				if ((typeid(*(yy)) != typeid(Number<double>)) && (typeid(*(yy)) != typeid(Number<int>)))
+				auto yClone = y->clone();
+				if ((typeid(*(yClone)) != typeid(Number<double>)) && (typeid(*(yClone)) != typeid(Number<int>)))
 				{
 					dev = 1e+30;
 					devSUM += dev;
 				}
 				else
 				{
-					dev = pow((double(velocity) - buf.v), 2);
+					dev = (pow((double(y) - buf.y), 2) / (pow(buf.y, 2)));
 					devSUM += dev;
 				}
-				yy->unreference(yy);
-				velocity.auto_expand = 1;
-				velocity.simplified = 1;
+				yClone->unreference(yClone);
+				y.auto_expand = 1;
+				y.simplified = 1;
 			}
 		}
 
@@ -84,7 +83,6 @@ public:
 };
 
 //Checking if input y is already a complex formula
-//CAN'T HANDLE DIVISION! BLOCKER
 vector<Gene> InputGeneDecomposition(Symbolic y)
 {
 	vector<Gene> bufGenes, newGenes;
@@ -323,11 +321,8 @@ Individ SearchForAbscentVars(Individ IndZero, vector<Symbolic> Variables)
 		{
 			IndZero = ZeroIndTermination(IndZero, Variables[j]);
 		}
-	} 
 
-	//Checking if there're still abscent variables
-	for (int j = 1; j < Variables.size(); j++)
-	{
+		//Checking if there're still abscent variables
 		for (int i = 0; i < IndZero.genes.size(); i++)
 		{
 			if (IndZero.genes[i].elem == Variables[j])
@@ -340,7 +335,24 @@ Individ SearchForAbscentVars(Individ IndZero, vector<Symbolic> Variables)
 		{
 			IndZero = SearchForAbscentVars(IndZero, Variables);
 		}
-	}
+	} 
+
+	////Checking if there're still abscent variables
+	//for (int j = 1; j < Variables.size(); j++)
+	//{
+	//	for (int i = 0; i < IndZero.genes.size(); i++)
+	//	{
+	//		if (IndZero.genes[i].elem == Variables[j])
+	//		{
+	//			varCount[j]++;
+	//		}
+	//	}
+
+	//	if (varCount[j] == 0)
+	//	{
+	//		IndZero = SearchForAbscentVars(IndZero, Variables);
+	//	}
+	//}
 
 	return(IndZero);
 }
@@ -353,7 +365,6 @@ private:
 	Gene outputGene;
 public:
 	std::vector<Individ> inds; //all of the individuals in the population
-	int pop; //number of the population
 
 	//Function for creating the first population
 	void CreatePop(vector<Symbolic> Variables, int numInd, std::string foutname)
@@ -425,7 +436,7 @@ public:
 
 			if (dist == 5)
 			{
-				coeff = (double(rand() % 12) + 1.0) / (double(rand() % 10 + 1.0));
+				coeff = ((double(rand() % 12) + 1.0) / (double(rand() % 10 + 1.0))) - 0.001;
 				genZero.elem = coeff;
 				genZero.oper = 5;
 				indZero.genes.push_back(genZero);
@@ -434,7 +445,7 @@ public:
 			
 			if (dist == 6)
 			{
-				coeff = (double(rand() % 12) + 1.0) / (double(rand() % 10 + 1.0));
+				coeff = ((double(rand() % 12) + 1.0) / (double(rand() % 10 + 1.0))) - 0.001;
 				genZero.elem = coeff;
 				genZero.oper = 3;
 				indZero.genes.push_back(genZero);
@@ -443,7 +454,7 @@ public:
 
 			if (dist == 7)
 			{
-				coeff = (double(rand() % 12) + 1.0) / (double(rand() % 10 + 1.0));
+				coeff = ((double(rand() % 12) + 1.0) / (double(rand() % 10 + 1.0))) - 0.001;
 				int coeffBool = rand() % 2;
 				if (coeffBool == 0)
 				{
@@ -524,7 +535,7 @@ vector<vector<struct data>> SetData(vector<std::string> fileroutes, vector<std::
 		{
 			if (i % freq == 0)
 			{
-				datafile >> curdata.t >> curdata.v;
+				datafile >> curdata.x >> curdata.y;
 				bufData.push_back(curdata);
 			}
 
@@ -541,19 +552,19 @@ vector<vector<struct data>> SetData(vector<std::string> fileroutes, vector<std::
 	}
 
 	double tMax, vMax;
-	tMax = ExpData[0][0].t;
-	vMax = ExpData[0][0].v;
+	tMax = ExpData[0][0].x;
+	vMax = ExpData[0][0].y;
 	for (int f = 0; f < fileroutes.size(); f++)
 	{
 		for (int i = 1; i < ExpData[f].size(); i++)
 		{
-			if (ExpData[f][i].t > tMax)
+			if (ExpData[f][i].x > tMax)
 			{
-				tMax = ExpData[f][i].t;
+				tMax = ExpData[f][i].x;
 			}
-			if (ExpData[f][i].v > vMax)
+			if (ExpData[f][i].y > vMax)
 			{
-				vMax = ExpData[f][i].v;
+				vMax = ExpData[f][i].y;
 			}
 		}
 	}
@@ -564,9 +575,9 @@ vector<vector<struct data>> SetData(vector<std::string> fileroutes, vector<std::
 		expfile.open(exproutes[f]);
 		for (int i = 0; i < ExpData[f].size(); i++)
 		{
-			ExpData[f][i].t = ExpData[f][i].t / tMax;
-			ExpData[f][i].v = ExpData[f][i].v / vMax;
-			expfile << ExpData[f][i].t << "	" << ExpData[f][i].v << std::endl;
+			ExpData[f][i].x = ExpData[f][i].x / tMax;
+			ExpData[f][i].y = ExpData[f][i].y / vMax;
+			expfile << ExpData[f][i].x << "	" << ExpData[f][i].y << std::endl;
 		}
 		expfile.close();
 	}
@@ -670,12 +681,12 @@ Individ SymbMutation(Individ KID, string foutname, vector<Symbolic> Variables)
 }
 
 //Function for GA coefficient optimization
-Individ numGA(Individ inputInd, vector<vector<struct data>> ExpData, Symbolic t, vector<Symbolic> Variables,
+Individ numGA(Individ inputInd, vector<vector<struct data>> ExpData, Symbolic x, vector<Symbolic> Variables,
 														vector<vector<double>> VarValues, std::string foutname)
 {
 	Individ outputInd;
 	vector<Individ> numPop; //Population for numeric GA
-	int GAsize = 30; //number of inds in GA
+	int GAsize = 40; //number of inds in GA
 	double resCoef = 0.0;
 	int bol = 0;
 	int dec = 0; //decision - "is there any genes to optimize?"
@@ -684,7 +695,7 @@ Individ numGA(Individ inputInd, vector<vector<struct data>> ExpData, Symbolic t,
 	fout.open(foutname, std::ios_base::app);
 
 	std::ofstream fitfile;
-	fitfile.open("Data\\angles\\FitfileNUM.txt");
+	fitfile.open("Data\\ps_conf\\FitfileNUM.txt");
 
 	numPop.clear();
 	numPop.resize(GAsize);
@@ -694,7 +705,6 @@ Individ numGA(Individ inputInd, vector<vector<struct data>> ExpData, Symbolic t,
 
 	outputInd.ind = inputInd.ind;
 	outputInd.genes = inputInd.genes;
-	outputInd.pop = inputInd.pop;
 
 	for (int i = 0; i < numPop.size(); i++)
 	{
@@ -716,11 +726,11 @@ Individ numGA(Individ inputInd, vector<vector<struct data>> ExpData, Symbolic t,
 
 				if (bol == 0)
 				{
-					resCoef = double(rand() % 10);
+					resCoef = double(rand() % 9) + 0.999;
 				}
 				else if (bol == 1)
 				{
-					resCoef = double(-(rand() % 10));
+					resCoef = double(-(rand() % 9)) + 0.999;
 				};
 
 				numPop[j].genes[i].elem = resCoef;
@@ -747,7 +757,7 @@ Individ numGA(Individ inputInd, vector<vector<struct data>> ExpData, Symbolic t,
 		{
 			numPop[i] = IndFromGenes(numPop[i].genes);
 			fout << "New ind for NGA is " << numPop[i].ind << std::endl;
-			numPop[i].CalcFit(ExpData, t, Variables, VarValues);
+			numPop[i].CalcFit(ExpData, x, Variables, VarValues);
 			auto buf = numPop[i].ind->clone();
 			if ((typeid(*buf) == typeid(Number<double>)) || (typeid(*buf) == typeid(Number<int>)))
 			{
@@ -761,7 +771,7 @@ Individ numGA(Individ inputInd, vector<vector<struct data>> ExpData, Symbolic t,
 
 		//MAIN GA LOOP
 
-		int limit = dec*500; //manual limit for GA loops
+		int limit = dec*2000; //manual limit for GA loops
 		std::cout << "NumGA limits = " << limit << std::endl;
 		int mind, maxd;
 		double coef1, coef2;
@@ -799,7 +809,7 @@ Individ numGA(Individ inputInd, vector<vector<struct data>> ExpData, Symbolic t,
 			fout << "The maximum fit in NumPopulation " << f + 1 << " is " << numPop[maxd].fit << std::endl;
 
 			//Checking if the current population is converged
-			if ((numPop[maxd].fit == 0) || (abs(1 - (numPop[maxd].fit / numPop[mind].fit)) < 0.005))
+			if ((numPop[maxd].fit == 0) || (abs(1 - (numPop[maxd].fit / numPop[mind].fit)) < 0.00001))
 			{
 				fout << "\nNumPop was converged" <<
 					"Optimum coefficients found after " << f + 1 << " loops, final ind is "
@@ -858,7 +868,7 @@ Individ numGA(Individ inputInd, vector<vector<struct data>> ExpData, Symbolic t,
 			}
 			else
 			{
-				KID.CalcFit(ExpData, t, Variables, VarValues);
+				KID.CalcFit(ExpData, x, Variables, VarValues);
 			}
 			buf->unreference(buf);
 
@@ -907,7 +917,7 @@ vector<int> MomDadChoice(Population popul, vector<Symbolic> Variables)
 
 }
 
-Individ ClassicCrossover(Individ MOM, Individ DAD, Symbolic t, vector<Symbolic> Variables)
+Individ ClassicCrossover(Individ MOM, Individ DAD, vector<Symbolic> Variables)
 {
 	Individ KID;
 	vector<Gene> newKID;
@@ -945,18 +955,18 @@ Individ ClassicCrossover(Individ MOM, Individ DAD, Symbolic t, vector<Symbolic> 
 }
 
 //Function for GA symbolic optimization (main)
-Individ symbGA(Population popul, vector<vector<struct data>> ExpData, Symbolic t, vector<Symbolic> Variables,
+Individ symbGA(Population popul, vector<vector<struct data>> ExpData, Symbolic x, vector<Symbolic> Variables,
 	vector<vector<double>> VarValues, unsigned int startime, std::string foutname, std::string fitfilename)
 {
 	Individ outputInd;
-	double stopPoint = 99.9;
+	double stopPoint = 95; //Another stopping mechanism - desired accuracy
 	
 	//MAIN GA LOOP
 	int mind, maxd;
 	double coef1, coef2;
 	double fitAVG = 0.0;
 	Gene bufGene;
-	bufGene.elem = t;
+	bufGene.elem = Variables[1];
 	bufGene.oper = 3;
 
 	std::ofstream fout;
@@ -1047,33 +1057,28 @@ Individ symbGA(Population popul, vector<vector<struct data>> ExpData, Symbolic t
 		fout << "DAD is " << DAD.ind << " and fit is " << DAD.fit << std::endl;
 
 		//KID
-		Individ KID = MOM; //ѕодумать над простой инициализацией класса
-
-		if (f == 11)
-		{
-			int jj = 0;
-		}
+		Individ KID;
 
 		fout << "ClassicCrossover" << std::endl;
-		int numAmount = ((Variables.size() - 1) * 7) + 1; //Checking if there're too many genes
+		int numAmount = ((Variables.size() - 1) * 5) + 1; //Checking if there're too many genes
 		while (numAmount > ((Variables.size() - 1) * 7))
 		{
-			KID = ClassicCrossover(MOM, DAD, t, Variables);
+			KID = ClassicCrossover(MOM, DAD, Variables);
 			numAmount = KID.genes.size();
 		}
 
 		double boolCross = (1 / (double(rand() % 10) + 1)); //Mutation probability
-		if (boolCross < 0.4)
+		if (boolCross < 0.5)
 		{
 			KID = SymbMutation(KID, foutname, Variables);
 		}
 
 		KID = SearchForAbscentVars(KID, Variables);
 		fout << "KID is " << KID.ind << std::endl;
-		KID = numGA(KID, ExpData, t, Variables, VarValues, foutname);
+		KID = numGA(KID, ExpData, x, Variables, VarValues, foutname);
 		KID.genes = InputGeneDecomposition(KID.ind);
 		KID = SearchForAbscentVars(KID, Variables);		
-		KID.CalcFit(ExpData, t, Variables, VarValues);
+		KID.CalcFit(ExpData, x, Variables, VarValues);
 		fout << "Optimimzed KID is " << KID.ind << " and fit is " << KID.fit << std::endl;
 		//Replacing the worst element of the population with the KID
 
@@ -1097,31 +1102,29 @@ void main(void) {
 	unsigned int startime = clock();
 	std::fixed;
 
-	Symbolic v("v"); //angle
-	Symbolic t("t"); //h/d
-	Symbolic h("h"); //plate thickness
+	Symbolic y("y"); //angle
+	Symbolic x("x"); //V - velocity
+	Symbolic h("h"); //h/d
 	Symbolic te("te"); //te - test variable
 
-	//v = ((h^(-4.65288))*(t^(2.70408))+5.86302*t)^(-0.0325524); //starting ind must contain all of the variables //I can't handle divisions. BLOCKER
-	//v = t*(-0.51*t+(((1.01+0.51*t)+t)^0.51))+h;
-	//v = ((((1.4*(t^(-0.3))+1.18)^(-3.1))+h)^(-0.9))*h;
-	v = (((((1.8*(t^(-0.67))+(0.93*t))^(1.2)+1.1)^(-2.05))+h)^(-0.9))*h;
+	//65%
+	//y = ((1.06404 * h ^ (-0.0805215) * x ^ (8.6698) + 0.0300847 * x) ^ (-1.24691) * x ^ (-0.197651) + 0.742162 * x) ^ (-0.104426);
+	y = (((h ^ (0.117733)) * x )^ (1.8251)) - (0.537132 * x) + 0.580674;
 	int numInd = 15; //number of individuals in the population
 	int len = 10; //number of lines in ExpData to read
 
 	vector<Symbolic> Variables; //First variable must be the wanted one
-	Variables.push_back(v);
-	Variables.push_back(t);
+	Variables.push_back(y);
+	Variables.push_back(x);
 	Variables.push_back(h);
 
 	vector<vector<double>> VarValues; //Values of the parameters
-	vector<double> tValues;
+	vector<double> xValues;
 	vector<double> hValues; //Values of the thickness
-	hValues.push_back(1);
-	hValues.push_back(0.5);
-	hValues.push_back(0.25);
-	hValues.push_back(0.1);
-	VarValues.push_back(tValues);
+	hValues.push_back(1); // h/d = 1.79
+	hValues.push_back(0.637); // h/d = 1.14
+	hValues.push_back(0.352); // h/d = 0.63
+	VarValues.push_back(xValues);
 	VarValues.push_back(hValues);
 
 	Individ outputInd; //Buffer for Individ class
@@ -1130,14 +1133,14 @@ void main(void) {
 
 	//Output file with all the logs
 	std::ofstream fout;
-	std::string foutname = "Data\\angles\\logs.txt";
+	std::string foutname = "Data\\ps_conf\\logs.txt";
 	fout.open(foutname);
 	fout << "Program started\n";
 	fout.close();
 
 	//Output file for Fitness function
 	std::ofstream fitfile;
-	std::string fitfilename = "Data\\angles\\fitfile.txt";
+	std::string fitfilename = "Data\\ps_conf\\fitfile.txt";
 	fitfile.open(fitfilename);
 	fitfile.close();
 
@@ -1147,16 +1150,15 @@ void main(void) {
 	//Insert here the path to the input data file
 	//WARNING! All the phrases must be deleted from the file
 	vector<std::string> datafiles;
-	datafiles.push_back("Data\\angles\\1.txt");
-	datafiles.push_back("Data\\angles\\2.txt");
-	datafiles.push_back("Data\\angles\\3.txt");
-	datafiles.push_back("Data\\angles\\4.txt");
+	datafiles.push_back("Data\\ps_conf\\1.txt");
+	datafiles.push_back("Data\\ps_conf\\2.txt");
+	datafiles.push_back("Data\\ps_conf\\3.txt");
 	
 	vector<std::string> expNormFiles;
-	expNormFiles.push_back("Data\\angles\\1expNorm.txt");
-	expNormFiles.push_back("Data\\angles\\2expNorm.txt");
-	expNormFiles.push_back("Data\\angles\\3expNorm.txt");
-	expNormFiles.push_back("Data\\angles\\4expNorm.txt");
+	expNormFiles.push_back("Data\\ps_conf\\1expNorm.txt");
+	expNormFiles.push_back("Data\\ps_conf\\2expNorm.txt");
+	expNormFiles.push_back("Data\\ps_conf\\3expNorm.txt");
+	expNormFiles.push_back("Data\\ps_conf\\3expNorm.txt");
 
 	vector<struct data> bufData;
 	fout.open(foutname, std::ios_base::app);
@@ -1180,12 +1182,12 @@ void main(void) {
 	//Fitness function calculations for the 1st gen
 	for (int i = 0; i < numInd; i++)
 	{
-		popul.inds[i] = numGA(popul.inds[i], ExpData, t, Variables, VarValues, foutname);
+		popul.inds[i] = numGA(popul.inds[i], ExpData, x, Variables, VarValues, foutname);
 		popul.inds[i] = SearchForAbscentVars(popul.inds[i], Variables);
-		popul.inds[i].CalcFit(ExpData, t, Variables, VarValues); //t - the agrument which should be substituted
+		popul.inds[i].CalcFit(ExpData, x, Variables, VarValues); //t - the agrument which should be substituted
 	}
 
-	outputInd = symbGA(popul, ExpData, t, Variables, VarValues, startime, foutname, fitfilename);
+	outputInd = symbGA(popul, ExpData, x, Variables, VarValues, startime, foutname, fitfilename);
 
 	fout.open(foutname, std::ios_base::app);
 	std::cout << "PROGRAM RESULT IS " << outputInd.ind << " with fit = " << outputInd.fit << std::endl;
