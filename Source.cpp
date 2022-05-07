@@ -5,7 +5,12 @@
 #include "symbolicc++.h" //for symbolic
 #include <ctime> //for runtime calculations
 #include <list>
+#include <cmath>
 #include <iterator>
+
+#define PI 3.14159265
+#define NGA_LOOPS_LIMIT 100 // number of loops limit (limit * number of elements)
+#define GAsize 10 // number of inds in the numerical GA
 
 class Gene {
 
@@ -686,7 +691,6 @@ Individ numGA(Individ inputInd, vector<vector<struct data>> ExpData, Symbolic x,
 {
 	Individ outputInd;
 	vector<Individ> numPop; //Population for numeric GA
-	int GAsize = 40; //number of inds in GA
 	double resCoef = 0.0;
 	int bol = 0;
 	int dec = 0; //decision - "is there any genes to optimize?"
@@ -695,7 +699,7 @@ Individ numGA(Individ inputInd, vector<vector<struct data>> ExpData, Symbolic x,
 	fout.open(foutname, std::ios_base::app);
 
 	std::ofstream fitfile;
-	fitfile.open("Data\\ps_conf\\FitfileNUM.txt");
+	fitfile.open("Data\\Diploma\\FitfileNUM.txt");
 
 	numPop.clear();
 	numPop.resize(GAsize);
@@ -771,7 +775,7 @@ Individ numGA(Individ inputInd, vector<vector<struct data>> ExpData, Symbolic x,
 
 		//MAIN GA LOOP
 
-		int limit = dec*2000; //manual limit for GA loops
+		int limit = dec*NGA_LOOPS_LIMIT; //manual limit for GA loops
 		std::cout << "NumGA limits = " << limit << std::endl;
 		int mind, maxd;
 		double coef1, coef2;
@@ -1102,45 +1106,44 @@ void main(void) {
 	unsigned int startime = clock();
 	std::fixed;
 
-	Symbolic y("y"); //angle
-	Symbolic x("x"); //V - velocity
-	Symbolic h("h"); //h/d
-	Symbolic te("te"); //te - test variable
+	Symbolic y("y"); // angle
+	Symbolic x("x"); // h/d
+	Symbolic ss("ss"); // sigma ss / sr
+		
+	// y = x * 0.5 + ss;
+	// y = atan((1/(2*x))*(-(1+0.5*x)+((1+0.5*x)^2+4*x*(0.58*ss))^0.5)) * 180.0 / PI;
+	//y = (1 / (2 * x)) * (-(1 + 0.5 * x) + ((1 + 0.5 * x) ^ 2 + 4 * x * (0.58 * ss)) ^ 0.5);
+	y = (0.5 * x) * (-(1 + 0.5 * x) + ((1 + 0.5 * x) ^ 2 + 4 * x * (0.58 * ss)) ^ 0.5);
+	int len = 10; // number of lines in ExpData to read
+	int numInd = 10; // number of inds in te population
 
-	//65%
-	//y = ((1.06404 * h ^ (-0.0805215) * x ^ (8.6698) + 0.0300847 * x) ^ (-1.24691) * x ^ (-0.197651) + 0.742162 * x) ^ (-0.104426);
-	y = (((h ^ (0.117733)) * x )^ (1.8251)) - (0.537132 * x) + 0.580674;
-	int numInd = 15; //number of individuals in the population
-	int len = 10; //number of lines in ExpData to read
-
-	vector<Symbolic> Variables; //First variable must be the wanted one
+	vector<Symbolic> Variables; // First variable must be the wanted one
 	Variables.push_back(y);
 	Variables.push_back(x);
-	Variables.push_back(h);
+	Variables.push_back(ss);
 
-	vector<vector<double>> VarValues; //Values of the parameters
-	vector<double> xValues;
-	vector<double> hValues; //Values of the thickness
-	hValues.push_back(1); // h/d = 1.79
-	hValues.push_back(0.637); // h/d = 1.14
-	hValues.push_back(0.352); // h/d = 0.63
-	VarValues.push_back(xValues);
-	VarValues.push_back(hValues);
+	vector<vector<double>> VarValues; // Values of the parameters
+	vector<double> hdValues; // from the text files
+	vector<double> ssValues;
+	ssValues.push_back(0.848); // B4C 6.154
+	ssValues.push_back(1); // Al2O3 7.252
+	VarValues.push_back(hdValues);
+	VarValues.push_back(ssValues);
 
-	Individ outputInd; //Buffer for Individ class
-	vector <vector<struct data>> ExpData; //vector of expdata vectors
+	Individ outputInd; // Buffer for Individ class
+	vector <vector<struct data>> ExpData; // vector of expdata vectors
 	ExpData.clear();
 
-	//Output file with all the logs
+	// Output file with all the logs
 	std::ofstream fout;
-	std::string foutname = "Data\\ps_conf\\logs.txt";
+	std::string foutname = "Data\\Diploma\\logs.txt";
 	fout.open(foutname);
 	fout << "Program started\n";
 	fout.close();
 
 	//Output file for Fitness function
 	std::ofstream fitfile;
-	std::string fitfilename = "Data\\ps_conf\\fitfile.txt";
+	std::string fitfilename = "Data\\Diploma\\fitfile.txt";
 	fitfile.open(fitfilename);
 	fitfile.close();
 
@@ -1150,15 +1153,12 @@ void main(void) {
 	//Insert here the path to the input data file
 	//WARNING! All the phrases must be deleted from the file
 	vector<std::string> datafiles;
-	datafiles.push_back("Data\\ps_conf\\1.txt");
-	datafiles.push_back("Data\\ps_conf\\2.txt");
-	datafiles.push_back("Data\\ps_conf\\3.txt");
+	datafiles.push_back("Data\\Diploma\\1.txt");
+	datafiles.push_back("Data\\Diploma\\2.txt");
 	
 	vector<std::string> expNormFiles;
-	expNormFiles.push_back("Data\\ps_conf\\1expNorm.txt");
-	expNormFiles.push_back("Data\\ps_conf\\2expNorm.txt");
-	expNormFiles.push_back("Data\\ps_conf\\3expNorm.txt");
-	expNormFiles.push_back("Data\\ps_conf\\3expNorm.txt");
+	expNormFiles.push_back("Data\\Diploma\\1expNorm.txt");
+	expNormFiles.push_back("Data\\Diploma\\2expNorm.txt");
 
 	vector<struct data> bufData;
 	fout.open(foutname, std::ios_base::app);
@@ -1184,7 +1184,7 @@ void main(void) {
 	{
 		popul.inds[i] = numGA(popul.inds[i], ExpData, x, Variables, VarValues, foutname);
 		popul.inds[i] = SearchForAbscentVars(popul.inds[i], Variables);
-		popul.inds[i].CalcFit(ExpData, x, Variables, VarValues); //t - the agrument which should be substituted
+		popul.inds[i].CalcFit(ExpData, x, Variables, VarValues);
 	}
 
 	outputInd = symbGA(popul, ExpData, x, Variables, VarValues, startime, foutname, fitfilename);
