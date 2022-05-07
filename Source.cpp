@@ -1171,7 +1171,7 @@ Individ symbGA(Population popul, vector<struct data> ExpData, Symbolic t, unsign
 	return(outputInd);
 }
 
-void main(void) {
+int main() {
 
 	std::clock_t start;
 	unsigned int startime = clock();
@@ -1221,7 +1221,7 @@ void main(void) {
 		fout << "\nInput data file not found" << std::endl;
 		std::cout << "The Program will be terminated\n";
 		fout << "The Program will be terminated\n";
-		return;
+		return (1);
 	}
 
 	fout << "\nExperimental data file size is " << ExpData.size() << " lines" << std::endl;
@@ -1252,5 +1252,5 @@ void main(void) {
 
 	fout.close();
 
-	return;
+	return (0);
 }

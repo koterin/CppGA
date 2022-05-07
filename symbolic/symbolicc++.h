@@ -30,18 +30,18 @@
 
 // phased include headers
 // according to class hierarchy
-#include "symbolic/symbolic.h"  // SymbolicInterface, Symbolic ...
-#include "symbolic/equation.h"  //   Equation : CloningSymbolicInterface
-#include "symbolic/number.h"    //   Numeric  : CloningSymbolicInterface
-#include "symbolic/product.h"   //   Product  : CloningSymbolicInterface
-#include "symbolic/sum.h"       //   Sum      : CloningSymbolicInterface
-#include "symbolic/symbol.h"    //   Symbol   : CloningSymbolicInterface
-#include "symbolic/functions.h" //     Sin    : Symbol ...
-#include "symbolic/symmatrix.h" //   SymbolicMatrix : CloningSymbolicInterface
-#include "symbolic/symerror.h"  //   SymbolicError  : CloningSymbolicInterface
-#include "symbolic/constants.h"
-#include "symbolic/integrate.h"
-#include "symbolic/solve.h"
+#include "symbolic.h"  // SymbolicInterface, Symbolic ...
+#include "equation.h"  //   Equation : CloningSymbolicInterface
+#include "number.h"    //   Numeric  : CloningSymbolicInterface
+#include "product.h"   //   Product  : CloningSymbolicInterface
+#include "sum.h"       //   Sum      : CloningSymbolicInterface
+#include "symbol.h"    //   Symbol   : CloningSymbolicInterface
+#include "functions.h" //     Sin    : Symbol ...
+#include "symmatrix.h" //   SymbolicMatrix : CloningSymbolicInterface
+#include "symerror.h"  //   SymbolicError  : CloningSymbolicInterface
+#include "constants.h"
+#include "integrate.h"
+#include "solve.h"
 
 #ifndef SYMBOLIC_CPLUSPLUS
 #define SYMBOLIC_CPLUSPLUS
@@ -61,7 +61,7 @@
 
 // forward declarations of all classes first
 #define SYMBOLIC_FORWARD
-#include "symbolic/symbolicc++.h"
+#include "symbolicc++.h"
 #undef  SYMBOLIC_FORWARD
 
 typedef list<Equation> Equations;
@@ -69,7 +69,7 @@ typedef list<Equations> PatternMatches;
 
 // declarations of classes without definitions
 #define SYMBOLIC_DECLARE
-#include "symbolic/symbolicc++.h"
+#include "symbolicc++.h"
 #undef  SYMBOLIC_DECLARE
 
 // declarations for non-member functions
@@ -199,7 +199,7 @@ void pattern_match_OR(PatternMatches &, const PatternMatches &);
 
 // definitions for classes, member functions
 #define SYMBOLIC_DEFINE
-#include "symbolic/symbolicc++.h"
+#include "symbolicc++.h"
 #undef SYMBOLIC_DEFINE
 
 #define LIBSYMBOLICCPLUSPLUS
