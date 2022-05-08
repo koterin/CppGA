@@ -1,3 +1,7 @@
 .vs/
-Data/
+*logs*
+*fitfile*
+*filtfileNUM*
 x64/
+
+*.swp

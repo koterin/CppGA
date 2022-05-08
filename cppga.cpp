@@ -1100,7 +1100,7 @@ Individ symbGA(Population popul, vector<vector<struct data>> ExpData, Symbolic x
 	return(outputInd);
 }
 
-void main(void) {
+int main() {
 
 	std::clock_t start;
 	unsigned int startime = clock();
@@ -1136,14 +1136,14 @@ void main(void) {
 
 	// Output file with all the logs
 	std::ofstream fout;
-	std::string foutname = "Data\\Diploma\\logs.txt";
+	std::string foutname = "Data/Diploma/logs.txt";
 	fout.open(foutname);
 	fout << "Program started\n";
 	fout.close();
 
 	//Output file for Fitness function
 	std::ofstream fitfile;
-	std::string fitfilename = "Data\\Diploma\\fitfile.txt";
+	std::string fitfilename = "Data/Diploma/fitfile.txt";
 	fitfile.open(fitfilename);
 	fitfile.close();
 
@@ -1153,12 +1153,12 @@ void main(void) {
 	//Insert here the path to the input data file
 	//WARNING! All the phrases must be deleted from the file
 	vector<std::string> datafiles;
-	datafiles.push_back("Data\\Diploma\\1.txt");
-	datafiles.push_back("Data\\Diploma\\2.txt");
+	datafiles.push_back("Data/Diploma/1.txt");
+	datafiles.push_back("Data/Diploma/2.txt");
 	
 	vector<std::string> expNormFiles;
-	expNormFiles.push_back("Data\\Diploma\\1expNorm.txt");
-	expNormFiles.push_back("Data\\Diploma\\2expNorm.txt");
+	expNormFiles.push_back("Data/Diploma/1expNorm.txt");
+	expNormFiles.push_back("Data/Diploma/2expNorm.txt");
 
 	vector<struct data> bufData;
 	fout.open(foutname, std::ios_base::app);
@@ -1169,10 +1169,10 @@ void main(void) {
 		if (!datafile.is_open())
 		{
 			std::cout << "\nInput data file not found" << std::endl;
-			fout << "\nInput data file not found" << std::endl;
 			std::cout << "The Program will be terminated\n";
+			fout << "\nInput data file not found" << std::endl;
 			fout << "The Program will be terminated\n";
-			return;
+    		return (0);
 		}
 	}
 
@@ -1201,5 +1201,5 @@ void main(void) {
 
 	fout.close();
 
-	return;
+	return (0);
 }
