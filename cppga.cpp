@@ -528,7 +528,7 @@ int main() {
     Symbolic y("y"); // angle
     Symbolic x("x"); // h/d
     Symbolic ss("ss"); // sigma ss / sr
-        
+    
     // y = x * 0.5 + ss;
     // y = atan((1/(2*x))*(-(1+0.5*x)+((1+0.5*x)^2+4*x*(0.58*ss))^0.5)) * 180.0 / PI;
     //y = (1 / (2 * x)) * (-(1 + 0.5 * x) + ((1 + 0.5 * x) ^ 2 + 4 * x * (0.58 * ss)) ^ 0.5);
@@ -555,10 +555,11 @@ int main() {
 
     // Output file with all the logs
     std::ofstream fout;
-    std::string foutname = "Data/Diploma/logs.txt";
-    fout.open(foutname);
+    fout.open(FOUTNAME);
     fout << "Program started\n";
     fout.close();
+    
+    logger("hi bitch", 1, 1);
 
     //Output file for Fitness function
     std::ofstream fitfile;
@@ -567,7 +568,7 @@ int main() {
     fitfile.close();
 
     Population popul;
-    popul = CreatePop(popul, Variables, numInd, foutname); //Creating 1st population
+    popul = CreatePop(popul, Variables, numInd, FOUTNAME); //Creating 1st population
 
     //Insert here the path to the input data file
     //WARNING! All the phrases must be deleted from the file
@@ -580,7 +581,7 @@ int main() {
     expNormFiles.push_back("Data/Diploma/2expNorm.txt");
 
     vector<struct data> bufData;
-    fout.open(foutname, std::ios_base::app);
+    fout.open(FOUTNAME, std::ios_base::app);
 
     for (int f = 0; f < datafiles.size(); f++)
     {
@@ -601,14 +602,14 @@ int main() {
     //Fitness function calculations for the 1st gen
     for (int i = 0; i < numInd; i++)
     {
-        popul.inds[i] = numGA(popul.inds[i], ExpData, x, Variables, VarValues, foutname);
+        popul.inds[i] = numGA(popul.inds[i], ExpData, x, Variables, VarValues, FOUTNAME);
         popul.inds[i] = SearchForAbscentVars(popul.inds[i], Variables);
         popul.inds[i].fit = CalcFit(popul.inds[i].ind, ExpData, x, Variables, VarValues);
     }
 
-    outputInd = symbGA(popul, ExpData, x, Variables, VarValues, startime, foutname, fitfilename);
+    outputInd = symbGA(popul, ExpData, x, Variables, VarValues, startime, FOUTNAME, fitfilename);
 
-    fout.open(foutname, std::ios_base::app);
+    fout.open(FOUTNAME, std::ios_base::app);
     std::cout << "PROGRAM RESULT IS " << outputInd.ind << " with fit = " << outputInd.fit << std::endl;
     fout << "PROGRAM RESULT IS " << outputInd.ind << " with fit = " << outputInd.fit << std::endl;
 
