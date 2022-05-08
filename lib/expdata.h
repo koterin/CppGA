@@ -1,28 +1,9 @@
-#define _SCL_SECURE_NO_WARNINGS
-#include <iostream>
-#include <string>
-#include <fstream> //for files
-#include <ctime> //for runtime calculations
-#include <list>
-#include <cmath>
-#include <iterator>
-#include "symbolicc++.h" //for symbolic
+#ifndef LIB_EXPDATA_H_
+#define LIB_EXPDATA_H_
 
-struct data
+//Function for writing dataset from the file to the array
+vector<vector<struct data>> SetData(vector<std::string> fileroutes, vector<std::string> exproutes, int len)
 {
-    double y;
-    double x;
-};
-
-int main(void) {
-     int len = 10;
-    vector<std::string> fileroutes;
-    fileroutes.push_back("Data/Diploma/1.txt");
-    fileroutes.push_back("Data/Diploma/2.txt");
-    
-    vector<std::string> exproutes;
-    exproutes.push_back("Data/Diploma/1expNorm.txt");
-    exproutes.push_back("Data/Diploma/2expNorm.txt");
     
     vector<vector<struct data>> ExpData;
     ExpData.clear();
@@ -40,22 +21,21 @@ int main(void) {
         while (!datafile.eof())
         {
             getline(datafile, currentLine);
-            std::cout << currentLine << std::endl;
-                totalLen++;
+            totalLen++;
         }
 
         int freq = (totalLen / len); //number of lines which will be repeatedly skipped
         if (freq < 1)
         {
             std::cout << "\nDesired length is bigger than the input file=" << std::endl;
-            return(1);
+            return(ExpData);
         }
 
         std::cout << "\nDatafile " << f << " is " << totalLen << " lines long, input will be every "
             << freq << " lines" << std::endl;
 
-        datafile.clear();
-          datafile.seekg(std::ios_base::beg);
+       datafile.clear();
+       datafile.seekg(std::ios_base::beg);
 
         int i = 0;
         while (i < totalLen)
@@ -64,7 +44,7 @@ int main(void) {
             {
                 datafile >> curdata.x >> curdata.y;
                 std::cout << "WRTTING " << curdata.x << " " << curdata.y << std::endl;
-                     bufData.push_back(curdata);
+             bufData.push_back(curdata);
             }
 
             else
@@ -97,10 +77,11 @@ int main(void) {
         }
     }
     
-     if (tMax == 0)
-         tMax = 1;
-     if (vMax == 0)
-          vMax = 1;
+
+    if (tMax == 0)
+       tMax = 1;
+    if (vMax == 0)
+       vMax = 1;
 
     std::ofstream expfile;
     for (int f = 0; f < fileroutes.size(); f++)
@@ -115,5 +96,8 @@ int main(void) {
         expfile.close();
     }
 
-     return (0);
-}
+    return(ExpData);
+};
+
+
+#endif // LIB_EXPDATA_H_
