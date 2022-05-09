@@ -529,6 +529,7 @@ int main() {
     Symbolic x("x"); // h/d
     Symbolic ss("ss"); // sigma ss / sr
     
+    
     // y = x * 0.5 + ss;
     // y = atan((1/(2*x))*(-(1+0.5*x)+((1+0.5*x)^2+4*x*(0.58*ss))^0.5)) * 180.0 / PI;
     //y = (1 / (2 * x)) * (-(1 + 0.5 * x) + ((1 + 0.5 * x) ^ 2 + 4 * x * (0.58 * ss)) ^ 0.5);
@@ -551,6 +552,13 @@ int main() {
     Individ outputInd; // Buffer for Individ class
     vector <vector<struct data>> ExpData; // vector of expdata vectors
     ExpData.clear();
+    
+   // outputInd.ind = y;
+
+    // TEST
+//    char test[100];
+  //  test << outputInd.ind;
+   // std::cout << "\nsprintf is " << test << std::endl;
 
     // Logger initilization
     std::ofstream fout;
@@ -578,23 +586,18 @@ int main() {
     expNormFiles.push_back("Data/Diploma/2expNorm.txt");
 
     vector<struct data> bufData;
-    fout.open(LOGFILE, std::ios_base::app);
-
     for (int f = 0; f < datafiles.size(); f++)
     {
         std::ifstream datafile(datafiles[f]);
         if (!datafile.is_open())
         {
-            std::cout << "\nInput data file not found" << std::endl;
-            std::cout << "The Program will be terminated\n";
-            fout << "\nInput data file not found" << std::endl;
-            fout << "The Program will be terminated\n";
-            return (0);
+            logger("\nInput data file not found.\
+                    The Program will be terimenated\n", term_and_file);
+            return (1);
         }
     }
 
     ExpData = SetData(datafiles, expNormFiles);
-    fout.close();
 
     //Fitness function calculations for the 1st gen
     for (int i = 0; i < numInd; i++)
@@ -604,9 +607,9 @@ int main() {
         popul.inds[i].fit = CalcFit(popul.inds[i].ind, ExpData, x, Variables, VarValues);
     }
 
+    // TODO: delete logfile from input parameters
     outputInd = symbGA(popul, ExpData, x, Variables, VarValues, startime, LOGFILE, fitfilename);
 
-    fout.open(LOGFILE, std::ios_base::app);
     std::cout << "PROGRAM RESULT IS " << outputInd.ind << " with fit = " << outputInd.fit << std::endl;
     fout << "PROGRAM RESULT IS " << outputInd.ind << " with fit = " << outputInd.fit << std::endl;
 
