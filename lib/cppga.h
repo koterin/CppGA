@@ -8,8 +8,9 @@
 #define LOGFILE "Data/Diploma/logs.txt"
 #define DATA_LINES_NUM 10 // Number of data lines to read from file
 
+#include "logger.h"
+#include "genetic_classes.h"
 #include "genetic_functions.h"
 #include "expdata.h"
-#include "logger.h"
 
 #endif // LIB_CPPGA_H_

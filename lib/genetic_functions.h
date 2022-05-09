@@ -1,8 +1,6 @@
 #ifndef LIB_GENETIC_FUNCTIONS_H_
 #define LIB_GENETIC_FUNCTIONS_H_
 
-#include "genetic_classes.h"
-
 //Checking if input y is already a complex formula
 vector<Gene> InputGeneDecomposition(Symbolic y)
 {
