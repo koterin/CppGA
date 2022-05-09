@@ -533,7 +533,6 @@ int main() {
     // y = atan((1/(2*x))*(-(1+0.5*x)+((1+0.5*x)^2+4*x*(0.58*ss))^0.5)) * 180.0 / PI;
     //y = (1 / (2 * x)) * (-(1 + 0.5 * x) + ((1 + 0.5 * x) ^ 2 + 4 * x * (0.58 * ss)) ^ 0.5);
     y = (0.5 * x) * (-(1 + 0.5 * x) + ((1 + 0.5 * x) ^ 2 + 4 * x * (0.58 * ss)) ^ 0.5);
-    int len = 10; // number of lines in ExpData to read
     int numInd = 10; // number of inds in te population
 
     vector<Symbolic> Variables; // First variable must be the wanted one
@@ -553,13 +552,11 @@ int main() {
     vector <vector<struct data>> ExpData; // vector of expdata vectors
     ExpData.clear();
 
-    // Output file with all the logs
+    // Logger initilization
     std::ofstream fout;
-    fout.open(FOUTNAME);
-    fout << "Program started\n";
+    fout.open(LOGFILE);
+    logger("Program started\n", term_and_file);
     fout.close();
-    
-    logger("hi bitch", 1, 1);
 
     //Output file for Fitness function
     std::ofstream fitfile;
@@ -568,7 +565,7 @@ int main() {
     fitfile.close();
 
     Population popul;
-    popul = CreatePop(popul, Variables, numInd, FOUTNAME); //Creating 1st population
+    popul = CreatePop(popul, Variables, numInd, LOGFILE); //Creating 1st population
 
     //Insert here the path to the input data file
     //WARNING! All the phrases must be deleted from the file
@@ -581,7 +578,7 @@ int main() {
     expNormFiles.push_back("Data/Diploma/2expNorm.txt");
 
     vector<struct data> bufData;
-    fout.open(FOUTNAME, std::ios_base::app);
+    fout.open(LOGFILE, std::ios_base::app);
 
     for (int f = 0; f < datafiles.size(); f++)
     {
@@ -596,20 +593,20 @@ int main() {
         }
     }
 
-    ExpData = SetData(datafiles, expNormFiles, len);
+    ExpData = SetData(datafiles, expNormFiles);
     fout.close();
 
     //Fitness function calculations for the 1st gen
     for (int i = 0; i < numInd; i++)
     {
-        popul.inds[i] = numGA(popul.inds[i], ExpData, x, Variables, VarValues, FOUTNAME);
+        popul.inds[i] = numGA(popul.inds[i], ExpData, x, Variables, VarValues, LOGFILE);
         popul.inds[i] = SearchForAbscentVars(popul.inds[i], Variables);
         popul.inds[i].fit = CalcFit(popul.inds[i].ind, ExpData, x, Variables, VarValues);
     }
 
-    outputInd = symbGA(popul, ExpData, x, Variables, VarValues, startime, FOUTNAME, fitfilename);
+    outputInd = symbGA(popul, ExpData, x, Variables, VarValues, startime, LOGFILE, fitfilename);
 
-    fout.open(FOUTNAME, std::ios_base::app);
+    fout.open(LOGFILE, std::ios_base::app);
     std::cout << "PROGRAM RESULT IS " << outputInd.ind << " with fit = " << outputInd.fit << std::endl;
     fout << "PROGRAM RESULT IS " << outputInd.ind << " with fit = " << outputInd.fit << std::endl;
 

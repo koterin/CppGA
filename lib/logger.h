@@ -6,19 +6,33 @@
 #include <fstream> //for files
 #include <ctime> //for runtime calculations
 
-#define FOUTNAME "Data/Diploma/logs.txt"
 
-void logger(std::string message, unsigned int terminal_flag, unsigned int file_flag)
+enum outputType
 {
-    if (terminal_flag == 1)
+    terminal = 0, 
+    file = 1,
+    term_and_file = 2
+};
+
+void logger(std::string message, outputType flag)
+{
+    if ((flag == 0) || (flag == 2))
         std::cout << message << std::endl;
-    if (file_flag == 1)
+    if ((flag == 1) || (flag == 2))
     {
         std::ofstream fout;
-        fout.open(FOUTNAME, std::ios::app);
+        fout.open(LOGFILE, std::ios::app);
         fout << message;
         fout.close();
     }   
+}
+
+std::ofstream logger_initialization(void)
+{
+    std::ofstream fout;
+    fout.open(LOGFILE);
+    fout.close();
+    return (fout);
 }
 
 #endif // LIB_LOGGER_H_

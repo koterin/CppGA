@@ -2,7 +2,7 @@
 #define LIB_EXPDATA_H_
 
 //Function for writing dataset from the file to the array
-vector<vector<struct data>> SetData(vector<std::string> fileroutes, vector<std::string> exproutes, int len)
+vector<vector<struct data>> SetData(vector<std::string> fileroutes, vector<std::string> exproutes)
 {
     
     vector<vector<struct data>> ExpData;
@@ -24,7 +24,7 @@ vector<vector<struct data>> SetData(vector<std::string> fileroutes, vector<std::
             totalLen++;
         }
 
-        int freq = (totalLen / len); //number of lines which will be repeatedly skipped
+        int freq = (totalLen / DATA_LINES_NUM); //number of lines which will be repeatedly skipped
         if (freq < 1)
         {
             std::cout << "\nDesired length is bigger than the input file=" << std::endl;
