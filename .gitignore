@@ -1,7 +1,7 @@
 .vs/
 *logs*
 *fitfile*
-*filtfileNUM*
+*Fitfile*
 x64/
 
 *.swp
