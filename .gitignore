@@ -1,7 +1,5 @@
-.vs/
-*logs*
-*fitfile*
-*filtfileNUM*
-x64/
+$ cat .gitignore
 
-*.swp
+.vs/
+Data/
+x64/

@@ -9,4 +9,4 @@ test: test.cpp
 	$(CC) test.cpp -o test
 
 clean:
-	rm a.out* cppga
+	rm a.out* cppga logs.txt fitfile*
