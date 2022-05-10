@@ -1,7 +1,7 @@
 #ifndef LIB_GENETIC_FUNCTIONS_H_
 #define LIB_GENETIC_FUNCTIONS_H_
 
-//Checking if input y is already a complex formula
+// Checking if input y is already a complex formula
 vector<Gene> InputGeneDecomposition(Symbolic y)
 {
     vector<Gene> bufGenes, newGenes;
@@ -14,7 +14,6 @@ vector<Gene> InputGeneDecomposition(Symbolic y)
     bufList.clear();
 
     auto bufY = y->clone();
-    //SystemDiaDebug.Write(bufY);
 
     if (typeid(*bufY) == typeid(Sum))
     {
@@ -134,8 +133,8 @@ vector<Gene> InputGeneDecomposition(Symbolic y)
     return (bufGenes);
 }
 
-//Function for creating new individual from the genes given
-//WARNING! Input genes vector MUST BE SORTED and organized the way it should be in the output Individual
+// Function for creating new individual from the genes given
+// WARNING! Input genes vector MUST BE SORTED and organized the way it should be in the output Individual
 Individ IndFromGenes(vector<Gene> genes)
 {
     Individ outputInd;
@@ -143,10 +142,8 @@ Individ IndFromGenes(vector<Gene> genes)
     Gene bufGene = genes[0];
     outputInd.ind = bufGene.elem;
 
-    //outputInd.genes.reserve(genNum);
-    //For the 1st element
+    // For the 1st element
     outputInd.genes.push_back(bufGene);
-    //outputInd.ind = genes[0].elem;
 
     for (int i = 1; i < genNum; i++)
     {
@@ -157,7 +154,7 @@ Individ IndFromGenes(vector<Gene> genes)
             genes[i].elem = 99.9;
         }
 
-        //So power won't be simplified
+        // So power won't be simplified
         if ((typeid(*buf) == typeid(Number<int>)))
         {
             genes[i].elem = genes[i].elem - 0.01;
@@ -203,8 +200,10 @@ Individ ZeroIndTermination(Individ IndZero, Symbolic vars)
     plusGene.elem = vars;
     plusGene.oper = 1;
 
-    std::cout << "\nZeroIndTermination, bufInd is " << IndZero.ind << " Missing var is " << vars << std::endl;
-    std::cout << "previous genes length is " << IndZero.genes.size() << std::endl;
+    logger(term_and_file, (char *)("\nZeroIndTermination, bufInd is "));
+    symb_logger(term_and_file, IndZero.ind);
+    logger(term_and_file, (char *)(" Missing var is "));
+    symb_logger(term_and_file, vars);
 
     if (IndZero.genes.size() == 0)
     {
@@ -212,10 +211,11 @@ Individ ZeroIndTermination(Individ IndZero, Symbolic vars)
     }
 
     IndZero.genes.push_back(plusGene);
-    std::cout << "Now genes size must be plus one: " << IndZero.genes.size() << std::endl;
+    logger(terminal, (char *)("Now genes size must be plus one: %zu\n"), IndZero.genes.size());
 
     IndZero = IndFromGenes(IndZero.genes);
-    std::cout << "ind after IndFromGenes " << IndZero.ind << std::endl;
+    logger(term_and_file, (char *)("ind after IndFromGenes "));
+    symb_logger(term_and_file, IndZero.ind);
     IndZero.genes = InputGeneDecomposition(IndZero.ind);
 
     return(IndZero);
@@ -225,7 +225,7 @@ Individ SearchForAbscentVars(Individ IndZero, vector<Symbolic> Variables)
 {
     vector<int> varCount(Variables.size(), 0);
 
-    //Looking for abscent variables
+    // Looking for abscent variables
     for (int j = 1; j < Variables.size(); j++)
     {
         for (int i = 0; i < IndZero.genes.size(); i++)
@@ -241,7 +241,7 @@ Individ SearchForAbscentVars(Individ IndZero, vector<Symbolic> Variables)
             IndZero = ZeroIndTermination(IndZero, Variables[j]);
         }
 
-        //Checking if there're still abscent variables
+        // Checking if there're still abscent variables
         for (int i = 0; i < IndZero.genes.size(); i++)
         {
             if (IndZero.genes[i].elem == Variables[j])
@@ -255,24 +255,6 @@ Individ SearchForAbscentVars(Individ IndZero, vector<Symbolic> Variables)
             IndZero = SearchForAbscentVars(IndZero, Variables);
         }
     } 
-
-    ////Checking if there're still abscent variables
-    //for (int j = 1; j < Variables.size(); j++)
-    //{
-    //    for (int i = 0; i < IndZero.genes.size(); i++)
-    //    {
-    //        if (IndZero.genes[i].elem == Variables[j])
-    //        {
-    //            varCount[j]++;
-    //        }
-    //    }
-
-    //    if (varCount[j] == 0)
-    //    {
-    //        IndZero = SearchForAbscentVars(IndZero, Variables);
-    //    }
-    //}
-
     return(IndZero);
 }
 
@@ -280,8 +262,8 @@ double CalcFit(Symbolic ind, vector<vector<struct data>> ExpData, Symbolic x, ve
 																vector<vector<double>> VarValues)
 {
     struct data buf;
-    double dev = 0.0; //Devitation ind current v from expdata v
-    double devSUM = 0.0; //Sum devitation
+    double dev = 0.0;  // Devitation ind current v from expdata v
+    double devSUM = 0.0;  // Sum devitation
     Symbolic y;
     double fit;
 
@@ -295,7 +277,7 @@ double CalcFit(Symbolic ind, vector<vector<struct data>> ExpData, Symbolic x, ve
 		    y.auto_expand = 0;
 		    y.simplified = 0;
 		    y = ind[x == buf.x];
-		    for (int j = 2; j < Variables.size(); j++) //always from the 2: 0 - y, 1 - x
+		    for (int j = 2; j < Variables.size(); j++)  // always from the 2: 0 - y, 1 - x
 			    y = y[Variables[j] == VarValues[j-1][f]];
 		    y.upr();
 
@@ -316,7 +298,7 @@ double CalcFit(Symbolic ind, vector<vector<struct data>> ExpData, Symbolic x, ve
         }
     }
 
-    //Checking if devSUM is too small so we won't get zeros in fits
+    // Checking if devSUM is too small so we won't get zeros in fits
     if (devSUM > 1e9)
         fit = 0;
     else	
@@ -324,49 +306,48 @@ double CalcFit(Symbolic ind, vector<vector<struct data>> ExpData, Symbolic x, ve
 	return (fit);
 }
 
-Population CreatePop(Population pop, vector<Symbolic> Variables, int numInd, std::string foutname)
+Population CreatePop(Population pop, vector<Symbolic> Variables, int numInd)
 {
-    double coeff = 0.0; //random coefficient for 1st pop creation
+    double coeff = 0.0;  // random coefficient for 1st pop creation
     Individ indZero;
     Gene genZero;
     Individ outputInd;
     Gene outputGene;
-
+    
     pop.inds.clear();
     pop.inds.reserve(numInd);
 
-    std::ofstream fout;
-    fout.open(foutname, std::ios_base::app);
-
     vector<Gene> startGenes;
     startGenes = InputGeneDecomposition(Variables[0]);
-    std::cout << "Final input is [ ";
+    logger(term_and_file, (char *)("\nFinal input is [ "));
     for (int i = 0; i < startGenes.size(); i++)
     {
-        std::cout << startGenes[i].elem << " ";
+        symb_logger(term_and_file, startGenes[i].elem);
+        logger(term_and_file, (char *)(" "));
     }
-    std::cout << " ]" << Variables[0] << std::endl;
+    logger(term_and_file, (char *)(" ]"));
+    symb_logger(term_and_file, Variables[0]);
 
-    //1st element of the Population should be the input individual
+    // 1st element of the Population should be the input individual
     indZero.genes = startGenes;
     pop.inds.push_back(indZero);
-    //Cycle for sequential creating individuals
+    // Cycle for sequential creating individuals
     for (int i = 1; i < numInd; i++)
     {
         int dist = rand() % 7 + 1;
         indZero.genes.clear();
         indZero.genes = startGenes;
-        int varChoice = rand() % (Variables.size() - 1) + 1; //variable for addition
+        int varChoice = rand() % (Variables.size() - 1) + 1;  // variable for addition
 
-        //Creating individuals with the operands decided by the probability distribution
-        //(weights can be adjusted according to the problem)
+        // Creating individuals with the operands decided by the probability distribution
+        // (weights can be adjusted according to the problem)
 
         if (dist == 1)
         {
-            genZero.elem = Variables[varChoice]; //setting the 2nd gene as the operation inititated - "+ x"
+            genZero.elem = Variables[varChoice];  // setting the 2nd gene as the operation "+ x"
             genZero.oper = 1;
             indZero.genes.push_back(genZero);
-            pop.inds.push_back(indZero); //Putting new individual in the vector of the Population
+            pop.inds.push_back(indZero);  // Putting new individual in the vector of the Population
         }
 
         if (dist == 2)
@@ -424,29 +405,18 @@ Population CreatePop(Population pop, vector<Symbolic> Variables, int numInd, std
         }
     }
 
-    //Outputting all of the population, checking if there's zeros
-    std::cout << "INITIAL POPULATION " << 1 << " = { ";
-    fout << "\nINITIAL POPULATION " << 1 << " = { ";
+    // Outputting all of the population, checking if there's zeros
+    logger(term_and_file, (char *)("\nINITIAL POPULATION = {\n"));
 
     for (int i = 0; i < numInd; i++)
     {
         pop.inds[i] = IndFromGenes(pop.inds[i].genes);
         pop.inds[i].genes = InputGeneDecomposition(pop.inds[i].ind);
         pop.inds[i] = SearchForAbscentVars(pop.inds[i], Variables);
-   
-        fout << pop.inds[i].ind;
-        std::cout << pop.inds[i].ind;
-
-        if (i != (numInd - 1))
-        {
-            fout << " | ";
-            std::cout << " | ";
-        }
+        symb_logger(term_and_file, pop.inds[i].ind);
+        logger(term_and_file, (char *)("\n"));
     }
-    fout << " }; \n";
-    std::cout << " }; \n";
-
-    fout.close();
+    logger(term_and_file, (char *)("};"));
     return pop;
 }
 

@@ -17,25 +17,25 @@ vector<vector<struct data>> SetData(vector<std::string> fileroutes, vector<std::
         int totalLen = 0;
         vector<struct data> bufData;
 
-        //Counting the number of lines in the input file
+        // Counting the number of lines in the input file
         while (!datafile.eof())
         {
             getline(datafile, currentLine);
             totalLen++;
         }
 
-        int freq = (totalLen / DATA_LINES_NUM); //number of lines which will be repeatedly skipped
+        int freq = (totalLen / DATA_LINES_NUM);  // number of lines which will be repeatedly skipped
         if (freq < 1)
         {
-            std::cout << "\nDesired length is bigger than the input file=" << std::endl;
+            logger(terminal, (char *)("\nDesired length is bigger than the input file"));
             return(ExpData);
         }
 
-        std::cout << "\nDatafile " << f << " is " << totalLen << " lines long, input will be every "
-            << freq << " lines" << std::endl;
+        logger(term_and_file, (char*)("\nDatafile %d is %d line long, \
+                input will be every %d lines"), f, totalLen, freq);
 
-       datafile.clear();
-       datafile.seekg(std::ios_base::beg);
+        datafile.clear();
+        datafile.seekg(std::ios_base::beg);
 
         int i = 0;
         while (i < totalLen)
@@ -43,8 +43,7 @@ vector<vector<struct data>> SetData(vector<std::string> fileroutes, vector<std::
             if (i % freq == 0)
             {
                 datafile >> curdata.x >> curdata.y;
-                std::cout << "WRTTING " << curdata.x << " " << curdata.y << std::endl;
-             bufData.push_back(curdata);
+                bufData.push_back(curdata);
             }
 
             else
