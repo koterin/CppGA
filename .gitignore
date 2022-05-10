@@ -3,3 +3,11 @@ $ cat .gitignore
 .vs/
 Data/
 x64/
+*logs*
+*fitfile*
+*Fitfile*
+x64/
+*.exe
+*.dll
+
+*.swp
