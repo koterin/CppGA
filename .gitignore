@@ -1,5 +1,12 @@
 .vs/
-Data/
+*logs*
+*fitfile*
+*filtfileNUM*
 x64/
+<<<<<<< HEAD
 *.exe
 *.dll
+=======
+
+*.swp
+>>>>>>> mult_symb
